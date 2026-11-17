@@ -39,10 +39,86 @@ with overview:
     st.bar_chart(df["Activity"].fillna("Không có thông tin").value_counts())
     st.caption("Đang xem dữ liệu gốc; module chuẩn hóa của Thọ sẽ được tích hợp sau.")
 with events:
-    activities = sorted(df["Activity"].dropna().astype(str).unique())
-    selected = st.multiselect("Lọc loại hoạt động", activities)
-    view = df[df["Activity"].isin(selected)] if selected else df
-    st.write(f"Có {len(view):,} sự kiện phù hợp. Hiển thị tối đa 1.000 dòng đầu.")
-    st.dataframe(view.head(1000), use_container_width=True)
+    st.subheader("Danh sách sự kiện")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        selected_activities = st.multiselect(
+            "Loại hoạt động",
+            options=sorted(
+                df["Activity"].dropna().astype(str).unique()
+            ),
+        )
+
+    with col2:
+        selected_users = st.multiselect(
+            "Người dùng",
+            options=sorted(
+                df["User"].dropna().astype(str).unique()
+            ),
+        )
+
+    with col3:
+        selected_agents = st.multiselect(
+            "Máy / Agent",
+            options=sorted(
+                df["Agent_name"].dropna().astype(str).unique()
+            ),
+        )
+
+    include_missing_users = st.checkbox(
+        "Giữ các sự kiện thiếu tên người dùng khi lọc User",
+        value=False,
+    )
+
+    # Không chọn giá trị nào nghĩa là không lọc trường đó.
+    view = df.copy()
+
+    if selected_activities:
+        view = view[
+            view["Activity"].astype("string").isin(selected_activities)
+        ]
+
+    if selected_users:
+        user_mask = (
+            view["User"].astype("string").isin(selected_users)
+        )
+
+        if include_missing_users:
+            user_mask = user_mask | view["User"].isna()
+
+        view = view[user_mask]
+
+    if selected_agents:
+        view = view[
+            view["Agent_name"].astype("string").isin(selected_agents)
+        ]
+
+    st.caption(
+        "Các bộ lọc kết hợp đồng thời. "
+        "Để trống một bộ lọc để lấy tất cả giá trị của trường đó. "
+        "Bộ lọc hiện chỉ áp dụng cho tab Sự kiện."
+    )
+
+    st.write(
+        f"Có {len(view):,} / {len(df):,} sự kiện phù hợp."
+    )
+
+    if view.empty:
+        st.info(
+            "Không có sự kiện phù hợp. "
+            "Hãy bỏ bớt hoặc thay đổi điều kiện lọc."
+        )
+    else:
+        st.caption("Hiển thị tối đa 1.000 dòng đầu.")
+        st.dataframe(
+            view.head(1000),
+            use_container_width=True,
+        )
+
     if "Anomaly" in df.columns:
-        st.caption("Anomaly là nhãn có sẵn trong dataset, không phải dự đoán của ứng dụng.")
+        st.caption(
+            "Anomaly là nhãn tham chiếu có sẵn trong dataset, "
+            "không phải dự đoán của ứng dụng."
+        )
