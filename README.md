@@ -84,24 +84,3 @@ khi dự đoán.
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-## Xử lý lỗi thường gặp
-
-- **Không tìm thấy model:** kiểm tra các file `.joblib` trong `models/artifacts/`.
-- **Thiếu cột CSV:** dùng file có đủ các cột bắt buộc nêu trên.
-- **Cổng đang bận:** chạy ứng dụng với `--server.port 8502`.
-- **Thay đổi code nhưng chưa thấy trên trình duyệt:** tải lại trang; nếu cần,
-  dừng Streamlit bằng `Ctrl+C` rồi chạy lại lệnh khởi động.
-
-## Phát triển
-
-| Thành viên | Phần phụ trách |
-|---|---|
-| Tuấn | Dashboard và tích hợp |
-| Thọ | Loader, normalizer, rules, correlation, severity |
-| Ngọc | ML, huấn luyện, inference và đánh giá |
-
-Theo phân công trong bảng Excel; tài liệu hướng dẫn PDF có chỗ ghi đảo vai trò
-Tuấn/Thọ nên nhóm cần xác nhận. Xem thêm `docs/PHAN_CONG.md` và
-`docs/INTEGRATION_CONTRACT.md`.
-
-Không commit dataset, thông tin bí mật, môi trường `.venv` hoặc log người dùng.
