@@ -1,113 +1,107 @@
 # AI Security Log Analyzer
-Đồ án An ninh máy tính: phân tích nhật ký SPEDIA bằng luật và Machine Learning.
 
-## Trạng thái
-Dashboard nhận CSV, chạy ML inference và hiển thị biểu đồ tổng quan/cảnh báo.
-Rule Engine, event correlation và severity chưa được tích hợp.
+Ứng dụng Streamlit hỗ trợ xem nhật ký an ninh, chạy dự đoán anomaly bằng
+Machine Learning và xem biểu đồ tổng quan/cảnh báo.
 
-## Phân công
-- **Tuấn:** Dashboard & tích hợp.
-- **Thọ:** Xử lý log & phát hiện theo luật.
-- **Ngọc:** AI/ML & thực nghiệm.
-Theo Excel; nhóm cần xác nhận vì PDF hướng dẫn đang đảo vai trò Tuấn/Thọ.
+> Rule Engine, event correlation và severity chưa được tích hợp.
 
-## Cấu trúc
-| Thư mục | Nội dung |
-|---|---|
-| dashboard/ | app.py — giao diện Streamlit |
-| preprocessing/ | Loader và normalizer — Thọ |
-| detection/ | Rules, correlation, severity — Thọ; ml_engine.py — Ngọc |
-| models/ | Huấn luyện và artifacts — Ngọc |
-| evaluation/ | Thực nghiệm và đánh giá — Ngọc |
-| data/raw/, data/processed/ | Dữ liệu cục bộ, không đưa lên Git |
-| tests/ | Kiểm thử module và tích hợp |
-| docs/ | Phân công và quy ước tích hợp |
-| reports/ | Báo cáo, slide, minh chứng |
+## Cài đặt và chạy trên Windows
 
-## Chạy trên Windows (PowerShell)
-Cài Python 3.12.x và Git nếu máy chưa có. Mở terminal tại thư mục chứa README.md.
-Không cần activate môi trường, dùng trực tiếp Python của .venv:
+### 1. Tải mã nguồn
 
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
-.\.venv\Scripts\python.exe -m streamlit run dashboard/app.py
-```
-
-Chọn file CSV trên giao diện. CSV phải có các cột `Timestamp`, `User`,
-`Agent_name`, `Activity`, `Action` và `Decoder_name`.
-`requirements.txt` ghim phiên bản đã dùng để kiểm thử và lưu model.
-
-### Model artifacts
-Dashboard cần các model trong `models/artifacts/`. Git ignore thư mục này mặc định,
-nên khi đưa nhánh tích hợp lên Git cần thêm rõ các model đang có trong selector:
-
-```powershell
-git add -f models/artifacts/logistic_regression.joblib
-git add -f models/artifacts/random_forest.joblib
-git add -f models/artifacts/random_forest_behavioral.joblib
-```
-
-Không cần đưa `isolation_forest.joblib` lên vì dashboard chưa cung cấp lựa chọn đó.
-Không đẩy dataset gốc, predictions hoặc file FP/FN có chứa log.
-
-## Push nhánh tích hợp
-Trong repo đã clone sẵn, tạo nhánh mới và stage các file tích hợp:
-
-```powershell
-git switch -c feature/ml-dashboard-integration
-git add dashboard/app.py detection/ml_engine.py requirements.txt tests/test_ml_engine.py
-git add reports/ml/model_metrics.csv reports/ml/*_confusion_matrix.png
-git add -f models/artifacts/logistic_regression.joblib
-git add -f models/artifacts/random_forest.joblib
-git add -f models/artifacts/random_forest_behavioral.joblib
-git status
-git diff --cached --stat
-git commit -m "feat: integrate ML inference into dashboard"
-git push -u origin feature/ml-dashboard-integration
-```
-
-Sau đó mở Pull Request từ `feature/ml-dashboard-integration` vào nhánh chính.
-Người khác clone nhánh để chạy thử:
+**Clone bằng Git:** mở PowerShell tại thư mục muốn lưu project:
 
 ```powershell
 git clone --branch feature/ml-dashboard-integration https://github.com/nguyenanhtuan2702/ANMT_SEMINAR.git
 cd ANMT_SEMINAR
+```
+
+Sau khi nhánh tích hợp được merge vào `main`, có thể clone mặc định bằng:
+
+```powershell
+git clone https://github.com/nguyenanhtuan2702/ANMT_SEMINAR.git
+cd ANMT_SEMINAR
+```
+
+**Hoặc tải ZIP:** vào trang GitHub của repository, chọn **Code → Download ZIP**,
+giải nén, rồi mở PowerShell trong thư mục `ANMT_SEMINAR` có chứa file này.
+
+### 2. Cài Python và thư viện
+
+Cần Python **3.12.x**. Kiểm tra bằng:
+
+```powershell
+py -3.12 --version
+```
+
+Tạo môi trường riêng và cài dependencies:
+
+```powershell
 py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+### 3. Kiểm tra model files
+
+Đảm bảo thư mục `models/artifacts/` có các file:
+
+- `logistic_regression.joblib`
+- `random_forest.joblib`
+- `random_forest_behavioral.joblib`
+
+Các model là cần thiết để chạy dự đoán. Nếu thiếu, hãy tải lại mã nguồn từ nhánh
+đã có các artifacts này hoặc yêu cầu nhóm cung cấp chúng.
+
+### 4. Chạy ứng dụng
+
+```powershell
 .\.venv\Scripts\python.exe -m streamlit run dashboard/app.py
 ```
 
-## Push lần đầu lên GitHub
-Tạo repository rỗng (không tạo README, license hoặc .gitignore trên GitHub).
-Giải nén rồi mở PowerShell ngay trong thư mục AI-Security-Log-Analyzer.
-Thay URL bên dưới bằng URL repo thật của nhóm trước khi chạy lệnh remote.
+Mở địa chỉ hiện trong terminal, thường là <http://localhost:8501>.
+Nếu cổng 8501 đang được sử dụng:
 
 ```powershell
-git init
-git branch -M main
-git add .
-git add -f models/artifacts/logistic_regression.joblib
-git add -f models/artifacts/random_forest.joblib
-git add -f models/artifacts/random_forest_behavioral.joblib
-git status
-git commit -m "chore: initialize security log analyzer scaffold"
-git remote add origin https://github.com/TEN_TAI_KHOAN/TEN_REPO.git
-git push -u origin main
+.\.venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8502
 ```
 
-Nếu Git yêu cầu danh tính, đặt tên/email của bạn rồi chạy lại commit:
+### 5. Dùng ứng dụng
+
+1. Tải file CSV ở thanh bên.
+2. Chọn model và điều chỉnh ngưỡng anomaly nếu cần.
+3. Xem thống kê/biểu đồ ở **Tổng quan**, danh sách ở **Sự kiện**, cảnh báo
+   cùng anomaly score ở **Cảnh báo**.
+4. Tab **Đánh giá ML** hiển thị metric và confusion matrix đã lưu trong project.
+
+CSV cần có các cột `Timestamp`, `User`, `Agent_name`, `Activity`, `Action`,
+`Decoder_name`. Cột `Anomaly` không bắt buộc và không được dùng làm đầu vào
+khi dự đoán.
+
+## Chạy kiểm thử
+
 ```powershell
-git config user.name "TEN_CUA_BAN"
-git config user.email "EMAIL_CUA_BAN"
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Nếu repo đã có lịch sử: clone repo trước, chép nội dung bộ khung vào repo, xem git status và commit/push; không force push.
-Không đẩy .venv, mật khẩu, dataset hoặc file log. Các model trong selector là artifacts cần thiết để người clone chạy inference; thêm chúng bằng `git add -f` như hướng dẫn ở trên.
-Git không lưu thư mục trống nên các thư mục dự phòng có .gitkeep.
+## Xử lý lỗi thường gặp
 
-## Bước tiếp theo
-1. Chốt docs/INTEGRATION_CONTRACT.md cùng nhóm.
-2. Tích hợp Rule Engine, correlation và severity.
-3. Kiểm thử end-to-end với dataset mẫu, ghi kết quả và hoàn thiện báo cáo.
+- **Không tìm thấy model:** kiểm tra các file `.joblib` trong `models/artifacts/`.
+- **Thiếu cột CSV:** dùng file có đủ các cột bắt buộc nêu trên.
+- **Cổng đang bận:** chạy ứng dụng với `--server.port 8502`.
+- **Thay đổi code nhưng chưa thấy trên trình duyệt:** tải lại trang; nếu cần,
+  dừng Streamlit bằng `Ctrl+C` rồi chạy lại lệnh khởi động.
+
+## Phát triển
+
+| Thành viên | Phần phụ trách |
+|---|---|
+| Tuấn | Dashboard và tích hợp |
+| Thọ | Loader, normalizer, rules, correlation, severity |
+| Ngọc | ML, huấn luyện, inference và đánh giá |
+
+Theo phân công trong bảng Excel; tài liệu hướng dẫn PDF có chỗ ghi đảo vai trò
+Tuấn/Thọ nên nhóm cần xác nhận. Xem thêm `docs/PHAN_CONG.md` và
+`docs/INTEGRATION_CONTRACT.md`.
+
+Không commit dataset, thông tin bí mật, môi trường `.venv` hoặc log người dùng.
