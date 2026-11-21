@@ -1,9 +1,9 @@
 # AI Security Log Analyzer
 Đồ án An ninh máy tính: phân tích nhật ký SPEDIA bằng luật và Machine Learning.
 
-## Trạng thái bộ khung
-Đã có giao diện Streamlit: upload CSV, kiểm tra các cột hiển thị cần thiết, thống kê và lọc theo Activity.
-Chưa có chuẩn hóa nghiệp vụ, phát hiện, mô hình ML, correlation hoặc severity. Các file tương ứng là chỗ dành sẵn để từng thành viên triển khai.
+## Trạng thái
+Dashboard nhận CSV, chạy ML inference và hiển thị biểu đồ tổng quan/cảnh báo.
+Rule Engine, event correlation và severity chưa được tích hợp.
 
 ## Phân công
 - **Tuấn:** Dashboard & tích hợp.
@@ -25,18 +25,59 @@ Theo Excel; nhóm cần xác nhận vì PDF hướng dẫn đang đảo vai trò
 | reports/ | Báo cáo, slide, minh chứng |
 
 ## Chạy trên Windows (PowerShell)
-Cài Python 3.11 và Git nếu máy chưa có. Mở terminal tại thư mục chứa README.md.
+Cài Python 3.12.x và Git nếu máy chưa có. Mở terminal tại thư mục chứa README.md.
 Không cần activate môi trường, dùng trực tiếp Python của .venv:
 
 ```powershell
-py -3.11 -m venv .venv
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
 .\.venv\Scripts\python.exe -m streamlit run dashboard/app.py
 ```
 
-Chọn file CSV trên giao diện. Có thể đặt dataset đã có vào data/raw/.
-Không cần cài thư viện để chỉ push bộ khung lên Git.
-requirements.txt chỉ chứa thư viện của giao diện hiện tại. Ngọc bổ sung thư viện ML và nhóm chốt phiên bản sau khi kiểm thử tích hợp.
+Chọn file CSV trên giao diện. CSV phải có các cột `Timestamp`, `User`,
+`Agent_name`, `Activity`, `Action` và `Decoder_name`.
+`requirements.txt` ghim phiên bản đã dùng để kiểm thử và lưu model.
+
+### Model artifacts
+Dashboard cần các model trong `models/artifacts/`. Git ignore thư mục này mặc định,
+nên khi đưa nhánh tích hợp lên Git cần thêm rõ các model đang có trong selector:
+
+```powershell
+git add -f models/artifacts/logistic_regression.joblib
+git add -f models/artifacts/random_forest.joblib
+git add -f models/artifacts/random_forest_behavioral.joblib
+```
+
+Không cần đưa `isolation_forest.joblib` lên vì dashboard chưa cung cấp lựa chọn đó.
+Không đẩy dataset gốc, predictions hoặc file FP/FN có chứa log.
+
+## Push nhánh tích hợp
+Trong repo đã clone sẵn, tạo nhánh mới và stage các file tích hợp:
+
+```powershell
+git switch -c feature/ml-dashboard-integration
+git add dashboard/app.py detection/ml_engine.py requirements.txt tests/test_ml_engine.py
+git add reports/ml/model_metrics.csv reports/ml/*_confusion_matrix.png
+git add -f models/artifacts/logistic_regression.joblib
+git add -f models/artifacts/random_forest.joblib
+git add -f models/artifacts/random_forest_behavioral.joblib
+git status
+git diff --cached --stat
+git commit -m "feat: integrate ML inference into dashboard"
+git push -u origin feature/ml-dashboard-integration
+```
+
+Sau đó mở Pull Request từ `feature/ml-dashboard-integration` vào nhánh chính.
+Người khác clone nhánh để chạy thử:
+
+```powershell
+git clone --branch feature/ml-dashboard-integration https://github.com/nguyenanhtuan2702/ANMT_SEMINAR.git
+cd ANMT_SEMINAR
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run dashboard/app.py
+```
 
 ## Push lần đầu lên GitHub
 Tạo repository rỗng (không tạo README, license hoặc .gitignore trên GitHub).
@@ -47,6 +88,9 @@ Thay URL bên dưới bằng URL repo thật của nhóm trước khi chạy l�
 git init
 git branch -M main
 git add .
+git add -f models/artifacts/logistic_regression.joblib
+git add -f models/artifacts/random_forest.joblib
+git add -f models/artifacts/random_forest_behavioral.joblib
 git status
 git commit -m "chore: initialize security log analyzer scaffold"
 git remote add origin https://github.com/TEN_TAI_KHOAN/TEN_REPO.git
@@ -60,11 +104,10 @@ git config user.email "EMAIL_CUA_BAN"
 ```
 
 Nếu repo đã có lịch sử: clone repo trước, chép nội dung bộ khung vào repo, xem git status và commit/push; không force push.
-Không đẩy .venv, mật khẩu, dataset hoặc model nặng. .gitignore đã bỏ qua các mục tương ứng.
+Không đẩy .venv, mật khẩu, dataset hoặc file log. Các model trong selector là artifacts cần thiết để người clone chạy inference; thêm chúng bằng `git add -f` như hướng dẫn ở trên.
 Git không lưu thư mục trống nên các thư mục dự phòng có .gitkeep.
 
 ## Bước tiếp theo
-1. Đọc docs/PHAN_CONG.md và chốt docs/INTEGRATION_CONTRACT.md cùng nhóm.
-2. Tuấn bổ sung lọc thời gian/user/agent và chi tiết sự kiện.
-3. Thọ và Ngọc bàn giao module cùng ví dụ đầu ra; Tuấn nối vào app.
-4. Kiểm thử với dataset thật, ghi kết quả và viết báo cáo.
+1. Chốt docs/INTEGRATION_CONTRACT.md cùng nhóm.
+2. Tích hợp Rule Engine, correlation và severity.
+3. Kiểm thử end-to-end với dataset mẫu, ghi kết quả và hoàn thiện báo cáo.
