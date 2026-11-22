@@ -1,0 +1,2 @@
+# Preserve exact bytes so checksums and multiline raw logs survive Git round-trips.
+* -text
