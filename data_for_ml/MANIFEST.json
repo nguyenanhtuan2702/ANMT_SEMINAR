@@ -39,8 +39,8 @@
       "sha256": "79da8f9b3a51792de8c68ad3e47c2b67aa9037219158b7e969a802e14f02e496"
     },
     "DATA.md": {
-      "bytes": 19988,
-      "sha256": "e17fb6f9b8ea0070b390076d65ced17e5ce14ff3c96093c0dea0cf47426c0ed4"
+      "bytes": 21841,
+      "sha256": "fb052782c706383a0fbe50e668ec0079eb31e3a0de0262c4bdd09285d820968f"
     },
     "detected_logs.csv": {
       "source": "data\\detected_logs.csv",
@@ -94,13 +94,37 @@
       "bytes": 32018,
       "sha256": "4974a63f1dbb1edd32ad3e6d0cf5de80fc6993b54c2bfe4b049922a0d25b0b75"
     },
+    "prioritized_alerts_v1.0.csv": {
+      "bytes": 3273692,
+      "sha256": "5dbfef3045ae9fd40a647c8105ac4e180e31ff4292a802b4280cb630878812f5",
+      "rows": 1301,
+      "columns": 12,
+      "source": "reports/task7/prioritized_alerts_v1.0.csv"
+    },
+    "prioritized_alerts_v1.0.schema.json": {
+      "bytes": 1916,
+      "sha256": "95bda025bb33192e9eb571f8c0a6482fe700cb2cd95c2a23de2d029de2cc0812",
+      "source": "reports/task7/prioritized_alerts_v1.0.schema.json"
+    },
+    "prioritized_atomic_alerts.csv": {
+      "bytes": 2545789,
+      "sha256": "6e024d27b71ca776a1e55427cc4ea94e40f8722b382e95558168f882c30b808a",
+      "rows": 1301,
+      "columns": 11,
+      "source": "reports/task7/prioritized_atomic_alerts.csv"
+    },
+    "prioritized_atomic_alerts.schema.json": {
+      "bytes": 1829,
+      "sha256": "9fd40311fb975181b5090f332068e2ac931e44fd44c8b5259987b0b0fd55a8c3",
+      "source": "reports/task7/prioritized_atomic_alerts.schema.json"
+    },
     "requirements.txt": {
       "bytes": 14,
       "sha256": "d10a136dace7f2f63b61417f480167de964fb1be1bb03d4db62de2feaa413f19"
     },
     "VALIDATION.json": {
-      "bytes": 2287,
-      "sha256": "ce0a3a3d42280b1a4ce2593d0646f50a7571e261ceed144cf4aacf4b622194e7"
+      "bytes": 3288,
+      "sha256": "1ed836930738238f8af096d6e00800ee0d0c2e569989da50d21d3a7b04e576d4"
     }
   },
   "source_namespace": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
@@ -121,13 +145,22 @@
     "raw_and_reference_labels_equal_original_CSV": true,
     "all_CSV_and_sidecar_bytes_preserved": true,
     "reader_operates_without_original_project": true,
-    "Git_text_conversion_disabled_for_bundle_files": true
+    "Git_text_conversion_disabled_for_bundle_files": true,
+    "prioritized_tables_match_original_Task7_bytes": true,
+    "prioritized_event_and_rule_keys_match_base": true,
+    "prioritized_context_detector_reason_and_raw_unchanged": true,
+    "prioritized_final_severity_matches_detected_logs": true,
+    "all_final_priority_reasons_present": true,
+    "priority_levels_and_reasons_match_independent_causal_prefix": true,
+    "merged_rule_matches_preserve_detailed_priority_reasons": true,
+    "all_eight_tables_readable_without_original_project": true
   },
   "notes": [
     "Standalone data handoff; reader requires pandas only.",
-    "Original CSV and sidecar bytes are preserved.",
     "DATA.md describes data/schema/rules; no ML integration or training recipe is included.",
     "Git text conversion is disabled for all bundle files; generated caches are ignored.",
-    "Detailed validation results are in VALIDATION.json."
+    "Detailed validation results are in VALIDATION.json.",
+    "Six original CSVs/sidecars remain unchanged; two prioritized tables/sidecars are exact Task 7 copies.",
+    "Final per-rule priority explanations are in prioritized_atomic_alerts.severity_reason and prioritized_alerts_v1.0.rule_matches[].severity_reason."
   ]
 }

@@ -1,6 +1,6 @@
 # Bộ dữ liệu chuẩn hóa và kết quả rule-based
 
-`data_for_ml/` là gói bàn giao độc lập chứa log đã chuẩn hóa, kết quả rule, nhóm sự kiện và metadata. Tài liệu này mô tả nội dung, schema, quan hệ giữa các bảng và quy tắc tạo dữ liệu. Gói không kèm model đã huấn luyện hoặc tập train/validation/test đã chia sẵn.
+`data_for_ml/` là gói data chứa log đã chuẩn hóa, kết quả rule, nhóm sự kiện và metadata. Tài liệu này mô tả nội dung, schema, quan hệ giữa các bảng và quy tắc tạo dữ liệu.
 
 ## 1. Danh sách file
 
@@ -11,6 +11,8 @@
 | normalized_logs_sample.csv | 1.000 | 43 | Tập con giữ nguyên ID nguồn để xem thử dữ liệu |
 | alerts_atomic.csv | 1.301 | 11 | Alert theo từng cặp source_row_id/rule_id |
 | alerts.csv | 1.301 | 12 | Alert đã gộp theo source_row_id |
+| prioritized_atomic_alerts.csv | 1.301 | 11 | Alert từng rule sau chấm severity, có severity_reason giải thích trực tiếp mức cuối |
+| prioritized_alerts_v1.0.csv | 1.301 | 12 | Alert sau chấm severity đã gộp theo source_row_id; giữ lý do chi tiết của từng rule trong rule_matches |
 | event_groups.csv | 7.501 | 12 | Snapshot nhóm sự kiện User/Agent theo thời gian |
 
 normalized_logs và detected_logs là hai biểu diễn của **cùng 72.250 event**, không phải hai tập độc lập để cộng số lượng. Sample nằm trong bộ đầy đủ. Raw log có thể chứa xuống dòng, nên số dòng văn bản của file không bằng số bản ghi CSV.
@@ -26,7 +28,7 @@ Các file kèm theo:
 - `.gitattributes`: tắt chuyển đổi line ending để Git giữ nguyên byte/checksum và raw log nhiều dòng.
 - `.gitignore`: bỏ qua cache Python và môi trường cục bộ khi đưa thư mục lên Git.
 
-Đường dẫn `data/...` trong provenance là vị trí xuất tại project gốc, không cần tồn tại ở máy người nhận. Mọi dữ liệu và metadata cần đọc đều nằm ngay trong thư mục này.
+Đường dẫn `data/...` hoặc `reports/task7/...` trong provenance là vị trí xuất tại project gốc, không cần tồn tại ở máy người nhận. Mọi dữ liệu và metadata cần đọc đều nằm ngay trong thư mục này.
 
 ## 2. Schema log chuẩn hóa
 
@@ -58,7 +60,14 @@ Snapshot giữ đủ 72.250 event nguồn. Hiện có 0 timestamp lỗi, 1.372 e
 
 Có 1.301 event có alert và 70.949 event không có alert. Phân phối severity sau điều chỉnh: LOW 48, MEDIUM 635, HIGH 446, CRITICAL 172. Null severity không đồng nghĩa LOW.
 
-Severity ở alerts.csv/alerts_atomic.csv là **mức gốc của rule**. Severity ở detected_logs.csv đã được **điều chỉnh theo prefix ngữ cảnh**; hai giá trị có thể khác nhau. Reason/evidence trong alert giải thích detector; gói không kèm bảng giải thích chi tiết severity sau điều chỉnh, công thức được mô tả trong tài liệu này.
+Severity ở alerts.csv/alerts_atomic.csv là **mức gốc của rule**. Severity ở detected_logs.csv và hai bảng prioritized đã được **điều chỉnh theo prefix ngữ cảnh**. Có **675 event tăng mức** và 626 event có alert giữ mức gốc; không có event giảm mức. Các bảng này là những cách biểu diễn của cùng tập alert, không phải alert mới để cộng số lượng.
+
+### Lý do cho severity cuối
+
+- `prioritized_atomic_alerts.csv`: cột `severity` là mức cuối của từng rule match; `severity_reason` giải thích trực tiếp mức gốc, số event alert đã thấy, số loại hoạt động đã thấy, giờ nguồn, bước tăng và trần. Đây là bảng xem lý do điều chỉnh chi tiết.
+- `prioritized_alerts_v1.0.csv`: một dòng/source_row_id; `severity` là mức cuối cao nhất trong các rule match. `severity_reason` ở mức gộp giải thích việc lấy mức cao nhất; lý do điều chỉnh cụ thể của từng rule nằm ở `rule_matches[].severity_reason`.
+- `reason` và `evidence` giữ nguyên ý nghĩa detector: điều kiện khớp và raw nguồn. Không ghi đè chúng bằng lý do severity.
+- Khóa nối với detected_logs là `source_row_id`; mức cuối của bảng prioritized đã được đối chiếu khớp hoàn toàn với `detected_logs.severity` trên 1.301 event có alert. Các event không có alert vẫn có severity=null và không có dòng trong bảng prioritized.
 
 ## 4. Khóa nối và quan hệ giữa các bảng
 
@@ -70,12 +79,15 @@ flowchart LR
     N -->|giữ ID nguồn| S[sample: 1.000 event]
     N -->|event khớp rule| A[alerts_atomic]
     A -->|gộp source_row_id| M[alerts]
+    A -->|chấm severity theo prefix| P[prioritized_atomic_alerts]
+    P -->|gộp source_row_id| PM[prioritized_alerts_v1.0]
     N -->|User và Agent theo thời gian| G[event_groups]
 ```
 
 - normalized_logs ↔ detected_logs: **1:1**, 43 cột ban đầu giống chính xác.
 - normalized_logs_sample là tập con của normalized_logs, giữ nguyên mọi giá trị và ID gốc.
 - alerts_atomic → event: **nhiều:1** theo thiết kế; cặp source_row_id/rule_id duy nhất. alerts → event: tối đa **1:1** sau gộp. Hai bảng hiện cùng 1.301 dòng vì không có event khớp nhiều rule đang bật trong snapshot này.
+- prioritized_atomic_alerts có cùng các cặp source_row_id/rule_id với alerts_atomic; prioritized_alerts_v1.0 có cùng tập event và rule_ids với alerts. Chỉ mức ưu tiên/lý do ưu tiên được cập nhật; context, detector reason và evidence giữ nguyên. Atomic vẫn có thể nhiều dòng/event trong dữ liệu khác; dùng bảng prioritized gộp khi cần quan hệ một dòng/event.
 - event_groups.source_row_ids là danh sách ID theo Timestamp/record_index; mỗi event thuộc tối đa một nhóm. key chứa User/Agent. start_time/end_time là thời gian đầu/cuối nhóm; activities và rule_ids là danh sách của snapshot nhóm.
 - 7.501 nhóm bao phủ 70.878 event; 1.372 event thiếu User không có nhóm. Trong 1.301 event có alert, 1.131 có nhóm và 170 không có nhóm. Không loại 170 alert này khi đối chiếu nhóm.
 - alert_count ở detected_logs đếm rule của **event hiện tại**; alert_count ở event_groups đếm **event có alert trong cả snapshot nhóm**. rule_match_count của nhóm đếm cặp event/rule, có thể lớn hơn số event alert.
@@ -87,7 +99,7 @@ flowchart LR
 | Hàm | Kết quả |
 |---|---|
 | verify_bundle(base_dir=None) | Kiểm tra SHA-256 tất cả file trong MANIFEST.json, trả danh sách tên file hợp lệ; sai checksum/thiếu file thì báo lỗi |
-| load_table(filename="normalized_logs.csv", base_dir=None) | Đọc một trong sáu CSV bằng sidecar, trả pandas DataFrame |
+| load_table(filename="normalized_logs.csv", base_dir=None) | Đọc một trong tám CSV bằng sidecar, trả pandas DataFrame |
 
 Mặc định reader tìm file cạnh load_data.py, không phụ thuộc working directory. Nó chỉ đọc dữ liệu, không sửa file; khôi phục JSON list/dict, datetime/date, numeric/boolean nullable và phân biệt null với chuỗi rỗng hoặc chuỗi raw như NA. pd.read_csv mặc định không bảo đảm các quy ước này.
 
@@ -172,6 +184,6 @@ Giờ 08:00–18:00 chỉ là giả định prototype trên đồng hồ nguồn
 
 ## 8. Kết quả kiểm tra gói bàn giao
 
-VALIDATION.json ghi số lượng, schema, khóa nối, raw/nhãn, count/severity và các phép đối chiếu thực tế. Toàn bộ CSV và sidecar được giữ nguyên byte so với snapshot nguồn đã kiểm chứng. Reader đã đọc được cả sáu bảng độc lập với code project gốc; MANIFEST.json được cập nhật cho tài liệu và các file hỗ trợ hiện tại.
+VALIDATION.json ghi số lượng, schema, khóa nối, raw/nhãn, count/severity và các phép đối chiếu thực tế. Sáu CSV ban đầu và sidecar giữ nguyên byte; hai bảng prioritized và sidecar là bản sao đã xác minh từ snapshot Task 7. Reader đã đọc được cả tám bảng độc lập với code project gốc. Lý do ưu tiên cuối đầy đủ trên 1.301 alert, bao gồm 675 event tăng mức; MANIFEST.json được đồng bộ với toàn bộ tài liệu/dữ liệu hiện tại.
 
 Khi đưa lên GitHub, giữ nguyên cấu trúc thư mục với cả các file ẩn .gitattributes/.gitignore. Các file .pyc, __pycache__ và môi trường cục bộ không thuộc gói bàn giao.

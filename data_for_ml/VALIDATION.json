@@ -28,6 +28,14 @@
     "event_groups.csv": {
       "rows": 7501,
       "columns": 12
+    },
+    "prioritized_atomic_alerts.csv": {
+      "rows": 1301,
+      "columns": 11
+    },
+    "prioritized_alerts_v1.0.csv": {
+      "rows": 1301,
+      "columns": 12
     }
   },
   "checks": {
@@ -42,7 +50,15 @@
     "raw_and_reference_labels_equal_original_CSV": true,
     "all_CSV_and_sidecar_bytes_preserved": true,
     "reader_operates_without_original_project": true,
-    "Git_text_conversion_disabled_for_bundle_files": true
+    "Git_text_conversion_disabled_for_bundle_files": true,
+    "prioritized_tables_match_original_Task7_bytes": true,
+    "prioritized_event_and_rule_keys_match_base": true,
+    "prioritized_context_detector_reason_and_raw_unchanged": true,
+    "prioritized_final_severity_matches_detected_logs": true,
+    "all_final_priority_reasons_present": true,
+    "priority_levels_and_reasons_match_independent_causal_prefix": true,
+    "merged_rule_matches_preserve_detailed_priority_reasons": true,
+    "all_eight_tables_readable_without_original_project": true
   },
   "counts": {
     "grouped_events": 70878,
@@ -68,11 +84,18 @@
       "HTTP_IP_HOST": 105,
       "CMD_NMAP": 47,
       "AUTH_FAILURE_WINDOW": 8
-    }
+    },
+    "prioritized_atomic_alerts": 1301,
+    "prioritized_merged_event_alerts": 1301,
+    "events_with_increased_severity": 675,
+    "alerted_events_with_unchanged_severity": 626,
+    "events_with_decreased_severity": 0
   },
   "repairs": [
     "Updated stale reader checksum after docstring-only changes.",
     "Replaced integration/training instructions with data/schema/rule documentation.",
-    "Added local Git attributes to preserve file bytes and local ignore rules for generated caches."
+    "Added local Git attributes to preserve file bytes and local ignore rules for generated caches.",
+    "Added prioritized atomic and merged alert tables with final severity and detailed reasons.",
+    "Updated DATA.md and all bundle manifest checksums for the expanded eight-table handoff."
   ]
 }
