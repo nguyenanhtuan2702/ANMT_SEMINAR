@@ -186,4 +186,3 @@ Giờ 08:00–18:00 chỉ là giả định prototype trên đồng hồ nguồn
 
 VALIDATION.json ghi số lượng, schema, khóa nối, raw/nhãn, count/severity và các phép đối chiếu thực tế. Sáu CSV ban đầu và sidecar giữ nguyên byte; hai bảng prioritized và sidecar là bản sao đã xác minh từ snapshot Task 7. Reader đã đọc được cả tám bảng độc lập với code project gốc. Lý do ưu tiên cuối đầy đủ trên 1.301 alert, bao gồm 675 event tăng mức; MANIFEST.json được đồng bộ với toàn bộ tài liệu/dữ liệu hiện tại.
 
-Khi đưa lên GitHub, giữ nguyên cấu trúc thư mục với cả các file ẩn .gitattributes/.gitignore. Các file .pyc, __pycache__ và môi trường cục bộ không thuộc gói bàn giao.
