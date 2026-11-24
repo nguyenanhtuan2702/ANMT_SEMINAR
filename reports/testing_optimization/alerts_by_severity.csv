@@ -1,0 +1,5 @@
+severity,event_count
+LOW,48
+MEDIUM,635
+HIGH,446
+CRITICAL,172

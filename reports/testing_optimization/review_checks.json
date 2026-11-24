@@ -1,0 +1,79 @@
+{
+  "bundle_verified_files": 23,
+  "table_shapes": {
+    "alerts.csv": [
+      1301,
+      12
+    ],
+    "alerts_atomic.csv": [
+      1301,
+      11
+    ],
+    "detected_logs.csv": [
+      72250,
+      47
+    ],
+    "event_groups.csv": [
+      7501,
+      12
+    ],
+    "normalized_logs.csv": [
+      72250,
+      43
+    ],
+    "normalized_logs_sample.csv": [
+      1000,
+      43
+    ],
+    "prioritized_alerts_v1.0.csv": [
+      1301,
+      12
+    ],
+    "prioritized_atomic_alerts.csv": [
+      1301,
+      11
+    ]
+  },
+  "full_output_and_raw_match": true,
+  "rule_metrics_recomputed_match": true,
+  "rule_union_metrics": {
+    "precision": 0.3458877786318217,
+    "recall": 0.010832671336751643,
+    "tp": 450.0,
+    "fp": 851.0,
+    "fn": 41091.0,
+    "tn": 29858.0
+  },
+  "frozen_schema_hash_matches": true,
+  "team_signoff": {
+    "Tuan": "pending",
+    "evidence": null
+  },
+  "alerts_by_rule": {
+    "FILE_CONFIG_CHANGE": 851,
+    "CMD_MSFCONSOLE": 105,
+    "CMD_JOHN": 185,
+    "HTTP_IP_HOST": 105,
+    "CMD_NMAP": 47,
+    "AUTH_FAILURE_WINDOW": 8
+  },
+  "alerts_by_severity": {
+    "MEDIUM": 635,
+    "HIGH": 446,
+    "LOW": 48,
+    "CRITICAL": 172
+  },
+  "groups": 7501,
+  "final_severity_reasons_present": true,
+  "handoff_paths_exist": 170,
+  "status": "passed",
+  "severity_upgraded_alerts": 675,
+  "final_severity_unchanged_alerts": 626,
+  "review_pytest": {
+    "cases": 198,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "subtests_passed": 90
+  }
+}

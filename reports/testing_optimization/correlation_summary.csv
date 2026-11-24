@@ -1,0 +1,8 @@
+metric,value
+groups,7501
+grouped_events,70878
+ungrouped_events,1372
+grouped_alert_events,1131
+ungrouped_alert_events,170
+singleton_groups,822
+max_group_size,2482

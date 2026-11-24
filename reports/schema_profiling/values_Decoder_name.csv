@@ -1,0 +1,8 @@
+﻿value,count,percent_all_rows,is_empty
+cert,51631,71.461592,False
+auditd,10114,13.998616,False
+pam,5399,7.472664,False
+syscheck_integrity_changed,3132,4.334948,False
+syscheck_new_entry,895,1.238754,False
+syscheck_deleted,712,0.985467,False
+json,367,0.507958,False

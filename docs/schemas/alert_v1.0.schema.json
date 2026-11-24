@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Merged event alert v1.0",
+  "description": "Technical freeze for integration. Tuan signoff is tracked separately, not implied by this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "alert_id", "source_row_id", "timestamp", "user", "agent", "activity", "rule_ids", "rule_matches", "reason", "severity", "severity_reason"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "alert_id": {"type": "string", "pattern": "^[0-9a-f]{64}:[0-9]{8,}:merged:v1\\.0$"},
+    "source_row_id": {"$ref": "#/$defs/source_row_id"},
+    "timestamp": {"$ref": "#/$defs/timestamp"},
+    "user": {"type": ["string", "null"], "minLength": 1},
+    "agent": {"type": "string", "minLength": 1},
+    "activity": {"type": "string", "minLength": 1},
+    "rule_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/rule_id"}},
+    "rule_matches": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rule_match"}},
+    "reason": {"type": "string", "minLength": 1},
+    "severity": {"$ref": "#/$defs/severity"},
+    "severity_reason": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "source_row_id": {"type": "string", "pattern": "^[0-9a-f]{64}:[0-9]{8,}$"},
+    "rule_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+    "timestamp": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}$"},
+    "severity": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+    "evidence": {
+      "type": "object",
+      "propertyNames": {"not": {"enum": ["Anomaly", "Level"]}},
+      "additionalProperties": {"type": ["string", "null"]}
+    },
+    "rule_match": {
+      "type": "object", "additionalProperties": false,
+      "required": ["alert_id", "rule_id", "reason", "evidence", "severity", "severity_reason"],
+      "properties": {
+        "alert_id": {"type": "string", "pattern": "^[0-9a-f]{64}:[0-9]{8,}:[A-Z][A-Z0-9_]*$"},
+        "rule_id": {"$ref": "#/$defs/rule_id"},
+        "reason": {"type": "string", "minLength": 1},
+        "evidence": {"$ref": "#/$defs/evidence"},
+        "severity": {"$ref": "#/$defs/severity"},
+        "severity_reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "atomic_alert": {
+      "type": "object", "additionalProperties": false,
+      "required": ["alert_id", "source_row_id", "timestamp", "user", "agent", "activity", "rule_id", "reason", "evidence", "severity", "severity_reason"],
+      "properties": {
+        "alert_id": {"type": "string", "pattern": "^[0-9a-f]{64}:[0-9]{8,}:[A-Z][A-Z0-9_]*$"},
+        "source_row_id": {"$ref": "#/$defs/source_row_id"},
+        "timestamp": {"$ref": "#/$defs/timestamp"},
+        "user": {"type": ["string", "null"], "minLength": 1},
+        "agent": {"type": "string", "minLength": 1},
+        "activity": {"type": "string", "minLength": 1},
+        "rule_id": {"$ref": "#/$defs/rule_id"},
+        "reason": {"type": "string", "minLength": 1},
+        "evidence": {"$ref": "#/$defs/evidence"},
+        "severity": {"$ref": "#/$defs/severity"},
+        "severity_reason": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

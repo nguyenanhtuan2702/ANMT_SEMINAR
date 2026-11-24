@@ -1,5 +1,6 @@
 """Machine-learning inference engine for dashboard integration."""
 from pathlib import Path
+from functools import lru_cache
 
 import joblib
 import numpy as np
@@ -82,6 +83,15 @@ def make_source_row_ids(df: pd.DataFrame) -> pd.Series:
     return pd.Series([f"row_{index + 1}" for index in range(len(df))], index=df.index)
 
 
+@lru_cache(maxsize=3)
+def _load_pipeline(path: str, modified_ns: int, size: int):
+    """Reuse inference artifacts; file version keys invalidate replaced models.
+
+    Cached pipelines are used only for predict, never fit or altered in place.
+    """
+    return joblib.load(path)
+
+
 def predict(
     df: pd.DataFrame,
     model_name: str = "random_forest_behavioral.joblib",
@@ -101,7 +111,8 @@ def predict(
     inference_df["_source_row_id"] = make_source_row_ids(df)
     prepared = prepare_ml_input(inference_df)
     source_ids = prepared["_source_row_id"].astype(str)
-    pipeline = joblib.load(model_path)
+    version = model_path.stat()
+    pipeline = _load_pipeline(str(model_path.resolve()), version.st_mtime_ns, version.st_size)
     feature_columns = (
         FULL_FEATURE_COLUMNS
         if model_name in {"random_forest.joblib", "logistic_regression.joblib"}

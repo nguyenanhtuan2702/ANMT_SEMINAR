@@ -39,8 +39,8 @@
       "sha256": "79da8f9b3a51792de8c68ad3e47c2b67aa9037219158b7e969a802e14f02e496"
     },
     "DATA.md": {
-      "bytes": 21841,
-      "sha256": "fb052782c706383a0fbe50e668ec0079eb31e3a0de0262c4bdd09285d820968f"
+      "bytes": 21639,
+      "sha256": "c8474603446692aa4db6b7907f2303e0acfd53374100d564e778ab552e717c6f"
     },
     "detected_logs.csv": {
       "source": "data\\detected_logs.csv",

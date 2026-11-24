@@ -1,10 +1,7 @@
-Kiểm tra xem có cài Python chưa chưa có thì tự cài đi trời muốn gì nữa
+# Streamlit dashboard
 
-Kiểm tra bản Python "py --version" Phải là bản 3.12.x nhen 
+Hướng dẫn cài đặt và chạy thống nhất tại [README gốc](../README.md).
 
-Cài thư viện để chạy db
+Entry point: `dashboard/app.py`. `service.py` gọi loader → normalize → pipeline rule-based; `views.py` hiển thị Overview, Events, Alerts, Timeline và trạng thái ML.
 
-"py -3.11 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt" Up date nếu cần thiết 
-
-Lệnh mở giao diện : ".\.venv\Scripts\python.exe -m streamlit run dashboard/app.py"
+Dashboard hiện chưa gọi ML inference. Hợp đồng đầu vào/đầu ra ở [PIPELINE_API.md](../docs/PIPELINE_API.md); phạm vi bàn giao và phối hợp với Tuấn ở [THO_HANDOFF.md](../docs/THO_HANDOFF.md).

@@ -1,0 +1,1266 @@
+[
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00044881",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00055425",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00009016",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051551",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00055654",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00057996",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051627",
+    "suspected_false_positive": true,
+    "technical_review_category": "structured_field_raw_mismatch",
+    "technical_note": "Command=nmap nhưng raw là thống kê số log, không có bằng chứng executable/argv tương ứng. Nghi sai ngữ nghĩa trường nguồn; giữ event và cần kiểm tra decoder, không tự sửa nhãn.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051653",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00052763",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00052773",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00044999",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00052149",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00047460",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00052276",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00053016",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00015991",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00035099",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051834",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00015010",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051859",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00044994",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051742",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00050588",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00015095",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NMAP|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00046595",
+    "suspected_false_positive": true,
+    "technical_review_category": "process_exit_not_scan_evidence",
+    "technical_note": "Raw ANOM_ABEND có comm/exe nmap và sig=11: xác nhận dấu vết tiến trình, không có argv/lần quét tại sự kiện này; nghi cảnh báo quá mức nếu hiểu là quét mạng thành công.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00069678",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743338711.317:21460): argc=3 a0=\"john\" a1=\"--format:bcrypt\" a2=\"hash4.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054476",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743324126.183:282178): argc=3 a0=\"john\" a1=\"--show\" a2=\"shadow\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00061012",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743331656.230:9240): argc=2 a0=\"john\" a1=\"shadow.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00013954",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1741972839.021:5538): argc=3 a0=\"john\" a1=\"--format=LM\" a2=\"shadow.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00062196",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743335517.109:19606): argc=3 a0=\"john\" a1=\"--format:bccrypt\" a2=\"hash3.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00048350",
+    "suspected_false_positive": true,
+    "technical_review_category": "help_or_no_hash_target",
+    "technical_note": "Đối số chỉ yêu cầu trợ giúp/không ghi nhận file hash mục tiêu; nghi FP khi diễn giải thành hành vi lấy mật khẩu. không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743078273.208:4330): argc=1 a0=\"john\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00013932",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1741972347.348:5055): argc=3 a0=\"john\" a1=\"--show\" a2=\"shadow\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00013370",
+    "suspected_false_positive": true,
+    "technical_review_category": "help_or_no_hash_target",
+    "technical_note": "Đối số chỉ yêu cầu trợ giúp/không ghi nhận file hash mục tiêu; nghi FP khi diễn giải thành hành vi lấy mật khẩu. không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1741972416.259:5085): argc=2 a0=\"john\" a1=\"-help\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00057186",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743323503.895:281215): argc=2 a0=\"john\" a1=\"camilohash.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014545",
+    "suspected_false_positive": true,
+    "technical_review_category": "help_or_no_hash_target",
+    "technical_note": "Đối số chỉ yêu cầu trợ giúp/không ghi nhận file hash mục tiêu; nghi FP khi diễn giải thành hành vi lấy mật khẩu. không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1741972405.981:5081): argc=2 a0=\"john\" a1=\"-h\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00027081",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742756724.362:14894): argc=2 a0=\"john\" a1=\"flagultimadelservidorinterno.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00023454",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742569223.275:8451): argc=3 a0=\"john\" a1=\"--wordlist:/Downloads/rockyou.txt\" a2=\"shadow\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00013345",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1741972312.796:5037): argc=3 a0=\"john\" a1=\"--format=raw-sha256\" a2=\"shadow\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00034216",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742842316.170:9787): argc=3 a0=\"john\" a1=\"--show\" a2=\"irene.hash\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00028833",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742754538.524:13461): argc=4 a0=\"john\" a1=\"--show\" a2=\"--wordlist=/usr/share/john/password.lst\" a3=\"hash.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00070599",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743349335.765:24882): argc=3 a0=\"john\" a1=\"--format:descrypt\" a2=\"shadow\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014110",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1741976859.774:652): argc=3 a0=\"john\" a1=\"--subformat=raw-sha256\" a2=\"shadow\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00064596",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743335713.817:19719): argc=3 a0=\"john\" a1=\"--format:raw-sha256\" a2=\"hash4.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00041497",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742947866.527:10504): argc=3 a0=\"john\" a1=\"--format=sha256crypt\" a2=\"hash_irene.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00034223",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742842349.960:9819): argc=3 a0=\"john\" a1=\"--show\" a2=\"irene.hash\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00013937",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1741971856.467:4871): argc=3 a0=\"john\" a1=\"-format=raw\" a2=\"shadow\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00059807",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1743335418.972:19558): argc=3 a0=\"john\" a1=\"--format:raw-md5\" a2=\"hash3.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00041574",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742948032.168:10562): argc=3 a0=\"john\" a1=\"--show\" a2=\"hash_irene.txt\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00034212",
+    "suspected_false_positive": false,
+    "technical_review_category": "password_tool_arguments_observed",
+    "technical_note": "Raw EXECVE có argv john và tham số/file đầu vào liên quan; không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742842266.652:9763): argc=3 a0=\"john\" a1=\"--format=sha512crypt\" a2=\"irene.hash\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_JOHN|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00034221",
+    "suspected_false_positive": true,
+    "technical_review_category": "help_or_no_hash_target",
+    "technical_note": "Đối số chỉ yêu cầu trợ giúp/không ghi nhận file hash mục tiêu; nghi FP khi diễn giải thành hành vi lấy mật khẩu. không có thông tin ủy quyền hoặc kết quả bẻ khóa. Đối chiếu argv: type=EXECVE msg=audit(1742842308.516:9785): argc=2 a0=\"john\" a1=\"--show\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00025867",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014481",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00024310",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00009018",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00037298",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00015512",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00025970",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00057819",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00053086",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00015646",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054515",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051800",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00042351",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00046462",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00052757",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00061161",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00031426",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054012",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00038510",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054161",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00055648",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00015075",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054250",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00057213",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_MSFCONSOLE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00015320",
+    "suspected_false_positive": false,
+    "technical_review_category": "shell_launcher_only",
+    "technical_note": "Raw ghi /bin/sh /usr/bin/msfconsole; Description nhắc /usr/bin/dash là launcher, không phải bằng chứng rule nhầm executable. Không thấy module/lệnh exploit hoặc kết quả, chưa kết luận khai thác.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00016754",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00006205",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/vsftpd.conf. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00005179",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/vsftpd.conf. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00050404",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf.bak. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00006558",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File deleted tại /etc/apache2/sites-available/prueba.txt. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00010286",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003940",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00004642",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File added tại /etc/apache2/sites-available/prueba.txt. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00010426",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File deleted tại /etc/apache2/sites-available/prueba.txt. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00005474",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00017055",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File deleted tại /etc/apache2/sites-available/prueba.txt. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00036850",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00034015",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File added tại /etc/apache2/sites-available/prueba.txt. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00028149",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00056003",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00019755",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00019772",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/vsftpd.conf. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00016570",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/vsftpd.conf. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00034007",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/vsftpd.conf. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00028450",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File added tại /etc/apache2/sites-available/prueba.txt. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00023763",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00016465",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/vsftpd.conf. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00019895",
+    "suspected_false_positive": true,
+    "technical_review_category": "test_backup_or_repeated_maintenance_possible",
+    "technical_note": "Raw xác nhận File modified tại /etc/vsftpd.conf. Tên thử nghiệm/backup hoặc mẫu kích thước lặp 0<->23 có thể thuộc quản trị hợp lệ; nghi FP cần ticket và diff nội dung. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00037683",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "FILE_CONFIG_CHANGE|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00055986",
+    "suspected_false_positive": false,
+    "technical_review_category": "integrity_change_needs_change_ticket",
+    "technical_note": "Raw xác nhận File modified tại /etc/apache2/sites-available/000-default.conf. Có hash/size thay đổi nhưng không có diff/ticket để xác nhận trái phép. Không dùng đuôi file làm whitelist; bộ lọc mtime-only đã được áp dụng riêng.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00029784",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.15.2:1337/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014661",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.100.2:1337/flag.php",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051746",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/tmp/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00016284",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.153.2/wizard/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00001168",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.171.2/wizard/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054098",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/include/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051430",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/wizard/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054146",
+    "suspected_false_positive": false,
+    "technical_review_category": "injection_like_query_needs_response",
+    "technical_note": "URL có chuỗi system()/; id trong query, đáng điều tra thêm; không có response chứng minh thực thi. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/wizard/?type=bar&dimension=2d&data_type=array&value_col=;%20id&output_type=html&chart_height=300&bg_color=F3F0E9&txt_col=000000&line_col=000000&header_height=20&margin=10&default_title=bar%202d&title_font_size=2&label=no&label_font_size=1&legend_align=bottom&direction=V&marker=yes",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00048803",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.57.2:1337/index.html",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00053985",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/cgi-bin/tes.cgi",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00049715",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.12.2:1338/wizard/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054213",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/wizard/?type=bar&dimension=2d&data_type=array&group_col=c1:1&series_col=c2:2&value_col=1,2,3&output_type=html&chart_height=300&bg_color=F3F0E9&txt_col=000000&line_col=000000&header_height=20&margin=10&default_title=bar%202d%20multi-level&title_font_size=2&label=no&label_font_size=1&legend_align=bottom&direction=V&marker=yes",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054094",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/wizard/?type=bar&dimension=2d&data_type=array&value_col=;1&output_type=html&chart_height=300&bg_color=F3F0E9&txt_col=000000&line_col=000000&header_height=20&margin=10&default_title=bar%202d&title_font_size=2&label=no&label_font_size=1&legend_align=bottom&direction=V&marker=yes",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054218",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/tmp/67e84f8cac808.php",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00034316",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.243.2:1337/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00049696",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.12.2:1337/gallery/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00063937",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.41.2:1337/flag.php",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00064936",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.13.2/configwizard/keyUpload.jsp",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00025921",
+    "suspected_false_positive": false,
+    "technical_review_category": "injection_like_query_needs_response",
+    "technical_note": "URL có chuỗi system()/; id trong query, đáng điều tra thêm; không có response chứng minh thực thi. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.15.2/wizard/index.php?type=%27;system(%27whoami%27);//",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054220",
+    "suspected_false_positive": false,
+    "technical_review_category": "injection_like_query_needs_response",
+    "technical_note": "URL có chuỗi system()/; id trong query, đáng điều tra thêm; không có response chứng minh thực thi. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/wizard/?type=bar&dimension=2d&data_type=array&group_col=c1:1,4,5&series_col=c2:a1&value_col=;%20id&output_type=html&chart_height=300&bg_color=F3F0E9&txt_col=000000&line_col=000000&header_height=20&margin=10&default_title=bar%202d%20multi-level&title_font_size=2&label=no&label_font_size=1&legend_align=bottom&direction=V&marker=yes",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00054078",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/wizard/?type=bar&dimension=2d&data_type=array&output_type=html&chart_height=300&bg_color=F3F0E9&txt_col=000000&line_col=000000&header_height=20&margin=10&default_title=bar%202d&title_font_size=2&label=no&label_font_size=1&legend_align=bottom&direction=V&marker=yes",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00051747",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/wizard/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00053984",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.42.2/cgi-bin/status.sh",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00041325",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.112.2:1337/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "HTTP_IP_HOST|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00059155",
+    "suspected_false_positive": true,
+    "technical_review_category": "direct_ip_is_weak_indicator",
+    "technical_note": "Raw chỉ xác nhận truy cập HTTP bằng IP nội bộ/đường dẫn; có thể là dịch vụ thử nghiệm/quản trị, nghi FP nếu gọi là URL ác ý. Rule chỉ khớp IP hostname, không phải detector injection; Url=http://10.12.41.2:1337/",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00060376",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065046",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065475",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065025",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00071200",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00067067",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00060360",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "AUTH_FAILURE_WINDOW|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065499",
+    "suspected_false_positive": false,
+    "technical_review_category": "explicit_ssh_failure_cluster",
+    "technical_note": "Raw PAM sshd xác nhận authentication failure và user tương ứng; count/window được đối chiếu độc lập. Có thể là thử sai mật khẩu hợp lệ, chưa chứng minh brute force; không gán benign/malicious từ suy đoán này.",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00028991",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026190",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00056133",
+    "suspected_false_positive": false,
+    "technical_review_category": "command_execution_option_needs_context",
+    "technical_note": "Raw EXECVE có -c và đối số mã hóa chứa lệnh nc khác: cần điều tra relay/ủy quyền, chưa chứng minh reverse shell. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1743327438.439:1139): argc=6 a0=\"nc\" a1=\"-l\" a2=\"-p\" a3=\"8080\" a4=\"-c\" a5=6E632031302E31302E3233352E32203830",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00039990",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00029033",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00032384",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00028955",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00058355",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1743330599.231:299161): argc=3 a0=\"nc\" a1=\"10.12.235.2\" a2=\"80\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00002952",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00029541",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755568.584:4428): argc=3 a0=\"nc\" a1=\"-p\" a2=\"1337\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00040029",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00028968",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755555.688:795): argc=3 a0=\"nc\" a1=\"-p\" a2=\"1337\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026552",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755557.280:1282): argc=2 a0=\"nc\" a1=\"10.10.100.2\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026264",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755565.672:3620): argc=3 a0=\"nc\" a1=\"-p\" a2=\"1337\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00031780",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00032331",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026492",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026939",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755571.152:5150): argc=2 a0=\"nc\" a1=\"10.10.100.2\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00029549",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755568.884:4510): argc=2 a0=\"nc\" a1=\"10.10.100.2\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026112",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755562.624:2774): argc=2 a0=\"nc\" a1=\"10.10.100.2\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026315",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755566.604:3886): argc=2 a0=\"nc\" a1=\"10.10.100.2\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00039975",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. ",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026865",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755569.788:4752): argc=3 a0=\"nc\" a1=\"-p\" a2=\"1337\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00026323",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755566.700:3911): argc=3 a0=\"nc\" a1=\"-p\" a2=\"1337\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  },
+  {
+    "sample_id": "CMD_NETCAT|04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00029030",
+    "suspected_false_positive": true,
+    "technical_review_category": "network_tool_not_reverse_shell_evidence",
+    "technical_note": "Raw ghi nc.openbsd hoặc argv kết nối/listen; không thấy bằng chứng shell/đánh cắp dữ liệu, nghi FP nếu bật chỉ theo tên tool. Chỉ chẩn đoán; rule vẫn tắt trong production. type=EXECVE msg=audit(1742755556.912:1182): argc=2 a0=\"nc\" a1=\"10.10.100.2\"",
+    "reviewer": "Codex_assisted_raw_review",
+    "review_method": "agent_assisted_raw_and_argv_triage_not_human_ground_truth"
+  }
+]
