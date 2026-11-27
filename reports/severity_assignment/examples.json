@@ -1,0 +1,103 @@
+{
+  "LOW": {
+    "timestamp": "2025-03-06T15:53:03.727",
+    "user": null,
+    "agent": "attacker_22cdbe317138f0d8f0137e45f930a42e950d036c",
+    "activity": "http",
+    "rule_id": "HTTP_IP_HOST",
+    "reason": "Url='http://10.12.34.2/wizard/', Action='url accedida', hostname='10.12.34.2': truy cập URL dùng IP trực tiếp; chỉ dấu ngữ cảnh để xem xét, chưa kết luận URL ác ý.",
+    "severity": "LOW",
+    "source_row_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00001126",
+    "alert_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00001126:HTTP_IP_HOST",
+    "evidence": {
+      "matched_field": "Url",
+      "matched_value": "http://10.12.34.2/wizard/",
+      "Action": "url accedida",
+      "Full_log": "{\"Date\":\"2025-03-06 16:53:03\",\"actividad\":\"url_visited\",\"User\":\"ubuntu\",\"PC\":\"ubuntu-VirtualBox\",\"url\":\"http://10.12.34.2/wizard/\"}",
+      "Description": "El usuario ubuntu en el ordenador ubuntu-VirtualBox a accedido a la URL: http://10.12.34.2/wizard/.",
+      "Content": "",
+      "Action_raw": "URL accedida",
+      "User_raw": null,
+      "Agent_name_raw": "attacker_22cdbe317138f0d8f0137e45f930a42e950d036c",
+      "Activity_raw": "http",
+      "Timestamp_raw": "2025-03-06 15:53:03.727",
+      "hostname": "10.12.34.2"
+    },
+    "severity_reason": "Ưu tiên xử lý prototype, không phải tác động đã xác minh. Policy spedia.severity.v1; rule HTTP_IP_HOST gốc=LOW; không có ngữ cảnh nhóm đủ điều kiện; count/activity +0; giờ nguồn=15, ngoài [08:00,18:00)=False (+0); tổng tăng=0 bậc (giới hạn ngữ cảnh 2, trần CRITICAL) → LOW. Không tự giảm mức do thiếu ngữ cảnh/giờ làm việc; ML không sử dụng."
+  },
+  "MEDIUM": {
+    "timestamp": "2025-03-06T11:52:00.033",
+    "user": "camilo",
+    "agent": "public-host_simulation",
+    "activity": "file",
+    "rule_id": "FILE_CONFIG_CHANGE",
+    "reason": "Path='/etc/apache2/sites-available/prueba.txt', Action='file added': đường dẫn khớp nhóm cấu hình được theo dõi; cần đối chiếu thay đổi quản trị hợp lệ.",
+    "severity": "MEDIUM",
+    "source_row_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00000059",
+    "alert_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00000059:FILE_CONFIG_CHANGE",
+    "evidence": {
+      "matched_field": "Path",
+      "matched_value": "/etc/apache2/sites-available/prueba.txt",
+      "Action": "file added",
+      "Full_log": "File '/etc/apache2/sites-available/prueba.txt' added Mode: whodata ",
+      "Description": "File added to the system.",
+      "Content": "",
+      "Action_raw": "File added",
+      "User_raw": "camilo",
+      "Agent_name_raw": "public-host_simulation",
+      "Activity_raw": "file",
+      "Timestamp_raw": "2025-03-06 11:52:00.033"
+    },
+    "severity_reason": "Ưu tiên xử lý prototype, không phải tác động đã xác minh. Policy spedia.severity.v1; rule FILE_CONFIG_CHANGE gốc=MEDIUM; prefix nhóm: 1 event có alert (+0), 1 loại hoạt động (+0); giờ nguồn=11, ngoài [08:00,18:00)=False (+0); tổng tăng=0 bậc (giới hạn ngữ cảnh 2, trần CRITICAL) → MEDIUM. Không tự giảm mức do thiếu ngữ cảnh/giờ làm việc; ML không sử dụng."
+  },
+  "HIGH": {
+    "timestamp": "2025-03-06T12:09:13.422",
+    "user": "camilo",
+    "agent": "public-host_simulation",
+    "activity": "file",
+    "rule_id": "FILE_CONFIG_CHANGE",
+    "reason": "Path='/etc/apache2/sites-available/prueba.txt', Action='file deleted': đường dẫn khớp nhóm cấu hình được theo dõi; cần đối chiếu thay đổi quản trị hợp lệ.",
+    "severity": "HIGH",
+    "source_row_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00000919",
+    "alert_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00000919:FILE_CONFIG_CHANGE",
+    "evidence": {
+      "matched_field": "Path",
+      "matched_value": "/etc/apache2/sites-available/prueba.txt",
+      "Action": "file deleted",
+      "Full_log": "File '/etc/apache2/sites-available/prueba.txt' deleted Mode: whodata ",
+      "Description": "File deleted.",
+      "Content": "",
+      "Action_raw": "File deleted",
+      "User_raw": "camilo",
+      "Agent_name_raw": "public-host_simulation",
+      "Activity_raw": "file",
+      "Timestamp_raw": "2025-03-06 12:09:13.422"
+    },
+    "severity_reason": "Ưu tiên xử lý prototype, không phải tác động đã xác minh. Policy spedia.severity.v1; rule FILE_CONFIG_CHANGE gốc=MEDIUM; prefix nhóm: 3 event có alert (+1), 2 loại hoạt động (+0); giờ nguồn=12, ngoài [08:00,18:00)=False (+0); tổng tăng=1 bậc (giới hạn ngữ cảnh 2, trần CRITICAL) → HIGH. Không tự giảm mức do thiếu ngữ cảnh/giờ làm việc; ML không sử dụng."
+  },
+  "CRITICAL": {
+    "timestamp": "2025-03-07T07:54:22.326",
+    "user": "camilo",
+    "agent": "public-host_simulation",
+    "activity": "file",
+    "rule_id": "FILE_CONFIG_CHANGE",
+    "reason": "Path='/etc/vsftpd.conf', Action='file modified': đường dẫn khớp nhóm cấu hình được theo dõi; cần đối chiếu thay đổi quản trị hợp lệ.",
+    "severity": "CRITICAL",
+    "source_row_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00002424",
+    "alert_id": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00002424:FILE_CONFIG_CHANGE",
+    "evidence": {
+      "matched_field": "Path",
+      "matched_value": "/etc/vsftpd.conf",
+      "Action": "file modified",
+      "Full_log": "File '/etc/vsftpd.conf' modified Mode: whodata Changed attributes: size,mtime,md5,sha1,sha256 Size changed from '23' to '0' Old modification time was: '1741268790', now it is '1741334054' Old md5sum was: '410ed7575a815d8549fa1393c27d491b' New md5sum is : 'd41d8cd98f00b204e9800998ecf8427e' Old sha1sum was: 'a0f6b4b40eac4e69ae09230793d101af1c00fca2' New sha1sum is : 'da39a3ee5e6b4b0d3255bfef95601890afd80709' Old sha256sum was: '193c717d24164b1ad8c044518dfcb4e1dfc8be012ad94cf169402961203134c1' New sha256sum is : 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' ",
+      "Description": "Integrity checksum changed.",
+      "Content": "",
+      "Action_raw": "File modified",
+      "User_raw": "camilo",
+      "Agent_name_raw": "public-host_simulation",
+      "Activity_raw": "file",
+      "Timestamp_raw": "2025-03-07 07:54:22.326"
+    },
+    "severity_reason": "Ưu tiên xử lý prototype, không phải tác động đã xác minh. Policy spedia.severity.v1; rule FILE_CONFIG_CHANGE gốc=MEDIUM; prefix nhóm: 1 event có alert (+0), 3 loại hoạt động (+1); giờ nguồn=07, ngoài [08:00,18:00)=True (+1); tổng tăng=2 bậc (giới hạn ngữ cảnh 2, trần CRITICAL) → CRITICAL. Không tự giảm mức do thiếu ngữ cảnh/giờ làm việc; ML không sử dụng."
+  }
+}

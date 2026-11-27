@@ -1,0 +1,3 @@
+﻿rule_id,alert_records,unique_alert_events,evaluated_alert_events,tp,fp,fn,tn,precision,label_match_rate,recall,f1,reference_positive_events,reference_negative_events,excluded_label_events,mode
+CMD_NETCAT,3324,3324,3324,3324,0,38217,30709,1.0,1.0,0.0800173322741388,0.14817786693413573,41541,30709,0,diagnostic_disabled_not_production
+__UNION__,3324,3324,3324,3324,0,38217,30709,1.0,1.0,0.0800173322741388,0.14817786693413573,41541,30709,0,diagnostic_disabled_not_production

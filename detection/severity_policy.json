@@ -1,0 +1,11 @@
+{
+  "schema_version": "spedia.severity.v1",
+  "alert_thresholds": [{"count": 3, "steps": 1}, {"count": 10, "steps": 2}],
+  "activity_threshold": 3,
+  "activity_steps": 1,
+  "working_hour_start": 8,
+  "working_hour_end": 18,
+  "off_hours_steps": 1,
+  "max_context_steps": 2,
+  "correlation": {"window_seconds": 900, "max_gap_seconds": 300, "min_events": 1}
+}

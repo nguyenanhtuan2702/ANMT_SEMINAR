@@ -1,0 +1,138 @@
+{
+  "source": "dataset_log\\logs_SPEDIA_annotated_en.csv",
+  "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+  "rules_sha256": "3bc2d5a7de043bebe10293efffb93a51eb9caa1a7987d630846f56f5701efabe",
+  "frozen_config_sha256": "ab3a993afbce0ae8096a0e9d8930df9228f791b3f0899616513763a4a0bd1a00",
+  "atomic_sha256": "37a20c6f6e90c745edb43ac8f8ce2fd5797cef9ee75606f32a6b82348f7cb24a",
+  "samples_sha256": "724e322118fdf9e6d76e9ff86150a860484ed10aacc6237ed2182f65018ff3b1",
+  "python_version": "3.12.14",
+  "pandas_version": "3.0.1",
+  "rows": 72250,
+  "active_rule_ids": [
+    "CMD_NMAP",
+    "CMD_JOHN",
+    "CMD_MSFCONSOLE",
+    "FILE_CONFIG_CHANGE",
+    "HTTP_IP_HOST",
+    "AUTH_FAILURE_WINDOW"
+  ],
+  "disabled_rule_ids": [
+    "CMD_NETCAT"
+  ],
+  "atomic_alert_count": 1301,
+  "merged_alert_count": 1301,
+  "cross_rule_overlapping_events": 0,
+  "exact_duplicate_deliveries": 0,
+  "sample_counts": {
+    "CMD_NMAP": {
+      "mode": "production",
+      "available": 47,
+      "selected": 25
+    },
+    "CMD_JOHN": {
+      "mode": "production",
+      "available": 185,
+      "selected": 25
+    },
+    "CMD_MSFCONSOLE": {
+      "mode": "production",
+      "available": 105,
+      "selected": 25
+    },
+    "FILE_CONFIG_CHANGE": {
+      "mode": "production",
+      "available": 851,
+      "selected": 25
+    },
+    "HTTP_IP_HOST": {
+      "mode": "production",
+      "available": 105,
+      "selected": 25
+    },
+    "AUTH_FAILURE_WINDOW": {
+      "mode": "production",
+      "available": 8,
+      "selected": 8
+    },
+    "CMD_NETCAT": {
+      "mode": "diagnostic_disabled",
+      "available": 3324,
+      "selected": 25
+    }
+  },
+  "production_pairs_same_as_task4": false,
+  "production_pair_delta_from_task4": {
+    "removed": 360,
+    "added": 0
+  },
+  "sampling": "25 per rule, SHA256(seed|rule_id|source_row_id), seed=20261121; no labels; take all if fewer than 25",
+  "run_report": {
+    "status": "success",
+    "rows_input": 72250,
+    "rules": [
+      {
+        "rule_id": "CMD_NMAP",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 47,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.092997
+      },
+      {
+        "rule_id": "CMD_JOHN",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 185,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.08409
+      },
+      {
+        "rule_id": "CMD_MSFCONSOLE",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 105,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.088202
+      },
+      {
+        "rule_id": "FILE_CONFIG_CHANGE",
+        "condition": "file_path_change",
+        "status": "success",
+        "matches": 851,
+        "rows_missing_fields": 0,
+        "rows_excluded_metadata_only": 360,
+        "elapsed_seconds": 0.353192
+      },
+      {
+        "rule_id": "HTTP_IP_HOST",
+        "condition": "http_ip_host",
+        "status": "success",
+        "matches": 105,
+        "rows_missing_fields": 0,
+        "elapsed_seconds": 0.052963
+      },
+      {
+        "rule_id": "AUTH_FAILURE_WINDOW",
+        "condition": "auth_failure_window",
+        "status": "success",
+        "matches": 8,
+        "missing_optional_signal_columns": [],
+        "explicit_failure_rows": 330,
+        "failure_rows_missing_user": 216,
+        "failure_rows_invalid_time": 0,
+        "threshold": 3,
+        "window_seconds": 300,
+        "elapsed_seconds": 0.397742
+      }
+    ],
+    "missing_columns": [],
+    "alerts_count": 1301,
+    "disabled_rule_ids": [
+      "CMD_NETCAT"
+    ],
+    "rows_invalid_time": 0,
+    "rows_missing_context": 0,
+    "elapsed_seconds": 1.232874
+  },
+  "human_signoff": "pending_Tuan_confirmation"
+}

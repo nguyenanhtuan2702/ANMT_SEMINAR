@@ -1,0 +1,430 @@
+{
+  "source": "C:\\Users\\NGUYEN PHU THO\\ANMT_SEMINAR\\dataset_log\\logs_SPEDIA_annotated_en.csv",
+  "sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+  "bytes": 45703322,
+  "python_version": "3.12.14",
+  "dependencies": "Python standard library only",
+  "record_count": 72250,
+  "column_count": 24,
+  "schema": [
+    {
+      "column": "id",
+      "observed_type": "string",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "unique_nonempty": 72250,
+      "note": "Source identifier; validate duplicates, do not use as internal row key"
+    },
+    {
+      "column": "Agent_name",
+      "observed_type": "string",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "unique_nonempty": 83,
+      "note": "Source context; naming may disclose data-generation source"
+    },
+    {
+      "column": "User",
+      "observed_type": "string",
+      "missing_count": 1372,
+      "missing_percent": 1.898962,
+      "unique_nonempty": 17,
+      "note": "Nullable identity; preserve spelling, no automatic alias merging"
+    },
+    {
+      "column": "Timestamp",
+      "observed_type": "string",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "unique_nonempty": 66077,
+      "note": "Source text; validate YYYY-MM-DD HH:MM:SS.mmm; timezone absent"
+    },
+    {
+      "column": "Decoder_name",
+      "observed_type": "string",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "unique_nonempty": 7,
+      "note": "Source decoder, not a detection outcome"
+    },
+    {
+      "column": "Description",
+      "observed_type": "string",
+      "missing_count": 51657,
+      "missing_percent": 71.497578,
+      "unique_nonempty": 390,
+      "note": "Raw text: preserve original value"
+    },
+    {
+      "column": "Full_log",
+      "observed_type": "string",
+      "missing_count": 51631,
+      "missing_percent": 71.461592,
+      "unique_nonempty": 19121,
+      "note": "Raw text: preserve original value"
+    },
+    {
+      "column": "Content",
+      "observed_type": "string",
+      "missing_count": 25025,
+      "missing_percent": 34.636678,
+      "unique_nonempty": 39811,
+      "note": "Raw text: preserve original value; prose keywords are not auth evidence"
+    },
+    {
+      "column": "Url",
+      "observed_type": "string",
+      "missing_count": 50527,
+      "missing_percent": 69.933564,
+      "unique_nonempty": 2161,
+      "note": "HTTP context; frequency/IP host alone does not prove maliciousness"
+    },
+    {
+      "column": "To",
+      "observed_type": "string",
+      "missing_count": 54047,
+      "missing_percent": 74.805536,
+      "unique_nonempty": 8294,
+      "note": "Email recipient list; preserve source separators"
+    },
+    {
+      "column": "Cc",
+      "observed_type": "string",
+      "missing_count": 65541,
+      "missing_percent": 90.714187,
+      "unique_nonempty": 2830,
+      "note": "Optional email copy recipients; missing may be expected"
+    },
+    {
+      "column": "Bcc",
+      "observed_type": "string",
+      "missing_count": 69630,
+      "missing_percent": 96.373702,
+      "unique_nonempty": 293,
+      "note": "Optional email blind-copy recipients; missing may be expected"
+    },
+    {
+      "column": "From",
+      "observed_type": "string",
+      "missing_count": 54047,
+      "missing_percent": 74.805536,
+      "unique_nonempty": 1216,
+      "note": "Email sender; differs from system User"
+    },
+    {
+      "column": "Attachments",
+      "observed_type": "decimal",
+      "missing_count": 54047,
+      "missing_percent": 74.805536,
+      "unique_nonempty": 10,
+      "note": "Numeric lexical form; nullable attachment count"
+    },
+    {
+      "column": "Size",
+      "observed_type": "decimal",
+      "missing_count": 54047,
+      "missing_percent": 74.805536,
+      "unique_nonempty": 12471,
+      "note": "Nullable source size; do not fill missing with zero"
+    },
+    {
+      "column": "Size_before",
+      "observed_type": "decimal",
+      "missing_count": 70802,
+      "missing_percent": 97.995848,
+      "unique_nonempty": 132,
+      "note": "Nullable source size; negative values require investigation"
+    },
+    {
+      "column": "Size_after",
+      "observed_type": "decimal",
+      "missing_count": 67511,
+      "missing_percent": 93.44083,
+      "unique_nonempty": 377,
+      "note": "Nullable source size; absence is not size zero"
+    },
+    {
+      "column": "Filename",
+      "observed_type": "string",
+      "missing_count": 64584,
+      "missing_percent": 89.389619,
+      "unique_nonempty": 6906,
+      "note": "File name; may be populated separately from Path"
+    },
+    {
+      "column": "Path",
+      "observed_type": "string",
+      "missing_count": 67511,
+      "missing_percent": 93.44083,
+      "unique_nonempty": 570,
+      "note": "File path; preserve raw case in source"
+    },
+    {
+      "column": "Command",
+      "observed_type": "string",
+      "missing_count": 62138,
+      "missing_percent": 86.004152,
+      "unique_nonempty": 42,
+      "note": "Command name may omit arguments; missing does not imply benign"
+    },
+    {
+      "column": "Level",
+      "observed_type": "decimal",
+      "missing_count": 51631,
+      "missing_percent": 71.461592,
+      "unique_nonempty": 8,
+      "note": "Source risk/alert level; NOT prototype severity"
+    },
+    {
+      "column": "Activity",
+      "observed_type": "string",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "unique_nonempty": 6,
+      "note": "Event category only; never an attack verdict"
+    },
+    {
+      "column": "Action",
+      "observed_type": "string",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "unique_nonempty": 13,
+      "note": "Source action; inspect explicit failure semantics"
+    },
+    {
+      "column": "Anomaly",
+      "observed_type": "integer",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "unique_nonempty": 2,
+      "note": "Reference label only; forbidden as rule/severity input"
+    }
+  ],
+  "id_missing": 0,
+  "duplicate_id_rows_beyond_first": 0,
+  "duplicate_full_rows_beyond_first": 0,
+  "timestamp": {
+    "expected_format": "%Y-%m-%d %H:%M:%S.%f (exactly 3 fraction digits)",
+    "timezone": "not encoded; no timezone assumption",
+    "invalid_count": 0,
+    "invalid_source_row_ids": [],
+    "format_mismatch_count": 0,
+    "min": "2025-03-06T11:46:28",
+    "max": "2025-03-30T19:45:22.120000",
+    "ascending": false,
+    "descending": false
+  },
+  "frequencies": {
+    "Activity": {
+      "http": 21723,
+      "email": 18203,
+      "file": 12405,
+      "command": 10114,
+      "session": 5399,
+      "device": 4406
+    },
+    "Action": {
+      "URL accedida": 21723,
+      "Email sent": 18203,
+      "Command executed": 10114,
+      "File accessed": 7666,
+      "File modified": 3132,
+      "Login": 3031,
+      "Disconnect": 2228,
+      "Connect": 2178,
+      "Logoff": 2038,
+      "File added": 895
+    },
+    "Decoder_name": {
+      "cert": 51631,
+      "auditd": 10114,
+      "pam": 5399,
+      "syscheck_integrity_changed": 3132,
+      "syscheck_new_entry": 895,
+      "syscheck_deleted": 712,
+      "json": 367
+    },
+    "Command": {
+      "": 62138,
+      "nc": 3324,
+      "head": 1888,
+      "cat": 1309,
+      "systemctl": 734,
+      "ls": 381,
+      "find": 354,
+      "mkdir": 313,
+      "chmod": 282,
+      "sort": 187
+    },
+    "Url": {
+      "": 50527,
+      "http://nfl.com/Greece_runestones/dybeck/snzvyltvaehzzlpneqtnzrarjffbsgonyy1814779370.jsp": 339,
+      "http://eonline.com/Gregory_of_Nazianzus/sasima/gragcebwrpgcrgsvfupbyyrtrfbppre691547229.htm": 284,
+      "http://ebay.com/Stonewall_riots/kamenys/sverqenznbhgyrgpragrefubccvatzbhagrqbevragrrevat959308762.php": 258,
+      "http://linkedin.com/Harry_Chauvel/chetwode/cebwrpg757315014.jsp": 256,
+      "http://shareasale.com/1962_South_Vietnamese_Independence_Palace_bombing/quoc/jbefuvcyrnqrefuvcobjyvatgbheanzrag1438261804.php": 220,
+      "http://digitalpoint.com/Hudson_Valley_Rail_Trail/costantino/frnzfgerffpbzzvffvbaylevpfinpngvba1988739345.htm": 211,
+      "http://wellsfargo.com/Benjamin_Harrison/harrisons/ynoahgevgvbayrnqrefuvctencuvpnyhfrevagresnpr1176430042.jsp": 190,
+      "http://inbox.com/Cheadle_Hulme/hulme/yrnqrefuvcnanylfvfselvat513824541.aspx": 181,
+      "http://sourceforge.net/Elizabeth_Canning/canningites/ovyyvneqfobbxfsver1625813682.htm": 179
+    },
+    "Path": {
+      "": 67511,
+      "/home/humberto/flag.txt": 574,
+      "/etc/apache2/sites-available/000-default.conf": 362,
+      "/etc/vsftpd.conf": 327,
+      "/home/olaya/flag.txt": 269,
+      "/etc/apache2/sites-available/prueba_servidor.txt": 212,
+      "/home/camilo/prueba.txt": 124,
+      "/etc/apache2/sites-available/prueba.txt": 110,
+      "/var/www/html/auth.db-journal": 76,
+      "/etc/cups/subscriptions.conf": 59
+    },
+    "Filename": {
+      "": 64584,
+      "VILGIVQU.doc": 5,
+      "14QHVEJT.txt": 4,
+      "IT31AMZX.pdf": 4,
+      "5UB8F7UB.txt": 3,
+      "RY4CG3FF.jpg": 3,
+      "M8H8MWLL.doc": 3,
+      "5S4YHV9V.doc": 3,
+      "JE981S80.doc": 3,
+      "3TTV0NGN.pdf": 3
+    }
+  },
+  "absent_frequency_columns": [],
+  "unique_nonempty": {
+    "id": 72250,
+    "Agent_name": 83,
+    "User": 17,
+    "Timestamp": 66077,
+    "Decoder_name": 7,
+    "Description": 390,
+    "Full_log": 19121,
+    "Content": 39811,
+    "Url": 2161,
+    "To": 8294,
+    "Cc": 2830,
+    "Bcc": 293,
+    "From": 1216,
+    "Attachments": 10,
+    "Size": 12471,
+    "Size_before": 132,
+    "Size_after": 377,
+    "Filename": 6906,
+    "Path": 570,
+    "Command": 42,
+    "Level": 8,
+    "Activity": 6,
+    "Action": 13,
+    "Anomaly": 2
+  },
+  "login_scan": {
+    "pattern": "\\b(?:login|logon|logoff|logout|authentication|pam_unix|sshd|fail(?:ed|ure|ures)?|denied|invalid)\\b",
+    "explicit_pattern": "\\b(?:authentication failure|user login failed|failed (?:password|publickey)|login (?:failed|failure)|multiple failed logins)\\b",
+    "keyword_rows": 6972,
+    "rows_by_column": {
+      "Action": 5399,
+      "Description": 5416,
+      "Full_log": 5418,
+      "Content": 1554
+    },
+    "explicit_failure_rows": 330,
+    "failure_action_counts": {
+      "Login Failed": 329,
+      "Multiple failed logins": 1
+    },
+    "failure_services": {
+      "sudo": 57,
+      "vsftpd": 198,
+      "polkit-1": 2,
+      "sshd": 61,
+      "login": 12
+    },
+    "failure_missing_users": 216,
+    "failure_rule_decision": "enable explicit authentication-failure candidate"
+  },
+  "candidate_rules": [
+    {
+      "candidate_id": "AUTH_FAILURE",
+      "match_count": 330,
+      "predicate": "Action in {Login Failed, Multiple failed logins}, or explicit auth failure phrase in Action/Description/Full_log; not Content",
+      "status": "supported_signal"
+    },
+    {
+      "candidate_id": "CMD_NMAP",
+      "match_count": 47,
+      "predicate": "Command basename equals nmap",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "CMD_JOHN",
+      "match_count": 185,
+      "predicate": "Command basename equals john",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "CMD_MSFCONSOLE",
+      "match_count": 105,
+      "predicate": "Command basename equals msfconsole",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "CMD_NETCAT",
+      "match_count": 3324,
+      "predicate": "Command basename in {nc, netcat, socat}; tool presence only, no reverse-shell claim",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "CMD_CHMOD",
+      "match_count": 282,
+      "predicate": "Command basename equals chmod; permissions/arguments require investigation",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "FILE_CONFIG_CHANGE",
+      "match_count": 1211,
+      "predicate": "Action in {File modified, File added, File deleted} AND Path matches selected /etc configuration prefixes",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "FILE_CREDENTIAL_PATH",
+      "match_count": 53,
+      "predicate": "Path or Filename ends in passwd/shadow or is under .ssh; visibility only, not proof of theft",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "FILE_FLAG_PATH",
+      "match_count": 905,
+      "predicate": "Path or Filename basename equals flag.txt; exercise-specific, unsuitable as generic attack rule",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "FILE_ARCHIVE_NAME",
+      "match_count": 408,
+      "predicate": "Filename ends in .zip/.rar/.7z/.tar/.gz; contextual observation only",
+      "status": "review_candidate"
+    },
+    {
+      "candidate_id": "HTTP_TRAVERSAL",
+      "match_count": 0,
+      "predicate": "Url after at most two percent-decodes contains ../ or ..\\; payload candidate, not verdict",
+      "status": "disabled_no_match"
+    },
+    {
+      "candidate_id": "HTTP_IP_HOST",
+      "match_count": 105,
+      "predicate": "Url host parses as a literal IPv4/IPv6; contextual observation only",
+      "status": "review_candidate"
+    }
+  ],
+  "missing_user_rows": 1372,
+  "quality": {
+    "negative_size_before": 95,
+    "command_rows_missing_command": 2,
+    "srcip_present": false
+  },
+  "missing_definition": "Empty CSV field only; NA/null-like strings and whitespace are preserved, not silently converted",
+  "row_id_format": "sha256_of_original_file:zero_based_record_index_padded_to_8_digits"
+}

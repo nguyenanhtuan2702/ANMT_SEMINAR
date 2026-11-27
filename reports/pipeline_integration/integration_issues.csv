@@ -1,0 +1,16 @@
+issue_id,status,issue,resolution_or_limit
+I01,fixed,Dashboard đọc CSV trực tiếp và chỉ kiểm tra 5 cột,Dùng chung load_logs và normalize với schema pipeline
+I02,fixed,Khác schema atomic và merged,Chấm atomic rồi merge để giữ invariant schema v1.0
+I03,fixed,Index đảo hoặc trùng khi nối kết quả,Reset index nội bộ và join bằng source_row_id rồi giữ nguyên index đầu ra
+I04,fixed,StringDtype rỗng không hỗ trợ all trong kiểm tra source ID,Ép kết quả predicate sang bool ở Rule Engine và Correlation
+I05,fixed,Nguy cơ gắn tổng nhóm có dữ liệu tương lai,Chỉ gắn rule và count của event hiện tại cùng severity prefix và group_id ổn định
+I06,fixed,min_events có thể ẩn nhóm đầu kỳ rồi hiện khi có tương lai,Pipeline yêu cầu min_events=1
+I07,fixed,CSV mất list rule_ids hoặc kiểu nullable,Thêm detected_io dùng JSON và sidecar lossless có checksum
+I08,fixed,AppTest hiểu đường dẫn tương đối theo file gọi,Dùng đường dẫn dashboard tuyệt đối từ repo root
+I09,fixed,Tính lại canonical groups trong severity của pipeline,Tái sử dụng groups vừa tạo và kiểm tra tương đương API severity công khai
+I10,fixed,Tính lại timeline khi chỉ thay bộ lọc,Cache riêng pipeline và timeline theo upload cùng hash policy
+R01,pending,Nghiệm thu trực tiếp với Tuấn,Đã có AppTest full dataset và hợp đồng để Tuấn review nhưng chưa có xác nhận con người
+R02,out_of_scope,ML và điểm ML,Pipeline hiện chỉ rule-based
+R03,known_limit,Streaming và late arrival hoặc thay namespace nguồn,Prefix bảo toàn khi giữ source IDs và policy với dữ liệu nối sau
+R04,pending,Timezone và lịch vận hành thật,Giữ chính sách giờ nguồn naive của Task 7 cho tới khi có xác minh
+R05,non_blocking,DeprecationWarning từ pandas 2 với NumPy mới và ScriptRunContext khi AppTest,Sử dụng bộ test đạt và ghi phiên bản thực chạy trong environment.txt

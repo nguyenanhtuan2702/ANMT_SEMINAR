@@ -1,0 +1,10 @@
+{
+  "tests_observed_passed": 85,
+  "independent_csv_label_counts_match_all_metrics": true,
+  "all_1301_merged_alerts_validate": true,
+  "exactly_360_removed_alerts_are_raw_metadata_only": true,
+  "no_new_alert_pair_added": true,
+  "frozen_source_config_schema_and_review_hashes_match": true,
+  "raw_json_schema_external_library_available": false,
+  "Tuan_signoff": "pending"
+}

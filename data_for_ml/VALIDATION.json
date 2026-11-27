@@ -1,0 +1,101 @@
+{
+  "format_version": "spedia.ml_handoff.validation.v1",
+  "status": "passed",
+  "scope": "data_for_ml only",
+  "python_version": "3.12.14",
+  "pandas_version": "2.3.3",
+  "tables": {
+    "normalized_logs.csv": {
+      "rows": 72250,
+      "columns": 43
+    },
+    "normalized_logs_sample.csv": {
+      "rows": 1000,
+      "columns": 43
+    },
+    "detected_logs.csv": {
+      "rows": 72250,
+      "columns": 47
+    },
+    "alerts.csv": {
+      "rows": 1301,
+      "columns": 12
+    },
+    "alerts_atomic.csv": {
+      "rows": 1301,
+      "columns": 11
+    },
+    "event_groups.csv": {
+      "rows": 7501,
+      "columns": 12
+    },
+    "prioritized_atomic_alerts.csv": {
+      "rows": 1301,
+      "columns": 11
+    },
+    "prioritized_alerts_v1.0.csv": {
+      "rows": 1301,
+      "columns": 12
+    }
+  },
+  "checks": {
+    "all_CSV_schema_checksums_types_and_dimensions": true,
+    "normalized_detected_original_columns_exact": true,
+    "source_keys_unique_and_shared_namespace": true,
+    "sample_exact_subset": true,
+    "alert_foreign_keys_unique_matches_and_detected_rule_ids": true,
+    "alert_context_raw_evidence_and_merged_matches_exact": true,
+    "group_membership_context_time_order_window_gap_and_counts": true,
+    "severity_matches_base_and_causal_prefix_policy": true,
+    "raw_and_reference_labels_equal_original_CSV": true,
+    "all_CSV_and_sidecar_bytes_preserved": true,
+    "reader_operates_without_original_project": true,
+    "Git_text_conversion_disabled_for_bundle_files": true,
+    "prioritized_tables_match_original_Task7_bytes": true,
+    "prioritized_event_and_rule_keys_match_base": true,
+    "prioritized_context_detector_reason_and_raw_unchanged": true,
+    "prioritized_final_severity_matches_detected_logs": true,
+    "all_final_priority_reasons_present": true,
+    "priority_levels_and_reasons_match_independent_causal_prefix": true,
+    "merged_rule_matches_preserve_detailed_priority_reasons": true,
+    "all_eight_tables_readable_without_original_project": true
+  },
+  "counts": {
+    "grouped_events": 70878,
+    "events_without_group": 1372,
+    "alerted_events_without_group": 170,
+    "events_without_alert": 70949,
+    "invalid_timestamps": 0,
+    "numeric_issue_events": 95,
+    "reference_labels": {
+      "1": 41541,
+      "0": 30709
+    },
+    "severity": {
+      "MEDIUM": 635,
+      "HIGH": 446,
+      "CRITICAL": 172,
+      "LOW": 48
+    },
+    "atomic_alerts_by_rule": {
+      "FILE_CONFIG_CHANGE": 851,
+      "CMD_JOHN": 185,
+      "CMD_MSFCONSOLE": 105,
+      "HTTP_IP_HOST": 105,
+      "CMD_NMAP": 47,
+      "AUTH_FAILURE_WINDOW": 8
+    },
+    "prioritized_atomic_alerts": 1301,
+    "prioritized_merged_event_alerts": 1301,
+    "events_with_increased_severity": 675,
+    "alerted_events_with_unchanged_severity": 626,
+    "events_with_decreased_severity": 0
+  },
+  "repairs": [
+    "Updated stale reader checksum after docstring-only changes.",
+    "Replaced integration/training instructions with data/schema/rule documentation.",
+    "Added local Git attributes to preserve file bytes and local ignore rules for generated caches.",
+    "Added prioritized atomic and merged alert tables with final severity and detailed reasons.",
+    "Updated DATA.md and all bundle manifest checksums for the expanded eight-table handoff."
+  ]
+}

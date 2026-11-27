@@ -1,0 +1,80 @@
+{
+  "python_version": "3.12.14",
+  "pandas_version": "3.0.1",
+  "rows_input": 72250,
+  "atomic_alerts": 1301,
+  "merged_alert_events": 1301,
+  "elapsed_seconds": 1.675824,
+  "severity_counts": {
+    "MEDIUM": 635,
+    "HIGH": 446,
+    "CRITICAL": 172,
+    "LOW": 48
+  },
+  "changed_from_base": 675,
+  "policy": {
+    "schema_version": "spedia.severity.v1",
+    "alert_thresholds": [
+      {
+        "count": 3,
+        "steps": 1
+      },
+      {
+        "count": 10,
+        "steps": 2
+      }
+    ],
+    "activity_threshold": 3,
+    "activity_steps": 1,
+    "working_hour_start": 8,
+    "working_hour_end": 18,
+    "off_hours_steps": 1,
+    "max_context_steps": 2,
+    "correlation": {
+      "window_seconds": 900,
+      "max_gap_seconds": 300,
+      "min_events": 1
+    }
+  },
+  "snapshots": [
+    {
+      "timestamp": "2025-03-14T17:13:34.654",
+      "record_index": 14544,
+      "alerts_checked": 326
+    },
+    {
+      "timestamp": "2025-03-22T13:46:55.410",
+      "record_index": 24622,
+      "alerts_checked": 651
+    },
+    {
+      "timestamp": "2025-03-27T20:00:54.600",
+      "record_index": 47559,
+      "alerts_checked": 976
+    }
+  ],
+  "provenance": {
+    "policy_sha256": "b65ded3eb9f15aed6f1cfcd957c19b433bdb16719dc3247290588c6900d10152",
+    "inputs_sha256": {
+      "data/alerts.csv": "e240ec9ec00b96a66f343817a2811c95884495c02e41265ed23076f4ed378d7e",
+      "data/alerts_atomic.csv": "b6564bb200d9f14ec989518f95e79e7c4abf41a19db619d4d084a5bc341be0c8",
+      "data/event_groups.csv": "0e63735c72a2a0e125bc6b42f6feaadf2f70d59039fd2fec62b2d68a7c6bdfd3",
+      "data/normalized_logs.csv": "3b80dc3c9b886c0426f3c431695231e491eeb7e531a3f3a5ac10cf6f64d052ac",
+      "detection/rules.json": "3bc2d5a7de043bebe10293efffb93a51eb9caa1a7987d630846f56f5701efabe",
+      "docs/schemas/alert_v1.0.schema.json": "2f97ea60b2378d92ff4da8315fe1aff58ffd349967f486ad1ecd54c260216667",
+      "docs/schemas/alert_v1.0.freeze.json": "f3c4918d7b5345fb40a4081b4491ede4302c1f1da226c3257799111321054253"
+    },
+    "prototype_priority_only": true,
+    "ML_used": false,
+    "label_used": false
+  },
+  "checks": {
+    "frozen_inputs_unchanged": true,
+    "raw_detection_reason_unchanged": true,
+    "label_Level_independent": true,
+    "ML_ignored": true,
+    "idempotent": true,
+    "future_does_not_rescore_past": true,
+    "CSV_round_trip_exact": true
+  }
+}

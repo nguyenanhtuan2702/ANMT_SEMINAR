@@ -1,0 +1,59 @@
+{
+  "format_version": "spedia.shared_outputs.v1",
+  "kind": "merged_alerts",
+  "schema_version": "1.0",
+  "encoding": "utf-8-sig",
+  "row_count": 1301,
+  "columns": [
+    "schema_version",
+    "alert_id",
+    "source_row_id",
+    "timestamp",
+    "user",
+    "agent",
+    "activity",
+    "rule_ids",
+    "rule_matches",
+    "reason",
+    "severity",
+    "severity_reason"
+  ],
+  "json_columns": [
+    "rule_ids",
+    "rule_matches"
+  ],
+  "dtypes": {
+    "schema_version": "string",
+    "alert_id": "string",
+    "source_row_id": "string",
+    "timestamp": "string",
+    "user": "string",
+    "agent": "string",
+    "activity": "string",
+    "rule_ids": "object",
+    "rule_matches": "object",
+    "reason": "string",
+    "severity": "string",
+    "severity_reason": "string"
+  },
+  "null_marker": "__SPEDIA_NULL__",
+  "csv_sha256": "e240ec9ec00b96a66f343817a2811c95884495c02e41265ed23076f4ed378d7e",
+  "attrs": {},
+  "provenance": {
+    "normalized_csv": "data\\normalized_logs.csv",
+    "normalized_csv_sha256": "3b80dc3c9b886c0426f3c431695231e491eeb7e531a3f3a5ac10cf6f64d052ac",
+    "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+    "rules_sha256": "3bc2d5a7de043bebe10293efffb93a51eb9caa1a7987d630846f56f5701efabe",
+    "alert_schema_sha256": "2f97ea60b2378d92ff4da8315fe1aff58ffd349967f486ad1ecd54c260216667",
+    "correlation_config": {
+      "window_seconds": 900,
+      "max_gap_seconds": 300,
+      "min_events": 1
+    },
+    "team_signoff": {
+      "Tuan": "pending",
+      "evidence": null
+    },
+    "label_used_for_detection": false
+  }
+}

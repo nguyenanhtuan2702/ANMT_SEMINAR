@@ -1,0 +1,25 @@
+﻿column,observed_type,missing_count,missing_percent,unique_nonempty,note
+id,string,0,0.0,72250,"Source identifier; validate duplicates, do not use as internal row key"
+Agent_name,string,0,0.0,83,Source context; naming may disclose data-generation source
+User,string,1372,1.898962,17,"Nullable identity; preserve spelling, no automatic alias merging"
+Timestamp,string,0,0.0,66077,Source text; validate YYYY-MM-DD HH:MM:SS.mmm; timezone absent
+Decoder_name,string,0,0.0,7,"Source decoder, not a detection outcome"
+Description,string,51657,71.497578,390,Raw text: preserve original value
+Full_log,string,51631,71.461592,19121,Raw text: preserve original value
+Content,string,25025,34.636678,39811,Raw text: preserve original value; prose keywords are not auth evidence
+Url,string,50527,69.933564,2161,HTTP context; frequency/IP host alone does not prove maliciousness
+To,string,54047,74.805536,8294,Email recipient list; preserve source separators
+Cc,string,65541,90.714187,2830,Optional email copy recipients; missing may be expected
+Bcc,string,69630,96.373702,293,Optional email blind-copy recipients; missing may be expected
+From,string,54047,74.805536,1216,Email sender; differs from system User
+Attachments,decimal,54047,74.805536,10,Numeric lexical form; nullable attachment count
+Size,decimal,54047,74.805536,12471,Nullable source size; do not fill missing with zero
+Size_before,decimal,70802,97.995848,132,Nullable source size; negative values require investigation
+Size_after,decimal,67511,93.44083,377,Nullable source size; absence is not size zero
+Filename,string,64584,89.389619,6906,File name; may be populated separately from Path
+Path,string,67511,93.44083,570,File path; preserve raw case in source
+Command,string,62138,86.004152,42,Command name may omit arguments; missing does not imply benign
+Level,decimal,51631,71.461592,8,Source risk/alert level; NOT prototype severity
+Activity,string,0,0.0,6,Event category only; never an attack verdict
+Action,string,0,0.0,13,Source action; inspect explicit failure semantics
+Anomaly,integer,0,0.0,2,Reference label only; forbidden as rule/severity input

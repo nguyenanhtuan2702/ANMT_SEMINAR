@@ -1,0 +1,84 @@
+{
+  "schema_version": "spedia.rules.v1",
+  "rules": [
+    {
+      "rule_id": "CMD_NMAP",
+      "enabled": true,
+      "condition": "command_in",
+      "params": {"commands": ["nmap"], "actions": ["command executed"], "case_sensitive": true},
+      "reason_template": "{matched_field}={matched_value!r}, Action={action!r}: trường Command mang tên công cụ khảo sát mạng; cần đối chiếu loại raw log (có thể chỉ là kết thúc tiến trình), tham số và ủy quyền, chưa xác nhận lần chạy/quét mạng hay tấn công.",
+      "base_severity": "MEDIUM",
+      "severity_reason": "Ưu tiên prototype để xem xét công cụ khảo sát mạng, không phải tác động đã xác minh.",
+      "rationale": "Task 1 ghi nhận 47 Command=nmap; chỉ xét Action thực thi lệnh, không cảnh báo từ tên Activity."
+    },
+    {
+      "rule_id": "CMD_JOHN",
+      "enabled": true,
+      "condition": "command_in",
+      "params": {"commands": ["john"], "actions": ["command executed"], "case_sensitive": true},
+      "reason_template": "{matched_field}={matched_value!r}, Action={action!r}: công cụ kiểm thử mật khẩu đã được thực thi; cần xác minh ủy quyền và đối tượng, chưa chứng minh đánh cắp mật khẩu.",
+      "base_severity": "MEDIUM",
+      "severity_reason": "Ưu tiên prototype xem xét công cụ kiểm thử mật khẩu; không xác nhận tác động.",
+      "rationale": "Task 1 ghi nhận 185 Command=john; nhóm tool có chức năng giải thích được, không blacklist lệnh quản trị chung."
+    },
+    {
+      "rule_id": "CMD_MSFCONSOLE",
+      "enabled": true,
+      "condition": "command_in",
+      "params": {"commands": ["msfconsole"], "actions": ["command executed"], "case_sensitive": true},
+      "reason_template": "{matched_field}={matched_value!r}, Action={action!r}: console công cụ kiểm thử khai thác đã được thực thi; cần kiểm tra module/tham số và ủy quyền, chưa chứng minh khai thác thành công.",
+      "base_severity": "MEDIUM",
+      "severity_reason": "Ưu tiên prototype xem xét console kiểm thử khai thác; không xác nhận thành công hay tác động.",
+      "rationale": "Task 1 ghi nhận 105 Command=msfconsole; không suy diễn kết quả khai thác từ tên tool."
+    },
+    {
+      "rule_id": "CMD_NETCAT",
+      "enabled": false,
+      "condition": "command_in",
+      "params": {"commands": ["nc", "netcat", "socat"], "actions": ["command executed"], "case_sensitive": true},
+      "reason_template": "{matched_field}={matched_value!r}, Action={action!r}: công cụ kết nối mạng được thực thi; chỉ dấu ngữ cảnh, chưa chứng minh reverse shell.",
+      "base_severity": "LOW",
+      "severity_reason": "Ưu tiên thấp của prototype vì tool mạng có nhiều mục đích hợp lệ.",
+      "rationale": "Task 1 có 3324 Command=nc. Mặc định tắt do nhiễu và thiếu xác minh tham số; chỉ bật khi chủ động lựa chọn."
+    },
+    {
+      "rule_id": "FILE_CONFIG_CHANGE",
+      "enabled": true,
+      "condition": "file_path_change",
+      "params": {
+        "path_regex": "^/etc/(?:apache2/|ssh/|vsftpd\\.conf$|passwd$|shadow$|sudoers(?:$|\\.d/))",
+        "actions": ["file modified", "file added", "file deleted"],
+        "exclude_modified_raw_regex": "\\bChanged attributes:\\s*(?:mtime|ctime)(?:\\s*,\\s*(?:mtime|ctime))*\\s+Old\\b"
+      },
+      "reason_template": "{matched_field}={matched_value!r}, Action={action!r}: đường dẫn khớp nhóm cấu hình được theo dõi; cần đối chiếu thay đổi quản trị hợp lệ.",
+      "base_severity": "MEDIUM",
+      "severity_reason": "Ưu tiên prototype xem xét thay đổi cấu hình; chưa xác minh thay đổi trái phép hoặc tác động.",
+      "rationale": "Task 1 có 1211 ứng viên. Task 5 raw review phát hiện nhiều log chỉ đổi mtime; loại riêng modified có raw xác nhận chỉ mtime/ctime, giữ thay đổi nội dung/quyền/inode và added/deleted. Không loại theo nhãn hoặc đuôi tên file."
+    },
+    {
+      "rule_id": "HTTP_IP_HOST",
+      "enabled": true,
+      "condition": "http_ip_host",
+      "params": {"actions": ["url accedida", "url accessed"]},
+      "reason_template": "{matched_field}={matched_value!r}, Action={action!r}, hostname={host!r}: truy cập URL dùng IP trực tiếp; chỉ dấu ngữ cảnh để xem xét, chưa kết luận URL ác ý.",
+      "base_severity": "LOW",
+      "severity_reason": "Ưu tiên thấp của prototype; IP literal tự nó không chứng minh hoạt động ác ý.",
+      "rationale": "Task 1 có 105 URL với IP literal. Không dựa vào đuôi .php/.jsp hoặc tên miền phổ biến; không bật traversal vì khảo sát không có mẫu khớp."
+    },
+    {
+      "rule_id": "AUTH_FAILURE_WINDOW",
+      "enabled": true,
+      "condition": "auth_failure_window",
+      "params": {
+        "threshold": 3,
+        "window_seconds": 300,
+        "failure_actions": ["login failed", "multiple failed logins"],
+        "failure_regex": "\\b(?:authentication failure|user login failed|failed (?:password|publickey)|login (?:failed|failure)|multiple failed logins)\\b"
+      },
+      "reason_template": "{matched_field}={matched_value!r}: ghi nhận {count} dòng lỗi xác thực cho User={user!r}, Agent_name={agent!r} trong [{window_start}, {window_end}], ngưỡng={threshold}, cửa sổ={window_seconds}s. Chỉ đếm hiện tại/quá khứ; chưa kết luận brute force.",
+      "base_severity": "MEDIUM",
+      "severity_reason": "Ưu tiên prototype xem xét cụm lỗi xác thực; không khẳng định brute force hay tác động.",
+      "rationale": "Task 1 xác nhận 330 dòng failure rõ ràng, gồm SSH/FTP/sudo/login/polkit. Thiếu User thì bỏ qua có báo cáo; nhóm theo User và Agent_name. Mỗi dòng nguồn Multiple failed logins chỉ tính một lần; ngưỡng 3/300s là tham số prototype, chưa được tối ưu bằng nhãn."
+    }
+  ]
+}

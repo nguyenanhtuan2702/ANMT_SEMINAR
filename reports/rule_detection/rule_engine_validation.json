@@ -1,0 +1,101 @@
+{
+  "source": "dataset_log/logs_SPEDIA_annotated_en.csv",
+  "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+  "python_version": "3.12.14",
+  "pandas_version": "3.0.1",
+  "rows": 72250,
+  "alert_count": 1661,
+  "counts_by_rule": {
+    "FILE_CONFIG_CHANGE": 1211,
+    "CMD_MSFCONSOLE": 105,
+    "CMD_JOHN": 185,
+    "HTTP_IP_HOST": 105,
+    "CMD_NMAP": 47,
+    "AUTH_FAILURE_WINDOW": 8
+  },
+  "rule_engine_seconds": [
+    0.903543,
+    0.878042,
+    0.935705
+  ],
+  "median_rule_engine_seconds": 0.903543,
+  "timing_scope": "detect_rules only, including validation/masks/windows/serialization; excludes CSV load, normalization and exports",
+  "run_report": {
+    "status": "success",
+    "rows_input": 72250,
+    "rules": [
+      {
+        "rule_id": "CMD_NMAP",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 47,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.095897
+      },
+      {
+        "rule_id": "CMD_JOHN",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 185,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.097244
+      },
+      {
+        "rule_id": "CMD_MSFCONSOLE",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 105,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.087484
+      },
+      {
+        "rule_id": "FILE_CONFIG_CHANGE",
+        "condition": "file_path_change",
+        "status": "success",
+        "matches": 1211,
+        "rows_missing_fields": 0,
+        "elapsed_seconds": 0.084874
+      },
+      {
+        "rule_id": "HTTP_IP_HOST",
+        "condition": "http_ip_host",
+        "status": "success",
+        "matches": 105,
+        "rows_missing_fields": 0,
+        "elapsed_seconds": 0.070039
+      },
+      {
+        "rule_id": "AUTH_FAILURE_WINDOW",
+        "condition": "auth_failure_window",
+        "status": "success",
+        "matches": 8,
+        "missing_optional_signal_columns": [],
+        "explicit_failure_rows": 330,
+        "failure_rows_missing_user": 216,
+        "failure_rows_invalid_time": 0,
+        "threshold": 3,
+        "window_seconds": 300,
+        "elapsed_seconds": 0.405352
+      }
+    ],
+    "missing_columns": [],
+    "alerts_count": 1661,
+    "disabled_rule_ids": [
+      "CMD_NETCAT"
+    ],
+    "rows_invalid_time": 0,
+    "rows_missing_context": 0,
+    "elapsed_seconds": 0.935705
+  },
+  "config_sha256": "7b2cbc6e899d9555c30a6e6e1620606af052580036b83f53f8018eb6054873bc",
+  "checks": {
+    "label_and_Level_independent": true,
+    "independent_deque_matches_auth": true,
+    "future_suffix_does_not_change_prefix_alerts": true,
+    "raw_evidence_preserved": true,
+    "alert_contract_and_unique_ids": true,
+    "task1_counts_confirmed": true,
+    "input_and_source_unchanged": true,
+    "three_runs_deterministic": true
+  }
+}

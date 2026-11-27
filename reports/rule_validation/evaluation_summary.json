@@ -1,0 +1,36 @@
+{
+  "rows": 72250,
+  "valid_positive_labels": 41541,
+  "valid_negative_labels": 30709,
+  "production_atomic_alerts": 1301,
+  "production_merged_events": 1301,
+  "sample_review_count": 158,
+  "review_counts_by_rule": {
+    "CMD_NMAP": 25,
+    "CMD_JOHN": 25,
+    "CMD_MSFCONSOLE": 25,
+    "FILE_CONFIG_CHANGE": 25,
+    "HTTP_IP_HOST": 25,
+    "AUTH_FAILURE_WINDOW": 8,
+    "CMD_NETCAT": 25
+  },
+  "suspected_fp_counts_by_rule": {
+    "CMD_NMAP": 25,
+    "CMD_JOHN": 4,
+    "FILE_CONFIG_CHANGE": 14,
+    "HTTP_IP_HOST": 22,
+    "CMD_NETCAT": 24
+  },
+  "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+  "rules_sha256": "3bc2d5a7de043bebe10293efffb93a51eb9caa1a7987d630846f56f5701efabe",
+  "review_notes_sha256": "d4f766c2fbff6ce788423f8fa7fbe701b5c053740bbe3cef67df077d6520ac06",
+  "notes": [
+    "Full-dataset descriptive reference-label evaluation; not a held-out test.",
+    "Recall denominator is all positive-label events, not just each rule's event category.",
+    "Technical suspicion and FP by reference label are separate fields.",
+    "No rule parameter is tuned from these labels; production config stayed frozen after blind preparation.",
+    "Auth has only 8 alerts: all 8 reviewed; no repeated samples fabricated.",
+    "Disabled rule evaluation is diagnostic only and excluded from production union.",
+    "Schema technical freeze v1.0; Tuan signoff pending, no contact or approval fabricated."
+  ]
+}
