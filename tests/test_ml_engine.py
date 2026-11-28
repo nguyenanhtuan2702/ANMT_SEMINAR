@@ -93,13 +93,17 @@ class MlEngineTest(unittest.TestCase):
             def predict_proba(self, features):
                 return np.array([[0.8, 0.2], [0.35, 0.65]])
 
+        # Patch the inference cache boundary itself. Patching joblib.load alone
+        # is ineffective if an earlier test already populated _load_pipeline's
+        # LRU cache with a real artifact.
         with patch(
-            "detection.ml_engine.joblib.load",
+            "detection.ml_engine._load_pipeline",
             return_value=FixedProbabilityModel(),
-        ):
+        ) as load_pipeline:
             at_half = predict(self.df, threshold=0.5)
             at_point_seven = predict(self.df, threshold=0.7)
 
+        self.assertEqual(load_pipeline.call_count, 2)
         self.assertEqual(at_half["predicted_label"].tolist(), [0, 1])
         self.assertEqual(at_point_seven["predicted_label"].tolist(), [0, 0])
         self.assertEqual(at_half["anomaly_score"].tolist(), [0.2, 0.65])

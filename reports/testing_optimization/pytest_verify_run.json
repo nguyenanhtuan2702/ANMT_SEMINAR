@@ -1,0 +1,12 @@
+{
+  "command": [
+    "D:\\ANMT_SEMINAR\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-vv",
+    "--continue-on-collection-errors",
+    "--junitxml=reports\\testing_optimization\\pytest_verify.xml"
+  ],
+  "exit_code": 1,
+  "log": "reports/testing_optimization/pytest_verify.log"
+}

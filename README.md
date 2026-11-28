@@ -1,21 +1,14 @@
 # AI Security Log Analyzer
 
-Ứng dụng Streamlit tiếp nhận CSV, chuẩn hóa và giữ log gốc, chạy Machine
-Learning cùng Rule Engine, nhóm sự kiện theo thời gian, gán severity có lý do,
-và hiển thị cảnh báo/timeline để analyst rà soát.
+Ứng dụng Streamlit tiếp nhận CSV, chuẩn hóa và giữ log gốc, chạy Rule Engine và
+Machine Learning độc lập trên cùng tập sự kiện, nhóm sự kiện theo thời gian,
+gán severity theo policy Rule, và hiển thị cảnh báo/timeline để rà soát.
 
 ## Cài đặt và chạy trên Windows
 
 ### 1. Tải mã nguồn
 
 **Clone bằng Git:** mở PowerShell tại thư mục muốn lưu project:
-
-```powershell
-git clone --branch feature/ml-dashboard-integration https://github.com/nguyenanhtuan2702/ANMT_SEMINAR.git
-cd ANMT_SEMINAR
-```
-
-Sau khi nhánh tích hợp được merge vào `main`, có thể clone mặc định bằng:
 
 ```powershell
 git clone https://github.com/nguyenanhtuan2702/ANMT_SEMINAR.git
@@ -43,14 +36,15 @@ py -3.12 -m venv .venv
 
 ### 3. Kiểm tra model files
 
-Đảm bảo thư mục `models/artifacts/` có các file:
+Để bật dự đoán ML, cần có các file sau trong `models/artifacts/`:
 
 - `logistic_regression.joblib`
 - `random_forest.joblib`
 - `random_forest_behavioral.joblib`
 
-Các model là cần thiết để chạy dự đoán. Nếu thiếu, hãy tải lại mã nguồn từ nhánh
-đã có các artifacts này hoặc yêu cầu nhóm cung cấp chúng.
+Các file model bị Git ignore và có thể không có trong bản clone. Nếu thiếu,
+Dashboard vẫn chạy Rules và đánh dấu ML là `Not Evaluated`; hãy lấy artifacts từ
+bản bàn giao model của nhóm để bật dự đoán.
 
 ### 4. Chạy ứng dụng
 
@@ -67,22 +61,29 @@ Nếu cổng 8501 đang được sử dụng:
 
 ### 5. Dùng ứng dụng
 
-1. Tải CSV SPEDIA có các trường nền `Timestamp`, `User`, `Agent_name`,
-   `Activity`, `Action`, `Decoder_name`; các rule đang bật cần thêm `Command`,
-   `Path`, `Url`, `Full_log` và `Description`.
+1. Tải CSV SPEDIA có các cột bắt buộc `id`, `Timestamp`, `Agent_name`, `User`,
+   `Activity`, `Action`. Normalizer bổ sung `Decoder_name` nếu nguồn chưa có;
+   các rule đang bật có thể yêu cầu thêm `Command`, `Path`, `Url`, `Full_log`
+   hoặc `Description`.
 2. Ứng dụng tạo khóa `source_row_id`, giữ các giá trị raw và chuẩn hóa trường
    phân loại; `Anomaly` là tùy chọn và không làm đầu vào inference.
-3. Chọn model và threshold. ML và Rule Engine chạy độc lập; event có thể có
-   cảnh báo từ một hoặc cả hai detector.
-4. Xem **Tổng quan**, **Sự kiện**, **Cảnh báo**, **Điều tra** và
-   **Đánh giá ML**. Tab Điều tra hiển thị group/timeline theo User + Agent.
+3. Chọn model và threshold. Mặc định mỗi model lấy threshold từ
+   `reports/ml/model_thresholds.json`; nếu cấu hình thiếu hoặc sai, Dashboard
+   thông báo và dùng fallback `0.52`.
+4. Xem **Overview**, **Events**, **Alerts**, **Timeline** và **ML evaluation**.
+   Bảng Events có Rule Alert, Severity, ML Prediction và Anomaly Score; bộ lọc
+   chỉ tác động cách hiển thị.
 
 Rule Engine áp dụng các rule đã mô tả trong `data/processed/DATA.md`. Correlation
 dùng fixed window 15 phút và tách nhóm khi khoảng cách giữa hai event lớn hơn
-5 phút. Severity kết hợp rule severity, ML corroboration và tín hiệu trong
-prefix thời gian; đây là mức ưu tiên rà soát, không phải kết luận sự cố.
-Event thiếu Timestamp hợp lệ được giữ lại nhưng không được chấm ML hoặc
-correlate.
+5 phút. Severity chỉ theo policy Rule và tín hiệu prefix thời gian; ML không
+thay đổi Severity, alert schema v1.0 hoặc lý do của Rule. Severity là mức ưu
+tiên rà soát, không phải kết luận tác động.
+
+Inference chạy trên toàn bộ event chuẩn hóa trước bộ lọc giao diện. Nếu có
+Timestamp không hợp lệ hoặc lỗi artifact/model, Dashboard báo lỗi ML và giữ
+nguyên các màn hình Rules; event thiếu kết quả được ghi là `Not Evaluated`,
+không bị xem thành `Normal`.
 
 ## Huấn luyện lại từ `data/processed`
 

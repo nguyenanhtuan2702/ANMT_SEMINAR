@@ -1,6 +1,6 @@
 """Explicit full-dataset audit (not part of the small fixture test suite).
 
-python tests/validate_log_loader_dataset.py --input dataset_log/logs_SPEDIA_annotated_en.csv --expected-rows 72250
+python tests/validate_log_loader_dataset.py --input data/raw/logs_SPEDIA_annotated_en.csv --expected-rows 72250
 """
 from __future__ import annotations
 

@@ -1,6 +1,6 @@
 """Task 6 audit: vectorized groups vs an independent sequential reference.
 
-python tests/validate_correlation_dataset.py --input dataset_log/logs_SPEDIA_annotated_en.csv
+python tests/validate_correlation_dataset.py --input data/raw/logs_SPEDIA_annotated_en.csv
 """
 from __future__ import annotations
 

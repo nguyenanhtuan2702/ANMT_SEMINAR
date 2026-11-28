@@ -163,7 +163,7 @@ def test_model_load_cache_reuses_artifact_and_invalidates_replaced_file(tmp_path
 
 @pytest.fixture(scope="module")
 def full_dataset_runs():
-    source = Path("dataset_log/logs_SPEDIA_annotated_en.csv")
+    source = Path("data/raw/logs_SPEDIA_annotated_en.csv")
     if not source.is_file():
         pytest.skip("The local full SPEDIA CSV is required for the full_dataset test.")
     raw = source.read_bytes()
@@ -172,7 +172,7 @@ def full_dataset_runs():
 
 @pytest.mark.full_dataset
 def test_full_72250_row_file_has_no_silent_loss_and_matches_frozen_features(full_dataset_runs):
-    from data_for_ml.load_data import load_table
+    from preprocessing.data_bundle import load_table
     raw, first, _ = full_dataset_runs
     logs = first["detected_logs"]
     assert len(raw) == 45703322 and len(logs) == 72250

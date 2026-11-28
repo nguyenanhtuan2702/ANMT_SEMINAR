@@ -18,7 +18,7 @@ from preprocessing.normalized_io import read_normalized_logs
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", type=Path, default=Path("dataset_log/logs_SPEDIA_annotated_en.csv"))
+    parser.add_argument("--input", type=Path, default=Path("data/raw/logs_SPEDIA_annotated_en.csv"))
     parser.add_argument("--normalized", type=Path, default=Path("data/normalized_logs.csv"))
     parser.add_argument("--sample", type=Path, default=Path("data/normalized_logs_sample.csv"))
     args = parser.parse_args()

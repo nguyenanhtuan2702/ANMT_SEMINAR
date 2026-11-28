@@ -11,7 +11,7 @@ from detection.rule_engine import detect_rules
 from detection.alert_aggregation import merge_alerts
 from detection.correlation import correlate, get_timeline
 
-events = normalize_logs(load_logs("dataset_log/logs_SPEDIA_annotated_en.csv"))
+events = normalize_logs(load_logs("data/raw/logs_SPEDIA_annotated_en.csv"))
 alerts = merge_alerts(detect_rules(events))
 config = {"window_seconds": 900, "max_gap_seconds": 300, "min_events": 1}
 report = {}
@@ -63,7 +63,7 @@ Sự kiện thiếu user/time/agent không đủ điều kiện vào nhóm và �
 
 ```powershell
 python -m unittest discover -s tests -p test_correlation.py -v
-python tests/validate_correlation_dataset.py --input dataset_log/logs_SPEDIA_annotated_en.csv
+python tests/validate_correlation_dataset.py --input data/raw/logs_SPEDIA_annotated_en.csv
 ```
 
 correlate_events là adapter cho tên khung Task 1, trả một Correlation snapshot/nhóm, anchor là event cuối nhìn thấy; không phải sliding window cho từng event. Tích hợp mới dùng correlate/get_timeline.

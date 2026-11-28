@@ -104,7 +104,7 @@ from preprocessing.log_loader import load_logs
 from preprocessing.log_normalizer import normalize, normalize_logs
 
 assert normalize is normalize_logs
-train_events = normalize(load_logs("dataset_log/logs_SPEDIA_annotated_en.csv"))
+train_events = normalize(load_logs("data/raw/logs_SPEDIA_annotated_en.csv"))
 new_events = normalize(load_logs("new_unlabeled_logs.csv"))
 ```
 
@@ -121,7 +121,7 @@ Mẫu phục vụ dựng giao diện/bộ lọc, không đại diện đầy đ�
 ## Tạo lại và kiểm tra
 
 ```powershell
-python -m preprocessing.export_normalized_dataset --input dataset_log/logs_SPEDIA_annotated_en.csv
+python -m preprocessing.export_normalized_dataset --input data/raw/logs_SPEDIA_annotated_en.csv
 python tests/validate_normalized_dataset.py
 python -m unittest discover -s tests -p test_normalized_io.py -v
 ```

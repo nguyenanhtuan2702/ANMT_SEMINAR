@@ -48,7 +48,7 @@ prioritized_atomic = assign_severity(atomic, groups, events=events)
 prioritized_events = merge_alerts(prioritized_atomic)
 ```
 
-`assign_severity(alerts: list[Alert], correlations=None, ml_results=None, *, events=None, config=None) -> list[Alert]` trả bản sao atomic 11 field, thay severity/severity_reason. ML là tham số chờ Task 11, luôn bỏ qua kể cả khi được truyền; không có đường bật ML trong policy v1.
+`assign_severity(alerts: list[Alert], correlations=None, ml_results=None, *, events=None, config=None) -> list[Alert]` trả bản sao atomic 11 field, thay severity/severity_reason. Tham số `ml_results` được giữ tương thích nhưng luôn bỏ qua trong policy v1. Task 11 tích hợp ML ở Dashboard riêng; không truyền score vào hàm này và không đổi policy v1.
 
 `correlations` nhận DataFrame `correlate()` hoặc list từ adapter `correlate_events()`. Nếu có correlations, bắt buộc có events chuẩn hóa. Nếu có events và correlations=None, module tự nhóm theo policy; correlations=[] nghĩa là không có nhóm được cung cấp. Nếu không có cả events lẫn correlations, chỉ tính mức gốc và yếu tố giờ, ghi rõ thiếu ngữ cảnh. Không tự suy nhóm từ user/agent trên alert.
 

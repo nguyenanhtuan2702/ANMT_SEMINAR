@@ -1,0 +1,86 @@
+{
+  "python": "3.12.8",
+  "streamlit": "1.61.1",
+  "sklearn": "1.9.1",
+  "pandas": "3.0.5",
+  "pytest": "231 passed, 106 subtests passed",
+  "dataset": "D:\\ANMT_SEMINAR\\data\\raw\\logs_SPEDIA_annotated_en.csv",
+  "dataset_bytes": 45703322,
+  "raw_records": 72250,
+  "normalized_records": 72250,
+  "source_row_id_unique": 72250,
+  "source_row_id_null": 0,
+  "rule_alert_events": 1301,
+  "event_groups": 7501,
+  "model_results": {
+    "logistic_regression.joblib": {
+      "load_status": "PASS",
+      "inference_status": "PASS",
+      "default_threshold": 0.41252396612305114,
+      "threshold_notice": null,
+      "ml_anomalies": 41541,
+      "low_threshold": 0.21252396612305113,
+      "low_ml_anomalies": 41563,
+      "high_threshold": 0.6125239661230512,
+      "high_ml_anomalies": 41540
+    },
+    "random_forest.joblib": {
+      "load_status": "PASS",
+      "inference_status": "PASS",
+      "default_threshold": 0.54,
+      "threshold_notice": null,
+      "ml_anomalies": 41541,
+      "low_threshold": 0.34,
+      "low_ml_anomalies": 41541,
+      "high_threshold": 0.74,
+      "high_ml_anomalies": 41406
+    },
+    "random_forest_behavioral.joblib": {
+      "load_status": "PASS",
+      "inference_status": "PASS",
+      "default_threshold": 0.18,
+      "threshold_notice": null,
+      "ml_anomalies": 42003,
+      "low_threshold": 0.0,
+      "low_ml_anomalies": 72250,
+      "high_threshold": 0.38,
+      "high_ml_anomalies": 41521
+    }
+  },
+  "comparisons": {
+    "logistic_regression.joblib": {
+      "both": 450,
+      "rule_only": 851,
+      "ml_only": 41091,
+      "neither": 29858,
+      "not_evaluated": 0,
+      "total_evaluated": 72250,
+      "total_rule_alerts": 1301,
+      "total_ml_anomalies": 41541,
+      "severity_invariant": true
+    },
+    "random_forest.joblib": {
+      "both": 450,
+      "rule_only": 851,
+      "ml_only": 41091,
+      "neither": 29858,
+      "not_evaluated": 0,
+      "total_evaluated": 72250,
+      "total_rule_alerts": 1301,
+      "total_ml_anomalies": 41541,
+      "severity_invariant": true
+    },
+    "random_forest_behavioral.joblib": {
+      "both": 451,
+      "rule_only": 850,
+      "ml_only": 41552,
+      "neither": 29397,
+      "not_evaluated": 0,
+      "total_evaluated": 72250,
+      "total_rule_alerts": 1301,
+      "total_ml_anomalies": 42003,
+      "severity_invariant": true
+    }
+  },
+  "severity_invariant_across_all_runs": true
+}

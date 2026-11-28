@@ -3,9 +3,22 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+env/
+ENV/
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
 .coverage
+.coverage.*
 htmlcov/
+coverage.xml
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
 # Credentials and machine settings
 .env
 .env.*
@@ -15,12 +28,22 @@ htmlcov/
 .idea/
 .DS_Store
 Thumbs.db
-# Local raw data and generated artifacts; curated processed data is versioned
+
+# Local raw data
 data/raw/*
 !data/raw/.gitkeep
-# The processed SPEDIA bundle is versioned under data/processed/.
+
+# Processed data is versioned
+# data/processed/ is intentionally NOT ignored
+
+# Model artifacts
+# Decide whether trained models should be tracked or distributed separately.
 models/artifacts/*
 !models/artifacts/.gitkeep
+
+# Generated figures
 reports/figures/*
 !reports/figures/.gitkeep
+
+# Temporary logs
 *.log

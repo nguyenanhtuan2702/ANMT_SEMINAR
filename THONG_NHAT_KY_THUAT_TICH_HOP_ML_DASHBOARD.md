@@ -7,7 +7,8 @@
 | Dự án | ANMT_SEMINAR – AI Security Log Analyzer |
 | Phiên bản tài liệu | 1.0 |
 | Ngày lập | 27/11/2026 |
-| Trạng thái | Thống nhất hướng tích hợp giữa Thọ, Ngọc và Tuấn; dùng làm căn cứ triển khai và kiểm thử |
+| Ngày cập nhật | 28/11/2026 |
+| Trạng thái | Giai đoạn 1 đã được Tuấn nghiệm thu ngày 27/11/2026; tích hợp Dashboard Task 11 được triển khai theo tài liệu này |
 | Phạm vi | Chuẩn hóa khóa sự kiện, tích hợp ML inference, hiển thị và so sánh Rule-based với ML trên Dashboard |
 
 ---
@@ -38,7 +39,7 @@ Nhóm thống nhất các nguyên tắc sau:
 
 ## 2. Hiện trạng repository làm mốc tích hợp
 
-Các trạng thái dưới đây được đối chiếu từ repository `ANMT_SEMINAR` trong file ZIP ngày 27/11/2026.
+Các trạng thái dưới đây được đối chiếu với repository `ANMT_SEMINAR` ngày 28/11/2026.
 
 | Thành phần | Hiện trạng trong repository |
 |---|---|
@@ -47,27 +48,25 @@ Các trạng thái dưới đây được đối chiếu từ repository `ANMT_S
 | Severity | Đã triển khai policy ưu tiên xử lý prototype. `assign_severity()` hiện bỏ qua ML; Severity không phải mức tác động đã xác minh. |
 | ML inference | Đã có `detection/ml_engine.py` với hàm `predict(df, model_name, threshold)`. |
 | Model artifacts | Ba file `logistic_regression.joblib`, `random_forest.joblib`, `random_forest_behavioral.joblib` có trong workspace/ZIP snapshot; `models/artifacts/*` bị `.gitignore` nên checkout chỉ từ Git có thể không có. |
-| Dashboard | `dashboard/views.py` hiện có Overview, Events, Alerts, Timeline và ML evaluation. Tab ML evaluation hiện thông báo ML chưa chạy; chưa gọi `predict()`. |
-| Training script | `models/train_model.py` hiện mới có docstring, chưa có implementation huấn luyện có thể chạy lại. |
+| Dashboard | Đã có model selector, threshold slider, prediction/score, bộ lọc so sánh, ML evaluation và drill-down. ML lỗi riêng, không làm mất màn hình Rule. |
+| Training script | `models/train_model.py` có implementation huấn luyện từ normalized bundle, temporal split, chọn threshold validation và ghi metrics/artifacts. |
 
-### 2.1. Vấn đề ID hiện tại
+### 2.1. Trạng thái ID
 
-Trong `detection/ml_engine.py`, `make_source_row_ids()` hiện ưu tiên dùng cột `id` nếu các giá trị không rỗng và duy nhất; nếu không thì tự tạo `row_1`, `row_2`, ... Cách này không thống nhất với khóa của Loader.
+`detection.ml_engine.make_source_row_ids()` yêu cầu và xác thực `source_row_id` từ Loader/Normalizer; không fallback sang `id` và không tự tạo `row_N`. ML output giữ nguyên khóa để join.
 
-Ví dụ cùng một event có thể có:
+Mã hiện tại giữ chung khóa cho Rule và ML:
 
 ```text
 Rule / Normalizer: <sha256-file>:00000015
-ML hiện tại:       row_16
+ML:                <sha256-file>:00000015
 ```
 
-Hai kết quả không thể join đáng tin cậy. Cần sửa theo hợp đồng tại mục 3.
+### 2.2. Trạng thái tích hợp Dashboard
 
-### 2.2. Vấn đề tích hợp Dashboard
+`dashboard.service.run_upload_pipeline()` chạy Loader → Normalizer → Rule pipeline một lần và trả thêm `normalized_logs`. Dashboard gọi ML trên tập đầy đủ này qua cache riêng, ghép theo `source_row_id`, rồi mới áp dụng filter hiển thị. Severity/alert giữ nguyên từ pipeline Rule.
 
-`dashboard/service.py` hiện chỉ chạy pipeline Rule-based. `dashboard/views.py` chưa gọi `detection.ml_engine.predict()` và chưa có các control inference thực tế. Vì vậy, phần việc của Tuấn là bổ sung ML vào luồng Dashboard hiện tại, không phải xây dựng lại Dashboard từ đầu.
-
-> Đồng bộ tài liệu: README đã được sửa để phản ánh Dashboard Rule-based hiện tại và link tới hợp đồng này. Sau khi hoàn tất tích hợp ML, cần cập nhật README lần nữa theo đúng chức năng đã triển khai.
+Lỗi ML được hiển thị riêng; các event chưa có prediction mang nhãn `Not Evaluated`. README và hướng dẫn Dashboard đã được cập nhật theo giao diện Task 11.
 
 ---
 
@@ -227,7 +226,7 @@ Dashboard cung cấp slider với cấu hình:
 |---|---:|
 | Minimum | `0.00` |
 | Maximum | `1.00` |
-| Default | `0.52` |
+| Default | Threshold theo model từ `reports/ml/model_thresholds.json`; fallback `0.52` nếu thiếu hoặc không hợp lệ |
 | Step | `0.01` |
 
 Quy tắc dự đoán hiện tại:
@@ -242,11 +241,11 @@ Diễn giải:
 - Nếu `anomaly_score < threshold` → `Normal`.
 - Tăng threshold làm điều kiện gắn nhãn Anomaly chặt hơn; giảm threshold làm điều kiện dễ đạt hơn.
 
-`0.52` là giá trị mặc định hiện có trong code, không được mô tả là threshold tối ưu đã được hiệu chỉnh. Việc chọn threshold chính thức cần căn cứ vào tập validation và phân tích precision/recall của Ngọc.
+Dashboard lấy ngưỡng validation riêng cho model được chọn. `0.52` chỉ là fallback an toàn nếu cấu hình không đọc được hoặc giá trị model thiếu/sai; UI hiện thông báo fallback. Threshold có thể được điều chỉnh bằng slider và không được mô tả là mức tối ưu phổ quát.
 
 ### 4.3. Metadata lần inference
 
-Dashboard cần hiển thị hoặc lưu trong session/report tối thiểu:
+Dashboard hiển thị tối thiểu:
 
 - Tên model artifact đang sử dụng.
 - Threshold đang sử dụng.
@@ -255,7 +254,7 @@ Dashboard cần hiển thị hoặc lưu trong session/report tối thiểu:
 - Trạng thái inference (success/error).
 - Nội dung lỗi nếu inference không thành công.
 
-Không bắt buộc thêm các metadata này vào từng dòng CSV output trong phiên bản đầu; có thể giữ trong phần report của lần chạy.
+Các metadata không được thêm vào alert v1.0. Khi inference lỗi, trạng thái/lỗi ML được hiển thị cùng các event `Not Evaluated`.
 
 ---
 
@@ -340,28 +339,28 @@ Việc kết hợp ML vào Severity, nếu nhóm muốn thực hiện trong tư�
 
 ---
 
-## 7. Chức năng Dashboard cần triển khai
+## 7. Chức năng Dashboard đã triển khai
 
 ### 7.1. Chọn model
 
-Bổ sung `selectbox` cho ba model artifact tại mục ML controls (đề xuất đặt ở sidebar để lựa chọn có hiệu lực cho toàn bộ lần phân tích).
+Sidebar có `selectbox` cho ba model artifact; model mặc định là `random_forest_behavioral.joblib`.
 
 ### 7.2. Chọn threshold
 
-Bổ sung `slider` từ `0.00` đến `1.00`, mặc định `0.52`, bước `0.01`. Khi người dùng đổi threshold, Dashboard chạy lại hoặc lấy cache inference tương ứng với threshold mới.
+Sidebar có `slider` từ `0.00` đến `1.00`, bước `0.01`, khởi tạo theo threshold của model trong JSON hoặc fallback `0.52`. Khi đổi threshold, chỉ kết quả ML tương ứng được chạy lại hoặc lấy từ cache.
 
 ### 7.3. Hiển thị ML Prediction và Anomaly Score
 
-Trong bảng Events, thêm tối thiểu hai trường:
+Trong bảng Events, hiển thị tối thiểu hai trường:
 
 - `ML Prediction`: Normal / Anomaly.
 - `Anomaly Score`: score của model.
 
-Trong khu vực ML Evaluation, hiển thị tên model và threshold được dùng ở lần chạy hiện tại.
+Trong khu vực ML evaluation, hiển thị tên model và threshold của lần chạy hiện tại.
 
 ### 7.4. Bộ lọc sự kiện
 
-Bổ sung filter theo các nhóm:
+Bộ lọc Events có các nhóm:
 
 - `All Events`
 - `ML Anomaly Only`
@@ -369,6 +368,8 @@ Bổ sung filter theo các nhóm:
 - `Both Rule and ML`
 - `ML Only`
 - `Rule Only`
+- `Neither`
+- `Not Evaluated`
 
 Quy định:
 
@@ -379,7 +380,7 @@ Quy định:
 
 ### 7.5. Khu vực Rule vs ML Comparison
 
-Trong tab `ML evaluation`, bổ sung:
+Tab `ML evaluation` hiển thị:
 
 - Tổng số event được đánh giá.
 - Số event Rule alert.
@@ -411,7 +412,7 @@ Nếu ML inference thất bại (thiếu artifact, thiếu cột, timestamp lỗ
 
 ## 8. Cache và hiệu năng
 
-Dashboard hiện cache Rule pipeline theo nội dung file và hash của rules/policy. Inference ML cần cache độc lập hoặc mở rộng cache nhưng phải có đủ cache key.
+Dashboard cache Rule pipeline theo nội dung file và hash của rules/policy. Inference ML có cache độc lập với đủ thành phần khóa.
 
 Cache key của ML tối thiểu phải phân biệt:
 
@@ -437,18 +438,15 @@ Việc thay đổi model/threshold không nên khiến Rule pipeline phải ch�
 
 ### 9.1. Chi tiết phần Ngọc cần bàn giao
 
-Trong snapshot hiện tại, `models/train_model.py` chỉ có docstring, chưa có code huấn luyện. Vì vậy, ngoài việc sửa ID và kiểm tra inference, Ngọc cần cung cấp một trong hai hình thức:
+Repository hiện có `models/train_model.py` với implementation huấn luyện tái lập từ normalized data bundle, temporal split, threshold validation, metric và artifacts. Khi đổi model/dữ liệu, vẫn cần ghi nhận phiên bản dependency và kết quả train/test trong manifest.
 
-- Script huấn luyện có thể chạy lại từ dữ liệu đầu vào đã mô tả; hoặc
-- Nếu việc phát hành script không nằm trong phạm vi, tối thiểu phải có tài liệu tái lập: cách tạo train/test, target mapping, feature list, thứ tự preprocessing, phiên bản thư viện, tham số model, metric và cách sinh artifacts.
-
-Báo cáo `reports/ml/model_metrics.csv` hiện liệt kê Logistic Regression và Random Forest; cần ghi rõ tập dữ liệu/tập đánh giá và bổ sung kết quả riêng cho Random Forest Behavioral nếu nhóm dùng model này trong demo.
+Threshold được lưu theo model tại `reports/ml/model_thresholds.json`. Artifact files trong `models/artifacts/` bị Git ignore; cần chuyển riêng khi dựng môi trường demo sạch.
 
 ---
 
-## 10. Trình tự triển khai
+## 10. Trình tự tích hợp và xác minh
 
-Thực hiện theo thứ tự để tránh sửa đi sửa lại giữa các module.
+Các bước 1–4 đã được triển khai. Bước 5 còn cần chạy trên runtime có đủ dependencies; các giới hạn hiện tại được ghi trong checklist và `docs/PIPELINE_API.md`.
 
 ### Bước 1 – Chốt hợp đồng khóa
 
@@ -505,7 +503,7 @@ Thực hiện theo thứ tự để tránh sửa đi sửa lại giữa các mod
 | INT-03 | Một kết quả mỗi event | Với lần inference thành công trên toàn bộ input hợp lệ, số prediction bằng số event đầu vào. |
 | INT-04 | Join đúng | Join Rule/ML bằng `source_row_id`, validate one-to-one và không làm tăng số event. |
 | INT-05 | Chọn model | Cả ba artifact được liệt kê có thể chọn và inference thành công trong môi trường dependency tương thích. |
-| INT-06 | Chọn threshold | Slider có miền 0–1, mặc định 0.52, step 0.01; label theo score >= threshold. |
+| INT-06 | Chọn threshold | Slider có miền 0–1, khởi tạo theo threshold model trong JSON, fallback 0.52, step 0.01; label theo score >= threshold. |
 | INT-07 | Nhãn dự đoán | Hiển thị Normal/Anomaly; mapping lớp 1 = Anomaly được xác nhận. |
 | INT-08 | Anomaly Score | Score hiển thị được, nằm trong [0, 1]. |
 | INT-09 | Bộ lọc | Lọc đúng All, ML Anomaly, Rule Alerts, Both, ML Only và Rule Only. |
@@ -520,38 +518,37 @@ Thực hiện theo thứ tự để tránh sửa đi sửa lại giữa các mod
 
 ---
 
-## 12. Danh sách file dự kiến thay đổi
+## 12. File đã cập nhật cho tích hợp
 
-| File | Người chính | Thay đổi dự kiến |
+| File | Người chính | Thay đổi |
 |---|---|---|
 | `detection/ml_engine.py` | Ngọc | Thống nhất `source_row_id`, xác thực class mapping/score/threshold, giữ đầu ra ML ổn định. |
 | `tests/test_ml_engine.py` | Ngọc | Bổ sung test khóa hợp lệ/không hợp lệ, threshold, mapping lớp và output. |
-| `dashboard/service.py` | Tuấn | Bổ sung bước chạy ML hoặc service gọi inference sau khi có normalized events; không sửa rule pipeline. |
-| `dashboard/views.py` | Tuấn | Model selector, threshold, prediction/score, filters và Rule-vs-ML comparison. |
-| `tests/test_dashboard.py` và/hoặc test tích hợp mới | Tuấn + Ngọc | Test luồng upload, cache key, join và xử lý lỗi inference. |
-| `docs/INTEGRATION_CONTRACT.md` | Tuấn + Thọ + Ngọc | Bổ sung hợp đồng ML và trạng thái tích hợp mới; giữ lịch sử contract cũ khi cần. |
-| `README.md` | Tuấn | Cập nhật chức năng ML thực tế, điều kiện đầu vào và cách chạy. |
-| `models/train_model.py` và tài liệu ML | Ngọc | Bổ sung khả năng tái lập training hoặc tài liệu tái lập đầy đủ. |
+| `dashboard/service.py` | Tuấn | Giữ normalized events, threshold loader, cache version, ML validation, key join và display filters; không sửa pipeline Rule. |
+| `dashboard/views.py` | Tuấn | Model/threshold controls, prediction/score, filters, comparison, error handling và cache riêng. |
+| `tests/test_dashboard.py`, `tests/test_dashboard_service.py` | Tuấn | AppTest và test service cho join, labels, threshold, filters, fallback/error, cùng test real inference có điều kiện. |
+| `docs/INTEGRATION_CONTRACT.md`, `docs/PIPELINE_API.md`, `docs/SEVERITY_POLICY.md` | Tuấn | Cập nhật trạng thái tích hợp và giữ rõ ranh giới ML/Rule/Severity. |
+| `README.md`, `dashboard/README.md` | Tuấn | Hướng dẫn giao diện, threshold, artifacts và xử lý lỗi cập nhật theo code. |
+| `models/train_model.py` và báo cáo ML | Ngọc | Đã có quy trình huấn luyện, metrics, threshold model-specific và training manifest. |
 
 Không bắt buộc phải tạo thêm module Python nếu cấu trúc hiện tại đáp ứng được. Tuy nhiên nên tách phần gọi ML khỏi logic render UI để dễ test.
 
 ---
 
-## 13. Checklist xác nhận trước khi merge
+## 13. Checklist trạng thái
 
-- [ ] Ngọc đã sửa `make_source_row_ids()` và test không còn fallback `id`/`row_N`.
-- [ ] Thọ đã xác nhận `source_row_id` và normalized schema là nguồn khóa chính thức.
-- [ ] Ngọc đã xác nhận `classes_[1]` tương ứng nhãn Anomaly và ghi rõ trong tài liệu model.
-- [ ] Các model artifact cần demo load thành công trên môi trường dependency của nhóm.
-- [ ] Tuấn đã tích hợp inference sau bước normalize và trước các filter giao diện.
-- [ ] Dashboard cho chọn model và threshold.
-- [ ] Bảng Events hiển thị ML Prediction và Anomaly Score.
-- [ ] Có filter All / ML Anomaly / Rule Alert / Both / ML Only / Rule Only.
-- [ ] Có thống kê và bảng Rule-vs-ML Comparison.
-- [ ] ML không thay đổi Severity hoặc schema alert v1.0.
-- [ ] Trường hợp ML lỗi vẫn xem được kết quả Rule-based.
-- [ ] Regression và end-to-end tests đã chạy trên môi trường Python/dependencies thống nhất.
-- [ ] README, ảnh demo và báo cáo đã cập nhật.
+- [x] `make_source_row_ids()` yêu cầu khóa Loader/Normalizer và không fallback `id`/`row_N`.
+- [x] Tài liệu Giai đoạn 1 xác nhận `source_row_id`, normalized schema, alert v1.0 và policy Severity.
+- [x] `predict()` kiểm tra class order `[0, 1]`; code training dùng target `Anomaly` 0/1.
+- [x] Các model artifact đã load và Real ML Integration chạy trên runtime project `.venv`.
+- [x] Tuấn đã tích hợp inference sau normalize, trước filter giao diện.
+- [x] Dashboard cho chọn model/threshold và cột prediction/score.
+- [x] Có filter All / ML Anomaly / Rule Alert / Both / ML Only / Rule Only cùng Neither/Not Evaluated.
+- [x] Có thống kê và bảng Rule-vs-ML Comparison.
+- [x] ML không thay đổi Severity hoặc schema alert v1.0.
+- [x] ML error được báo riêng; kết quả Rule vẫn hiển thị.
+- [x] Regression và AppTest đã chạy: unittest 196/196; pytest 231 passed, gồm cả hai test full dataset đọc từ `data/raw`.
+- [x] README và tài liệu hợp đồng đã cập nhật; chưa có ảnh demo mới.
 
 ---
 

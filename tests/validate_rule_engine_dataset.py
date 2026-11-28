@@ -1,6 +1,6 @@
 """Audit and benchmark rules on a local full dataset; never use labels for rules.
 
-python tests/validate_rule_engine_dataset.py --input dataset_log/logs_SPEDIA_annotated_en.csv
+python tests/validate_rule_engine_dataset.py --input data/raw/logs_SPEDIA_annotated_en.csv
 """
 from __future__ import annotations
 

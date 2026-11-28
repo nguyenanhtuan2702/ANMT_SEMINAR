@@ -25,12 +25,20 @@ class DashboardTests(unittest.TestCase):
         app = self.app()
         app.file_uploader[0].set_value(("logs.csv", csv_bytes(), "text/csv")).run(timeout=60)
         self.assertFalse(app.exception)
-        self.assertFalse(app.error)
+        # ML can report its own error when local model dependencies/artifacts
+        # are unavailable; Rule success and its views must still render.
         self.assertTrue(app.success)
         self.assertEqual(app.metric[0].value, "4")
         self.assertEqual(app.metric[1].value, "4")
-        self.assertEqual(len(app.selectbox), 2)
+        labels = [control.label for control in app.selectbox]
+        self.assertIn("ML model", labels)
+        self.assertIn("Comparison filter", labels)
+        self.assertIn("Comparison group", labels)
+        self.assertEqual(len(app.slider), 1)
         app.multiselect[0].set_value(["command"]).run()
+        self.assertFalse(app.exception)
+        comparison_filter = next(control for control in app.selectbox if control.label == "Comparison filter")
+        comparison_filter.set_value("Rule Only").run()
         self.assertFalse(app.exception)
 
     def test_upload_no_match_success_not_error(self):

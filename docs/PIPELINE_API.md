@@ -1,6 +1,6 @@
 # Pipeline rule-based — Task 8
 
-Tài liệu này mô tả pipeline Rule-based đang chạy. Phần nối ML vào Dashboard là hợp đồng mục tiêu riêng tại [Tài liệu thống nhất kỹ thuật](../THONG_NHAT_KY_THUAT_TICH_HOP_ML_DASHBOARD.md); ML hiện chưa được gọi trong service hoặc giao diện.
+Tài liệu này mô tả pipeline Rule-based, giữ độc lập với ML. Task 11 tích hợp ML sau normalize trong Dashboard service; ML không được gọi từ `detection.pipeline` và không làm thay đổi Rule, Correlation, Severity hoặc alert schema. Xem [Tài liệu thống nhất kỹ thuật](../THONG_NHAT_KY_THUAT_TICH_HOP_ML_DASHBOARD.md).
 
 Nội dung tích hợp Task 8 được ghi dưới tiêu đề **Task 9** trong report_npt.md theo yêu cầu đặt tên báo cáo. Artifact kiểm chứng lưu tại reports/pipeline_integration.
 
@@ -46,9 +46,9 @@ Ngọc có thể chọn rule_ids/alert_count/severity làm đặc trưng rule-ba
 
 ## Upload và dashboard
 
-`dashboard.service.run_upload_pipeline(source)` nhận path hoặc upload nhị phân, gọi loader → normalize → pipeline, thêm thời gian load/normalize/upload_total vào report. Streamlit dùng chính hàm này; cache theo byte upload và hash rules/policy để rerun bộ lọc không chạy lại detection. Tối đa hai cache entry trong bộ nhớ.
+`dashboard.service.run_upload_pipeline(source)` nhận path hoặc upload nhị phân, gọi loader → normalize → pipeline, thêm thời gian load/normalize/upload_total vào report và trả thêm `normalized_logs` đầy đủ để inference. Streamlit cache Rule theo byte upload và hash rules/policy; ML dùng cache riêng theo hash file, normalized events, model, threshold và phiên bản artifact. Khi đổi control ML, Rule pipeline dùng lại kết quả cache. Tối đa hai Rule cache entry và tám ML cache entry trong bộ nhớ.
 
-Dashboard có trạng thái chưa upload/lỗi/thành công/zero alert; hiển thị event chuẩn hóa, alert ưu tiên, evidence/reason raw và timeline. Bộ lọc Activity/User/Agent chỉ lọc hiển thị; không chạy detection trên trang đã lọc nên không mất lịch sử. Tab ML ghi chưa chạy. Timeline là snapshot file upload; không dùng summary đó như thông tin quá khứ của event.
+Dashboard có trạng thái chưa upload/lỗi/thành công/zero alert; hiển thị event, alert ưu tiên, evidence/reason, timeline và ML comparison. Inference chạy trên toàn bộ normalized events trước các filter Activity/User/Agent/comparison. Bảng Events có Rule Alert, Severity, ML Prediction, Anomaly Score. Tab ML evaluation đếm Both/Rule Only/ML Only/Neither; các event thiếu kết quả ở `Not Evaluated` và không tính vào bốn nhóm. Lỗi model/threshold/timestamp chỉ làm ML không sẵn sàng, vẫn giữ các màn hình Rule. Timeline là snapshot file upload; không dùng summary đó như thông tin quá khứ của event.
 
 ```powershell
 .\.venv\Scripts\python.exe -m streamlit run dashboard/app.py
@@ -75,6 +75,8 @@ Reader khôi phục JSON rule_ids thành list, datetime, nullable integer/boolea
 
 reports/pipeline_integration/pipeline_validation.json và timings.csv ghi số lượng, phiên bản thực chạy, thời gian từng bước, kiểm tra bất biến và trạng thái AppTest. Bảng thời gian đo trên máy hiện tại, một lần chạy có cả bước kiểm chứng; không cộng pipeline_total với các bước con và không coi kết quả là benchmark mọi máy. Pipeline tái sử dụng nhóm chuẩn vừa tạo khi tính severity, tránh tái nhóm toàn dataset; assign_severity công khai vẫn tự xác minh membership của caller. Test kiểm tra hai đường cho cùng kết quả. Dashboard cache riêng pipeline và timeline để tránh tính lại khi chỉ lọc.
 
-Ngày 27/11/2026, Tuấn nghiệm thu Giai đoạn 1 qua review tài liệu, mã thực thi và các unit test liên quan; không có phiên thao tác trình duyệt thủ công trong lần review này. Tích hợp ML được thống nhất riêng theo tài liệu kỹ thuật nói trên và vẫn chờ triển khai/nghiệm thu; late-arrival/streaming state và lịch vận hành/timezone được xác minh vẫn ngoài phạm vi.
+Ngày 27/11/2026, Tuấn nghiệm thu Giai đoạn 1 qua review tài liệu, mã thực thi và các unit test liên quan; không có phiên thao tác trình duyệt thủ công trong lần review đó. Ngày 28/11/2026, Dashboard service/UI và test tích hợp Task 11 được cập nhật. Late-arrival/streaming state và lịch vận hành/timezone vẫn ngoài phạm vi.
 
-Kết quả kiểm thử Task 9 trước lần nghiệm thu: 159 test đạt trên Python 3.12.14/pandas 2.3.3/Streamlit 1.67.0. Full dataset 72.250 event × 47 cột, 1.301 alert event/7.501 nhóm. Sau tối ưu: pipeline 5,336s; upload/normalize/pipeline 8,402s; AppTest khởi tạo/upload/render 12,692s; filter rerun cache 0,868s. CSV trước/sau tối ưu có cùng SHA-256; xem reports/pipeline_integration/optimization_checks.json. Thay code khi phát triển cần restart hoặc clear cache; hash rule/policy tự đổi key khi cấu hình thay đổi.
+Kết quả kiểm thử Task 9 trước Task 11: 159 test đạt trên Python 3.12.14/pandas 2.3.3/Streamlit 1.67.0. Full dataset 72.250 event × 47 cột, 1.301 alert event/7.501 nhóm. Sau tối ưu: pipeline 5,336s; upload/normalize/pipeline 8,402s; AppTest khởi tạo/upload/render 12,692s; filter rerun cache 0,868s. CSV trước/sau tối ưu có cùng SHA-256; xem reports/pipeline_integration/optimization_checks.json.
+
+Kiểm tra lại ngày 28/11/2026 trong `.venv`: `python -m unittest discover -s tests -q` đạt **196/196**; `python -m pytest -q` đạt **231 passed, 106 subtests passed**, không skip. Hai test full dataset trong `test_task9_boundaries.py` hiện đọc `data/raw/logs_SPEDIA_annotated_en.csv` và đều chạy đạt. Pytest vẫn phát 2 cảnh báo `UnknownMarkWarning` cho mark `full_dataset`. Chạy riêng cũng đạt: `test_analysis_pipeline.py` 16/16, threshold classification 1/1, Dashboard 4/4, Dashboard Service + Real ML Integration 11/11, Severity 20/20. `test_analysis_pipeline.py` đã chuyển sang API hiện tại `run_detection_pipeline`; threshold test mock `_load_pipeline` để tránh model trong LRU cache lấn mock. Thay code khi phát triển cần restart hoặc clear cache; hash rule/policy tự đổi key khi cấu hình thay đổi.

@@ -115,13 +115,13 @@ def main():
     folder.mkdir(parents=True, exist_ok=True)
     tests = pytest_results(folder)
     verify_bundle()
-    protected = [Path("dataset_log/logs_SPEDIA_annotated_en.csv"), Path("detection/rules.json"),
+    protected = [Path("data/raw/logs_SPEDIA_annotated_en.csv"), Path("detection/rules.json"),
                  Path("detection/severity_policy.json"), Path("docs/schemas/alert_v1.0.schema.json"),
                  Path("docs/schemas/alert_v1.0.freeze.json")]
     for root in (Path("data"), Path("data_for_ml"), Path("models/artifacts")):
         protected.extend(p for p in root.iterdir() if p.is_file())
     hashes = {p.as_posix(): digest(p) for p in protected}
-    raw = Path("dataset_log/logs_SPEDIA_annotated_en.csv").read_bytes()
+    raw = Path("data/raw/logs_SPEDIA_annotated_en.csv").read_bytes()
     runs, elapsed = [], []
     for _ in range(2):
         started = time.perf_counter()
