@@ -1,6 +1,6 @@
 # Bộ dữ liệu chuẩn hóa và kết quả rule-based
 
-`data_for_ml/` là gói data chứa log đã chuẩn hóa, kết quả rule, nhóm sự kiện và metadata. Tài liệu này mô tả nội dung, schema, quan hệ giữa các bảng và quy tắc tạo dữ liệu.
+`data/processed/` chứa log đã chuẩn hóa, kết quả rule, nhóm sự kiện và metadata. Tài liệu này mô tả nội dung, schema, quan hệ giữa các bảng và quy tắc tạo dữ liệu.
 
 ## 1. Danh sách file
 
@@ -20,7 +20,7 @@ normalized_logs và detected_logs là hai biểu diễn của **cùng 72.250 eve
 Các file kèm theo:
 
 - Mỗi CSV có `.schema.json` cùng tên: dtype, null marker, checksum, phiên bản và provenance.
-- `load_data.py`: reader độc lập, chỉ cần Python/pandas; không import code từ project gốc.
+- `../../preprocessing/data_bundle.py`: reader độc lập, chỉ cần Python/pandas; không import code từ project gốc.
 - `requirements.txt`: pandas 2.3.3; reader đã kiểm chứng trên Python 3.12.14.
 - `MANIFEST.json`: danh sách, dung lượng và SHA-256 của mọi file bàn giao trừ chính manifest.
 - `VALIDATION.json`: kết quả kiểm tra gói, số lượng và các invariant đã đối chiếu.
@@ -94,14 +94,14 @@ flowchart LR
 
 ## 5. Reader và tính toàn vẹn
 
-`load_data.py` cung cấp hai hàm:
+`preprocessing/data_bundle.py` cung cấp hai hàm:
 
 | Hàm | Kết quả |
 |---|---|
 | verify_bundle(base_dir=None) | Kiểm tra SHA-256 tất cả file trong MANIFEST.json, trả danh sách tên file hợp lệ; sai checksum/thiếu file thì báo lỗi |
 | load_table(filename="normalized_logs.csv", base_dir=None) | Đọc một trong tám CSV bằng sidecar, trả pandas DataFrame |
 
-Mặc định reader tìm file cạnh load_data.py, không phụ thuộc working directory. Nó chỉ đọc dữ liệu, không sửa file; khôi phục JSON list/dict, datetime/date, numeric/boolean nullable và phân biệt null với chuỗi rỗng hoặc chuỗi raw như NA. pd.read_csv mặc định không bảo đảm các quy ước này.
+Mặc định reader tìm bundle trong `data/processed/`, không phụ thuộc working directory. Nó chỉ đọc dữ liệu, không sửa file; khôi phục JSON list/dict, datetime/date, numeric/boolean nullable và phân biệt null với chuỗi rỗng hoặc chuỗi raw như NA. pd.read_csv mặc định không bảo đảm các quy ước này.
 
 Giữ CSV và sidecar cùng nhau, không chỉnh tay CSV rồi tiếp tục dùng checksum/schema cũ. Manifest không tự hash chính nó để tránh vòng tham chiếu. Mỗi lần cập nhật gói cần đồng bộ schema, dung lượng, số lượng và checksum của các file liên quan.
 

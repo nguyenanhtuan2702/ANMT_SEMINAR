@@ -1,10 +1,10 @@
 # Hợp đồng module — Task 1 đến Task 8
 
-Trạng thái ngày 22/11/2026: **giao diện kỹ thuật để nhóm xác nhận**, chưa có nghiệm thu trực tiếp của Tuấn. Loader, normalizer, Rule Engine, gộp/đánh giá alert, correlation/timeline và severity theo ngữ cảnh đã nối vào dashboard qua pipeline Task 8. ML chưa tham gia. Nội dung Pipeline được ghi dưới mục Task 9 trong report_npt.md theo yêu cầu tên báo cáo.
+Trạng thái ngày 22/11/2026: **giao diện kỹ thuật để nhóm xác nhận**, chưa có nghiệm thu trực tiếp của Tuấn. Loader, normalizer, Rule Engine, gộp/đánh giá alert, correlation/timeline và severity theo ngữ cảnh đã nối vào dashboard qua pipeline Task 8. Dashboard cũng chạy ML inference độc lập trên event có Timestamp hợp lệ; ML output không được đưa vào pipeline Rule/Correlation/Severity. Nội dung Pipeline được ghi dưới mục Task 9 trong report_npt.md theo yêu cầu tên báo cáo.
 
 Task 5 bổ sung gộp alert, đánh giá tham chiếu và **đóng băng kỹ thuật alert schema v1.0**. Giao diện chi tiết ở `docs/ALERT_SCHEMA_V1.md`, JSON Schema/hash ở `docs/schemas/`; xác nhận của Tuấn vẫn pending. Không tuyên bố nhóm đã phê duyệt.
 
-Task 6 triển khai correlation/timeline; Task 7 triển khai ưu tiên severity theo rule và prefix ngữ cảnh. Alert schema v1.0 và rules Task 5 giữ nguyên. Backend inference ML hiện có trong repo nhưng chưa được gọi trong pipeline/dashboard rule-based; ghép ML vào severity còn chờ Task 11. API grouping được chốt kỹ thuật theo yêu cầu mới bên dưới, thay đề xuất sliding-window chưa triển khai ở Task 1.
+Task 6 triển khai correlation/timeline; Task 7 triển khai ưu tiên severity theo rule và prefix ngữ cảnh. Alert schema v1.0 và rules Task 5 giữ nguyên. Dashboard gọi backend ML inference riêng; việc kết hợp score ML vào severity chưa được triển khai. API grouping được chốt kỹ thuật theo yêu cầu mới bên dưới, thay đề xuất sliding-window chưa triển khai ở Task 1.
 
 ## Schema đầu vào
 
@@ -44,7 +44,7 @@ Kiểu dùng chung nằm tại `preprocessing/contracts.py`. Import module từ 
 | `detection.correlation` | `get_timeline(logs: pd.DataFrame, group_id: str, alerts=None, *, config=None, as_of=None) -> pd.DataFrame` | Timeline nguồn theo thời gian, raw giữ nguyên, có has_alert/rule_ids |
 | `detection.correlation` | `correlate_events(logs, alerts, *, config, as_of=None) -> list[Correlation]` | Adapter tên cũ: một snapshot cho mỗi nhóm, anchor cuối nhóm; không phải rolling window từng event |
 | `detection.severity` | `assign_severity(alerts: list[Alert], correlations=None, ml_results=None, *, events=None, config=None) -> list[Alert]` | Atomic có ưu tiên/reason mới; correlations cần events; ML luôn bỏ qua ở Task 7 |
-| `detection.ml_engine` | `predict(df: pd.DataFrame, model_name: str = "random_forest_behavioral.joblib", threshold: float = 0.52) -> pd.DataFrame` | API inference hiện có của Ngọc; chưa tích hợp vào pipeline rule-based. `predict_logs`/list[MLResult] là đề xuất cũ, không phải hàm đã triển khai |
+| `detection.ml_engine` | `predict(df: pd.DataFrame, model_name: str = "random_forest_behavioral.joblib", threshold: float = 0.52) -> pd.DataFrame` | Inference độc lập được dashboard gọi; không tham gia Rule Engine pipeline hoặc severity. `predict_logs`/list[MLResult] là đề xuất cũ, không phải hàm đã triển khai |
 
 `RuleConfig` đầy đủ có `schema_version="spedia.rules.v1"`, `rules: list[RuleDefinition]`, tùy chọn `enabled_rule_ids`. Mỗi RuleDefinition chứa rule_id, enabled, condition, params, reason_template, base_severity, severity_reason, rationale. Kiểu cụ thể tại `preprocessing/contracts.py`.
 
@@ -170,7 +170,7 @@ Task 7: `assign_severity` nhận atomic và events chuẩn hóa để tính pref
 
 `CSV -> loader -> normalizer -> rules -> correlation -> severity -> dashboard`.
 
-ML là nhánh từ dữ liệu chuẩn hóa. Cách ghép ML/rule cần nhóm xác nhận, chưa tự đưa score ML vào severity. Backend `predict` hiện trả DataFrame gồm source_row_id, timestamp, user, agent, activity, action, predicted_label và anomaly_score; score là xác suất lớp 1 từ model, threshold mặc định 0.52. TypedDict `MLResult` là hợp đồng đề xuất cho adapter tích hợp, chưa phải kiểu trả về của hàm predict. Ngọc cần xác nhận ngữ nghĩa score, threshold và khả năng dùng ngoài dataset trước khi tích hợp.
+ML chạy trên event đã chuẩn hóa và có Timestamp hợp lệ. Dashboard cho chọn model/threshold, dùng threshold validation lưu trong `reports/ml/model_thresholds.json` làm giá trị khởi đầu khi có. Backend `predict` trả DataFrame gồm source_row_id, timestamp, user, agent, activity, action, predicted_label và anomaly_score; score là xác suất lớp 1 từ model, threshold mặc định của API là 0.52. ML output được hiển thị tách biệt, không gộp vào alert schema v1.0 hoặc tính severity. TypedDict `MLResult` vẫn là hợp đồng đề xuất cho adapter tương lai, không phải kiểu trả về của hàm predict.
 
 Dashboard phân biệt `not_run`, `success`, `error`. Chỉ `success` và danh sách alert rỗng mới có nghĩa không có cảnh báo. Nhãn tham chiếu tách riêng cho đánh giá. Train/test chia theo thời gian, fit preprocessing học từ dữ liệu chỉ trên train.
 

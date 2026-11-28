@@ -7,7 +7,8 @@ from pathlib import Path
 
 import pandas as pd
 
-BUNDLE_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = Path(__file__).resolve().parents[1]
+BUNDLE_DIR = PROJECT_DIR / "data" / "processed"
 
 
 def verify_bundle(base_dir: str | Path | None = None) -> list[str]:

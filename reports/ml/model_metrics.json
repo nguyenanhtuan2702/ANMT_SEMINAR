@@ -1,0 +1,41 @@
+[
+  {
+    "accuracy": 0.9997923875432526,
+    "precision": 1.0,
+    "recall": 0.9997815640017474,
+    "f1": 0.9998907700709995,
+    "pr_auc": 0.9999997988629712,
+    "model": "Logistic Regression",
+    "model_key": "logistic_regression",
+    "feature_set": "hour, day_of_week, Activity, Action, Decoder_name, User, Agent_name, User_events_15min_past, Agent_name_events_15min_past",
+    "validation_threshold": 0.41252396612305114,
+    "validation_f1": 1.0,
+    "test_rows": 14450
+  },
+  {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "pr_auc": 1.0,
+    "model": "Random Forest",
+    "model_key": "random_forest",
+    "feature_set": "hour, day_of_week, Activity, Action, Decoder_name, User, Agent_name, User_events_15min_past, Agent_name_events_15min_past",
+    "validation_threshold": 0.54,
+    "validation_f1": 1.0,
+    "test_rows": 14450
+  },
+  {
+    "accuracy": 0.9839446366782006,
+    "precision": 0.9921271322350197,
+    "recall": 0.9909713120722295,
+    "f1": 0.9915488853271164,
+    "pr_auc": 0.9997703456392676,
+    "model": "Random Forest Behavioral",
+    "model_key": "random_forest_behavioral",
+    "feature_set": "hour, day_of_week, Activity, Action, Decoder_name, User_events_15min_past, Agent_name_events_15min_past",
+    "validation_threshold": 0.18,
+    "validation_f1": 0.9658250802064443,
+    "test_rows": 14450
+  }
+]

@@ -1,7 +1,7 @@
 {
   "format_version": "spedia.ml_handoff.validation.v1",
   "status": "passed",
-  "scope": "data_for_ml only",
+  "scope": "data/processed bundle",
   "python_version": "3.12.14",
   "pandas_version": "2.3.3",
   "tables": {
