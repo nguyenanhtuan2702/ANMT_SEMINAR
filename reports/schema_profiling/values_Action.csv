@@ -1,0 +1,14 @@
+﻿value,count,percent_all_rows,is_empty
+URL accedida,21723,30.066436,False
+Email sent,18203,25.194464,False
+Command executed,10114,13.998616,False
+File accessed,7666,10.610381,False
+File modified,3132,4.334948,False
+Login,3031,4.195156,False
+Disconnect,2228,3.083737,False
+Connect,2178,3.014533,False
+Logoff,2038,2.820761,False
+File added,895,1.238754,False
+File deleted,712,0.985467,False
+Login Failed,329,0.455363,False
+Multiple failed logins,1,0.001384,False

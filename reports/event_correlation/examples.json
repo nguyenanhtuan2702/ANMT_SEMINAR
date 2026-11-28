@@ -1,0 +1,126 @@
+[
+  {
+    "example_id": "auth_cluster",
+    "description": "Cụm lỗi xác thực có user rõ; timeline thể hiện failure và các hoạt động cùng user/agent. Không xác nhận brute force.",
+    "group": {
+      "group_id": "corr:v1:w900:g300:04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065396",
+      "key": {
+        "user": "olaya",
+        "agent": "internal-server_2afe5f272bfdd1eedec37b148a1b8fe62b160e75"
+      },
+      "user": "olaya",
+      "agent": "internal-server_2afe5f272bfdd1eedec37b148a1b8fe62b160e75",
+      "start_time": "2025-03-30T12:32:59.731",
+      "end_time": "2025-03-30T12:37:08.316",
+      "event_count": 4,
+      "activities": [
+        "session"
+      ],
+      "alert_count": 2,
+      "rule_match_count": 2,
+      "rule_ids": [
+        "AUTH_FAILURE_WINDOW"
+      ],
+      "source_row_ids": [
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065396",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00067419",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065475",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00065499"
+      ]
+    },
+    "as_of": {
+      "timestamp": "2025-03-30 12:37:08.316000",
+      "record_index": 65499
+    },
+    "timeline_file": "timeline_auth_cluster.csv"
+  },
+  {
+    "example_id": "configuration_context",
+    "description": "Thay đổi cấu hình trong ngữ cảnh phiên làm việc. Task 5 cho thấy file alert có thể là hoạt động hợp lệ, không gọi nhóm này là tấn công.",
+    "group": {
+      "group_id": "corr:v1:w900:g300:04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003914",
+      "key": {
+        "user": "camilo",
+        "agent": "public-host_simulation"
+      },
+      "user": "camilo",
+      "agent": "public-host_simulation",
+      "start_time": "2025-03-08T09:46:10.675",
+      "end_time": "2025-03-08T09:57:43.388",
+      "event_count": 12,
+      "activities": [
+        "file",
+        "command",
+        "http",
+        "device"
+      ],
+      "alert_count": 2,
+      "rule_match_count": 2,
+      "rule_ids": [
+        "FILE_CONFIG_CHANGE"
+      ],
+      "source_row_ids": [
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003914",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003227",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003916",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003917",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003918",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003919",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003925",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003233",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003234",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003930",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00004623",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00003226"
+      ]
+    },
+    "as_of": {
+      "timestamp": "2025-03-08 09:57:43.388000",
+      "record_index": 3226
+    },
+    "timeline_file": "timeline_configuration_context.csv"
+  },
+  {
+    "example_id": "security_tool_context",
+    "description": "Tool kiểm thử mật khẩu trong ngữ cảnh hoạt động cùng user/agent; cần xem argv và ủy quyền, không xác minh tác động.",
+    "group": {
+      "group_id": "corr:v1:w900:g300:04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014712",
+      "key": {
+        "user": "ubuntu",
+        "agent": "attacker_64afc5f2056bfa77029a28122a18a442d7b2f211"
+      },
+      "user": "ubuntu",
+      "agent": "attacker_64afc5f2056bfa77029a28122a18a442d7b2f211",
+      "start_time": "2025-03-14T18:27:12.843",
+      "end_time": "2025-03-14T18:28:24.884",
+      "event_count": 12,
+      "activities": [
+        "command"
+      ],
+      "alert_count": 2,
+      "rule_match_count": 2,
+      "rule_ids": [
+        "CMD_JOHN"
+      ],
+      "source_row_ids": [
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014712",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014713",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014104",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014714",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014715",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014105",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014106",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00013509",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00013510",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014110",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014111",
+        "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c:00014716"
+      ]
+    },
+    "as_of": {
+      "timestamp": "2025-03-14 18:28:24.884000",
+      "record_index": 14716
+    },
+    "timeline_file": "timeline_security_tool_context.csv"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\NGUYEN PHU THO\\ANMT_SEMINAR\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-vv",
+    "--continue-on-collection-errors",
+    "--junitxml=reports\\task9\\pytest_diagnostic.xml"
+  ],
+  "exit_code": 1,
+  "log": "reports/task9/pytest_diagnostic.log"
+}

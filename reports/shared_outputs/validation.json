@@ -1,0 +1,130 @@
+{
+  "python_version": "3.12.14",
+  "pandas_version": "3.0.1",
+  "normalized_rows": 72250,
+  "atomic_alert_rows": 1301,
+  "merged_alert_rows": 1301,
+  "event_group_rows": 7501,
+  "grouped_alert_events": 1131,
+  "ungrouped_alert_events": 170,
+  "outputs": {
+    "alerts_atomic.csv": {
+      "rows": 1301,
+      "csv_sha256": "b6564bb200d9f14ec989518f95e79e7c4abf41a19db619d4d084a5bc341be0c8"
+    },
+    "alerts.csv": {
+      "rows": 1301,
+      "csv_sha256": "e240ec9ec00b96a66f343817a2811c95884495c02e41265ed23076f4ed378d7e"
+    },
+    "event_groups.csv": {
+      "rows": 7501,
+      "csv_sha256": "0e63735c72a2a0e125bc6b42f6feaadf2f70d59039fd2fec62b2d68a7c6bdfd3"
+    }
+  },
+  "rule_run_report": {
+    "status": "success",
+    "rows_input": 72250,
+    "rules": [
+      {
+        "rule_id": "CMD_NMAP",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 47,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.192352
+      },
+      {
+        "rule_id": "CMD_JOHN",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 185,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.199726
+      },
+      {
+        "rule_id": "CMD_MSFCONSOLE",
+        "condition": "command_in",
+        "status": "success",
+        "matches": 105,
+        "rows_missing_fields": 2,
+        "elapsed_seconds": 0.194503
+      },
+      {
+        "rule_id": "FILE_CONFIG_CHANGE",
+        "condition": "file_path_change",
+        "status": "success",
+        "matches": 851,
+        "rows_missing_fields": 0,
+        "rows_excluded_metadata_only": 360,
+        "elapsed_seconds": 0.894262
+      },
+      {
+        "rule_id": "HTTP_IP_HOST",
+        "condition": "http_ip_host",
+        "status": "success",
+        "matches": 105,
+        "rows_missing_fields": 0,
+        "elapsed_seconds": 0.15329
+      },
+      {
+        "rule_id": "AUTH_FAILURE_WINDOW",
+        "condition": "auth_failure_window",
+        "status": "success",
+        "matches": 8,
+        "missing_optional_signal_columns": [],
+        "explicit_failure_rows": 330,
+        "failure_rows_missing_user": 216,
+        "failure_rows_invalid_time": 0,
+        "threshold": 3,
+        "window_seconds": 300,
+        "elapsed_seconds": 1.443792
+      }
+    ],
+    "missing_columns": [],
+    "alerts_count": 1301,
+    "disabled_rule_ids": [
+      "CMD_NETCAT"
+    ],
+    "rows_invalid_time": 0,
+    "rows_missing_context": 0,
+    "elapsed_seconds": 3.336463
+  },
+  "correlation_report": {
+    "rows_input": 72250,
+    "rows_visible": 72250,
+    "rows_excluded_invalid_time": 0,
+    "rows_excluded_missing_user": 1372,
+    "rows_excluded_missing_agent": 0,
+    "as_of_time": null,
+    "as_of_record_index": null,
+    "config": {
+      "window_seconds": 900,
+      "max_gap_seconds": 300,
+      "min_events": 1
+    },
+    "rows_grouped": 70878,
+    "rows_excluded_unique": 1372,
+    "status": "success",
+    "groups_returned": 7501,
+    "rows_in_returned_groups": 70878,
+    "rows_hidden_min_events": 0,
+    "detector_state": "success",
+    "alert_events_excluded_from_grouping": 170,
+    "elapsed_seconds": 1.7563
+  },
+  "timeline_examples_checked": 3,
+  "checks": {
+    "atomic_csv_round_trip_exact": true,
+    "merged_csv_round_trip_exact": true,
+    "group_csv_round_trip_exact": true,
+    "reloaded_alerts_reproduce_groups": true,
+    "frozen_task5_alerts_match": true,
+    "timeline_examples_unchanged": true,
+    "no_Anomaly_in_detector_input_or_exported_alerts": true,
+    "normalized_input_rules_and_alert_schema_unchanged": true
+  },
+  "team_signoff": {
+    "Tuan": "pending",
+    "evidence": null
+  }
+}

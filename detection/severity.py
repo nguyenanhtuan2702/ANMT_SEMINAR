@@ -1,194 +1,168 @@
-"""Explainable priority levels combining rule and ML corroboration."""
+"""Prototype processing priority, never verified impact; no labels or ML scoring.
+
+Score atomic alerts BEFORE merge_alerts(). Recompute causal prefix context from
+normalized events; never use final group totals to score a past alert. Raw evidence
+and detection reason are copied unchanged. ML is an ignored API extension slot.
+"""
 from __future__ import annotations
+
+import copy
+import json
+from pathlib import Path
 
 import pandas as pd
 
-from detection.rule_engine import RULE_SEVERITIES
-from preprocessing.source_ids import validate_source_row_ids
+from detection.alert_aggregation import PRIORITY, merge_alerts, validate_atomic_alert
+from detection.correlation import correlate
+from detection.rule_engine import load_rule_config
+from preprocessing.contracts import Alert
+
+DEFAULT_CONFIG = Path(__file__).with_name("severity_policy.json")
+LEVELS = tuple(PRIORITY)
 
 
-SEVERITY_ORDER = {"LOW": 0, "MEDIUM": 1, "HIGH": 2, "CRITICAL": 3}
-SEVERITY_NAMES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+def load_severity_config(config: dict | str | Path | None = None) -> dict:
+    """Read a complete policy; thresholds are not fitted from labels."""
+    policy = (json.loads(Path(config or DEFAULT_CONFIG).read_text(encoding="utf-8"))
+              if not isinstance(config, dict) else copy.deepcopy(config))
+    expected = {"schema_version", "alert_thresholds", "activity_threshold", "activity_steps",
+                "working_hour_start", "working_hour_end", "off_hours_steps", "max_context_steps", "correlation"}
+    if not isinstance(policy, dict) or set(policy) != expected or policy["schema_version"] != "spedia.severity.v1":
+        raise ValueError("Invalid severity policy schema/fields/version.")
+    for field in ("activity_threshold", "activity_steps", "working_hour_start", "working_hour_end", "off_hours_steps", "max_context_steps"):
+        if type(policy[field]) is not int:
+            raise ValueError(f"{field} must be an integer, not a boolean.")
+    if not (0 <= policy["working_hour_start"] < policy["working_hour_end"] <= 24):
+        raise ValueError("Working hours require 0 <= start < end <= 24.")
+    if policy["activity_threshold"] < 2 or any(not 0 <= policy[k] <= 3 for k in ("activity_steps", "off_hours_steps", "max_context_steps")):
+        raise ValueError("The activity threshold must be >= 2; adjustment steps must be in 0..3.")
+    thresholds = policy["alert_thresholds"]
+    if not isinstance(thresholds, list) or not thresholds:
+        raise ValueError("alert_thresholds must be a nonempty list.")
+    previous_count, previous_steps = 1, 0
+    for item in thresholds:
+        if (not isinstance(item, dict) or set(item) != {"count", "steps"}
+                or type(item["count"]) is not int or type(item["steps"]) is not int
+                or item["count"] <= previous_count or not previous_steps <= item["steps"] <= 3):
+            raise ValueError("Alert thresholds must increase, count must be >= 2, and steps must be nondecreasing within 0..3.")
+        previous_count, previous_steps = item["count"], item["steps"]
+    corr = policy["correlation"]
+    if (not isinstance(corr, dict) or set(corr) != {"window_seconds", "max_gap_seconds", "min_events"}
+            or any(type(v) is not int or v <= 0 for v in corr.values())):
+        raise ValueError("Severity correlation config requires all three positive integers.")
+    return policy
+
+
+def _context(events: pd.DataFrame, alerts: list[Alert], correlations, policy: dict, canonical_groups=None) -> pd.DataFrame:
+    # Canonical membership is independent of alert labels and future group totals.
+    # The pipeline may reuse groups it just produced with correlate() on these
+    # exact events/policy. The public assign_severity API always recomputes them.
+    groups = correlate(events, [], config=policy["correlation"]) if canonical_groups is None else canonical_groups
+    if correlations is not None and canonical_groups is None:
+        if isinstance(correlations, pd.DataFrame):
+            supplied = correlations.to_dict("records")
+        elif isinstance(correlations, list):
+            supplied = correlations
+        else:
+            raise TypeError("correlations must be a correlate() DataFrame or a list from the Correlation adapter.")
+        canonical = dict(zip(groups.group_id, groups.source_row_ids))
+        selected, seen = [], set()
+        for group in supplied:
+            if not isinstance(group, dict):
+                raise ValueError("Correlation must be a dictionary.")
+            gid = group.get("group_id", group.get("correlation_id"))
+            if not isinstance(gid, str) or gid in seen or gid not in canonical or group.get("source_row_ids") != canonical[gid]:
+                raise ValueError("Correlation does not match events/config/snapshot; arbitrary groups or different cutoffs are not supported.")
+            seen.add(gid)
+            selected.append(gid)
+        groups = groups.loc[groups.group_id.isin(selected)]
+    core = events.loc[:, ["source_row_id", "Timestamp", "record_index", "User", "Agent_name", "Activity"]].copy()
+    # Validate every alert against its source event, including ungrouped events.
+    refs = pd.DataFrame(alerts).drop_duplicates("source_row_id")
+    joined = refs.merge(core, on="source_row_id", how="left", indicator=True, validate="one_to_one")
+    if joined["_merge"].ne("both").any():
+        raise ValueError("Alert source_row_id not found in events.")
+    for source, alert in (("Timestamp", "timestamp"), ("User", "user"), ("Agent_name", "agent"), ("Activity", "activity")):
+        left = joined[source]
+        right = pd.to_datetime(joined[alert], format="%Y-%m-%dT%H:%M:%S.%f") if source == "Timestamp" else joined[alert]
+        equal = left.eq(right) | (left.isna() & right.isna())
+        if not equal.fillna(False).all():
+            raise ValueError(f"Alert {alert} does not match the source event.")
+    membership = groups[["group_id", "source_row_ids"]].explode("source_row_ids").rename(columns={"source_row_ids": "source_row_id"})
+    if membership.empty:
+        return pd.DataFrame(columns=["alert_events", "activity_types"], index=pd.Index([], name="source_row_id"))
+    visible = membership.merge(core, on="source_row_id", validate="one_to_one").sort_values(["Timestamp", "record_index"], kind="stable")
+    visible["has_alert"] = visible.source_row_id.isin(refs.source_row_id).astype("int64")
+    visible["alert_events"] = visible.groupby("group_id", sort=False).has_alert.cumsum()
+    valid_activity = visible.Activity.notna() & visible.Activity.astype("string").str.strip().ne("").fillna(False)
+    visible["new_activity"] = (~visible.duplicated(["group_id", "Activity"]) & valid_activity).astype("int64")
+    visible["activity_types"] = visible.groupby("group_id", sort=False).new_activity.cumsum()
+    return visible.set_index("source_row_id")[["alert_events", "activity_types"]]
+
+
+def _assign_severity(
+    alerts: list[Alert], correlations=None, ml_results=None, *,
+    events: pd.DataFrame | None = None, config: dict | str | Path | None = None,
+    canonical_groups=None,
+) -> list[Alert]:
+    """Return copied atomic alerts with severity + severity_reason.
+
+    Base levels come from rules.json, not incoming severity. Group context counts
+    unique alerted source rows through each anchor (Timestamp, record_index).
+    events=None enables base + source-clock hour only; correlations require events.
+    Pass events already cut to as_of for snapshots. ml_results is intentionally
+    NOT read, validated or applied. Call merge_alerts(result) for merged v1.0.
+    """
+    policy = load_severity_config(config)
+    if not isinstance(alerts, list):
+        raise TypeError("alerts must be an atomic list; for merged input, use the original Task 4 atomic alerts.")
+    for alert in alerts:
+        validate_atomic_alert(alert)
+    merge_alerts(alerts)  # reject conflicting repeat delivery / inconsistent context
+    bases = {r["rule_id"]: r["base_severity"] for r in load_rule_config()["rules"]}
+    unknown = sorted({a["rule_id"] for a in alerts} - bases.keys())
+    if unknown:
+        raise ValueError("Missing severity mapping for rule_id: " + ", ".join(unknown))
+    if correlations is not None and events is None:
+        raise ValueError("Normalized events are required to calculate causal prefixes when correlations are provided.")
+    if not alerts:
+        return []
+    context = _context(events, alerts, correlations, policy, canonical_groups) if events is not None else None
+    result = copy.deepcopy(alerts)
+    for alert in result:
+        base = bases[alert["rule_id"]]
+        count, activities = 0, 0
+        grouped = context is not None and alert["source_row_id"] in context.index
+        if grouped:
+            row = context.loc[alert["source_row_id"]]
+            count, activities = int(row.alert_events), int(row.activity_types)
+        count_steps = max((t["steps"] for t in policy["alert_thresholds"] if count >= t["count"]), default=0)
+        activity_steps = policy["activity_steps"] if activities >= policy["activity_threshold"] else 0
+        hour = pd.Timestamp(alert["timestamp"]).hour
+        off_hours = not policy["working_hour_start"] <= hour < policy["working_hour_end"]
+        hour_steps = policy["off_hours_steps"] if off_hours else 0
+        total = min(count_steps + activity_steps + hour_steps, policy["max_context_steps"])
+        severity = LEVELS[min(PRIORITY[base]+total, 3)]
+        context_note = (f"group prefix: {count} alerted events (+{count_steps}), {activities} activity types (+{activity_steps})"
+                        if grouped else "no eligible group context; count/activity +0")
+        alert["severity"] = severity
+        alert["severity_reason"] = (
+            f"Prototype processing priority, not verified impact. Policy spedia.severity.v1; "
+            f"rule {alert['rule_id']} base={base}; {context_note}; source hour={hour:02d}, "
+            f"outside [{policy['working_hour_start']:02d}:00,{policy['working_hour_end']:02d}:00)={off_hours} (+{hour_steps}); "
+            f"total increase={total} levels (context limit {policy['max_context_steps']}, CRITICAL ceiling) → {severity}. "
+            "No automatic decrease for missing context/working hours; ML is not used."
+        )
+    return result
 
 
 def assign_severity(
-    events: pd.DataFrame,
-    alerts: pd.DataFrame,
-) -> pd.DataFrame:
-    """Assign alert priority using rule evidence and causal group prefixes."""
-    required_events = {
-        "source_row_id",
-        "Timestamp",
-        "group_id",
-    }
-    missing_events = required_events - set(events.columns)
-    if missing_events:
-        raise ValueError(
-            "Severity thiếu cột event: " + ", ".join(sorted(missing_events))
-        )
-    required_alerts = {"source_row_id", "rule_id", "source"}
-    missing_alerts = required_alerts - set(alerts.columns)
-    if missing_alerts:
-        raise ValueError(
-            "Severity thiếu cột alert: " + ", ".join(sorted(missing_alerts))
-        )
-    events = events.copy()
-    alerts = alerts.copy()
-    events["source_row_id"] = validate_source_row_ids(
-        events,
-        component="Severity events",
-    )
-    alerts["source_row_id"] = validate_source_row_ids(
-        alerts,
-        component="Severity alerts",
-        unique=False,
-    )
-    if alerts.empty:
-        result = alerts.copy()
-        result["base_severity"] = pd.Series(dtype="string")
-        result["severity"] = pd.Series(dtype="string")
-        result["severity_reason"] = pd.Series(dtype="string")
-        return result
+    alerts: list[Alert], correlations=None, ml_results=None, *,
+    events: pd.DataFrame | None = None, config: dict | str | Path | None = None,
+) -> list[Alert]:
+    """Copied atomic priorities/reasons; validate groups and count only prefixes.
 
-    is_ml = alerts["rule_id"].eq("ML_ANOMALY")
-    unknown_rules = sorted(set(alerts.loc[~is_ml, "rule_id"]) - set(RULE_SEVERITIES))
-    if unknown_rules:
-        raise ValueError("Chưa có severity cho rule: " + ", ".join(unknown_rules))
-    known_source_ids = set(events["source_row_id"].astype(str))
-    rule_signals: dict[str, set[str]] = {}
-    ml_signals: set[str] = set()
-    for alert in alerts.itertuples(index=False):
-        source_id = str(alert.source_row_id)
-        if source_id not in known_source_ids:
-            raise ValueError(f"Alert trỏ tới source_row_id không tồn tại: {source_id}")
-        if str(alert.rule_id) == "ML_ANOMALY":
-            ml_signals.add(source_id)
-        else:
-            rule_signals.setdefault(source_id, set()).add(str(alert.rule_id))
-
-    context_fields = ["source_row_id", "Timestamp", "group_id"]
-    if "record_index" in events.columns:
-        context_fields.append("record_index")
-    grouped = events.loc[
-        events["group_id"].notna() & events["Timestamp"].notna(),
-        context_fields,
-    ].copy()
-    sort_columns = ["group_id", "Timestamp"]
-    if "record_index" in grouped.columns:
-        sort_columns.append("record_index")
-    grouped = grouped.sort_values(sort_columns, kind="stable")
-    source_ids = grouped["source_row_id"].astype(str)
-    group_ids = grouped["group_id"]
-    has_rule_alert = source_ids.isin(rule_signals)
-    has_ml_alert = source_ids.isin(ml_signals)
-    grouped["_prefix_rule_events"] = (
-        has_rule_alert.astype("int64").groupby(group_ids, sort=False).cumsum()
-    )
-    grouped["_prefix_ml_events"] = (
-        has_ml_alert.astype("int64").groupby(group_ids, sort=False).cumsum()
-    )
-    new_rule_type_count = pd.Series(0, index=grouped.index, dtype="int64")
-    for rule_id in sorted(RULE_SEVERITIES):
-        matching_source_ids = {
-            source_id
-            for source_id, matched_rules in rule_signals.items()
-            if rule_id in matched_rules
-        }
-        type_match = source_ids.isin(matching_source_ids)
-        first_type_match = (
-            type_match
-            & type_match.groupby(group_ids, sort=False).cumsum().eq(1)
-        )
-        new_rule_type_count += first_type_match.astype("int64")
-    grouped["_prefix_rule_types"] = (
-        new_rule_type_count.groupby(group_ids, sort=False).cumsum()
-    )
-    prefix_by_id = grouped.set_index("source_row_id")[
-        ["_prefix_rule_events", "_prefix_rule_types", "_prefix_ml_events"]
-    ]
-
-    result = alerts.copy()
-    if "group_id" not in result.columns:
-        group_by_id = events.set_index(events["source_row_id"].astype(str))["group_id"]
-        result["group_id"] = result["source_row_id"].astype(str).map(group_by_id)
-    result_source_ids = result["source_row_id"].astype(str)
-    prefix = prefix_by_id.reindex(result_source_ids.to_numpy())
-    prefix.index = result.index
-    rule_event_count = prefix["_prefix_rule_events"].fillna(0).astype("int64")
-    rule_type_count = prefix["_prefix_rule_types"].fillna(0).astype("int64")
-    ml_event_count = prefix["_prefix_ml_events"].fillna(0).astype("int64")
-    current_rule_types = result_source_ids.map(
-        {source_id: len(rule_ids) for source_id, rule_ids in rule_signals.items()}
-    ).fillna(0).astype("int64")
-    current_has_ml = result_source_ids.isin(ml_signals)
-    is_corroborated = (
-        (current_has_ml & current_rule_types.gt(0))
-        | current_rule_types.ge(2)
-    )
-    repeated_or_diverse = rule_event_count.ge(3) | rule_type_count.ge(2)
-    critical_convergence = (
-        rule_event_count.ge(10)
-        & rule_type_count.ge(3)
-        & ml_event_count.gt(0)
-    )
-
-    base_severity = result["rule_id"].map(RULE_SEVERITIES)
-    base_severity = base_severity.mask(result["rule_id"].eq("ML_ANOMALY"), "LOW")
-    final_level = base_severity.map(SEVERITY_ORDER).astype("int64")
-    final_level = final_level.where(
-        ~(is_corroborated | repeated_or_diverse),
-        final_level.clip(lower=SEVERITY_ORDER["HIGH"]),
-    )
-    final_level = final_level.where(
-        ~critical_convergence,
-        SEVERITY_ORDER["CRITICAL"],
-    )
-    result["base_severity"] = base_severity
-    result["severity"] = final_level.map(
-        {level: name for name, level in SEVERITY_ORDER.items()}
-    )
-
-    reason_rows = zip(
-        result["rule_id"].astype(str),
-        result["anomaly_score"] if "anomaly_score" in result.columns else [pd.NA] * len(result),
-        base_severity,
-        current_rule_types,
-        current_has_ml,
-        rule_event_count,
-        rule_type_count,
-        ml_event_count,
-        is_corroborated,
-        repeated_or_diverse,
-        critical_convergence,
-        final_level,
-    )
-    result["severity_reason"] = [
-        (
-            f"{'ML anomaly score=' + str(score) if rule_id == 'ML_ANOMALY' else 'rule=' + rule_id}; "
-            f"base={base}; same-event rule types={int(same_rule_types)}, "
-            f"same-event ML={'yes' if has_ml else 'no'}, "
-            f"causal prefix rule-alert events={int(prefix_rules)}, "
-            f"distinct rule types={int(prefix_types)}, "
-            f"ML-alert events={int(prefix_ml)}; "
-            f"corroboration={'yes' if corroborated else 'no'}, "
-            f"repetition/diversity={'yes' if repeated else 'no'}, "
-            f"critical convergence={'yes' if critical else 'no'}; "
-            f"final={SEVERITY_NAMES[int(final)]}. "
-            "Severity is a review priority, not a confirmed impact rating."
-        )
-        for (
-            rule_id,
-            score,
-            base,
-            same_rule_types,
-            has_ml,
-            prefix_rules,
-            prefix_types,
-            prefix_ml,
-            corroborated,
-            repeated,
-            critical,
-            final,
-        ) in reason_rows
-    ]
-    return result
+    events is required with correlations. No group summaries, Anomaly, Level or
+    ML scores are used. See SEVERITY_POLICY.md for the complete public contract.
+    """
+    return _assign_severity(alerts, correlations, ml_results, events=events, config=config)

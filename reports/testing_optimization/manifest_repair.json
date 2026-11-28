@@ -1,0 +1,13 @@
+{
+  "affected_file": "data_for_ml/DATA.md",
+  "before_manifest_entry": {
+    "bytes": 21841,
+    "sha256": "fb052782c706383a0fbe50e668ec0079eb31e3a0de0262c4bdd09285d820968f"
+  },
+  "after_manifest_entry": {
+    "bytes": 21639,
+    "sha256": "c8474603446692aa4db6b7907f2303e0acfd53374100d564e778ab552e717c6f"
+  },
+  "reason": "The handoff documentation was edited after its last manifest update. Current content is preserved; only its metadata is synchronized.",
+  "CSV_or_sidecar_modified": false
+}

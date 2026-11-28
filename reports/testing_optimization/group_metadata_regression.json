@@ -1,0 +1,12 @@
+{
+  "reference": "Previous _groups list aggregation reconstructed in memory; no source/frozen data overwritten.",
+  "membership_counts_identity_and_time_values_unchanged": true,
+  "final_all_group_columns_and_dtypes_match_frozen_output": true,
+  "repaired_metadata_groups": {
+    "activities": 7501,
+    "rule_ids": 0
+  },
+  "source_row_ids_dtype_before": "list<item: string>[pyarrow]",
+  "source_row_ids_dtype_after": "object",
+  "reason": "Arrow string list aggregation returned non-list scalar representations; the old guard replaced them with empty lists. Temporary object aggregation restores required list values and object dtype."
+}

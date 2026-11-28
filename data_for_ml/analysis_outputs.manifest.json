@@ -1,0 +1,32 @@
+{
+  "format_version": "spedia.analysis_bundle.v1",
+  "provenance": {
+    "normalized_csv": "data\\normalized_logs.csv",
+    "normalized_csv_sha256": "3b80dc3c9b886c0426f3c431695231e491eeb7e531a3f3a5ac10cf6f64d052ac",
+    "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+    "rules_sha256": "3bc2d5a7de043bebe10293efffb93a51eb9caa1a7987d630846f56f5701efabe",
+    "alert_schema_sha256": "2f97ea60b2378d92ff4da8315fe1aff58ffd349967f486ad1ecd54c260216667",
+    "correlation_config": {
+      "window_seconds": 900,
+      "max_gap_seconds": 300,
+      "min_events": 1
+    },
+    "team_signoff": {
+      "Tuan": "pending",
+      "evidence": null
+    },
+    "label_used_for_detection": false
+  },
+  "files_sha256": {
+    "alerts_atomic.csv": "b6564bb200d9f14ec989518f95e79e7c4abf41a19db619d4d084a5bc341be0c8",
+    "alerts.csv": "e240ec9ec00b96a66f343817a2811c95884495c02e41265ed23076f4ed378d7e",
+    "event_groups.csv": "0e63735c72a2a0e125bc6b42f6feaadf2f70d59039fd2fec62b2d68a7c6bdfd3",
+    "alerts_atomic.schema.json": "02c80f6606915ef3a1c74c3d444667ab7cb83957eb667429139da060ac4e2603",
+    "alerts.schema.json": "056a3ebf8d5c5896304a0a1131c15dac5720b404f80eafd576492a71e8d22fb1",
+    "event_groups.schema.json": "ec3007ca25aad5dffe7de5a5b06d1642f65286d09d9f034f44a47c1db749e098"
+  },
+  "normalized_rows": 72250,
+  "atomic_alert_rows": 1301,
+  "merged_alert_rows": 1301,
+  "event_group_rows": 7501
+}

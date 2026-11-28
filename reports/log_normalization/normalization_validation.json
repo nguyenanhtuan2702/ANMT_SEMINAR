@@ -1,0 +1,35 @@
+{
+  "python_version": "3.12.14",
+  "pandas_version": "3.0.1",
+  "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+  "rows": 72250,
+  "columns": 43,
+  "timestamp_min": "2025-03-06 11:46:28",
+  "timestamp_max": "2025-03-30 19:45:22.120000",
+  "normalization_report": {
+    "schema_version": "spedia.events.v1",
+    "rows_input": 72250,
+    "rows_output": 72250,
+    "rows_dropped": 0,
+    "invalid_timestamp_count": 0,
+    "timestamp_issues": [],
+    "sort_order": [
+      "Timestamp",
+      "record_index"
+    ],
+    "invalid_timestamp_position": "last",
+    "timezone": "unspecified (naive)",
+    "text_normalization": "strip + casefold; empty -> pd.NA; source retained in *_raw",
+    "day_of_week_definition": "Monday=0, Sunday=6"
+  },
+  "checks": {
+    "all_rows_retained": true,
+    "source_ids_unchanged_and_unique": true,
+    "chronological_sort": true,
+    "raw_logs_preserved": true,
+    "source_fields_backed_up": true,
+    "numeric_flags_and_reference_labels_unchanged": true,
+    "idempotent": true,
+    "input_and_file_unchanged": true
+  }
+}

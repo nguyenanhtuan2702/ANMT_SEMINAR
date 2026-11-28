@@ -1,0 +1,53 @@
+{
+  "python_version": "3.12.14",
+  "pandas_version": "3.0.1",
+  "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+  "rules_sha256": "3bc2d5a7de043bebe10293efffb93a51eb9caa1a7987d630846f56f5701efabe",
+  "correlation_report": {
+    "rows_input": 72250,
+    "rows_visible": 72250,
+    "rows_excluded_invalid_time": 0,
+    "rows_excluded_missing_user": 1372,
+    "rows_excluded_missing_agent": 0,
+    "as_of_time": null,
+    "as_of_record_index": null,
+    "config": {
+      "window_seconds": 900,
+      "max_gap_seconds": 300,
+      "min_events": 1
+    },
+    "rows_grouped": 70878,
+    "rows_excluded_unique": 1372,
+    "status": "success",
+    "groups_returned": 7501,
+    "rows_in_returned_groups": 70878,
+    "rows_hidden_min_events": 0,
+    "detector_state": "success",
+    "alert_events_excluded_from_grouping": 170,
+    "elapsed_seconds": 1.800915
+  },
+  "group_count": 7501,
+  "grouped_alert_events": 1131,
+  "grouped_rule_matches": 1131,
+  "timings_seconds": [
+    1.995336,
+    1.790597,
+    1.800915
+  ],
+  "median_seconds": 1.800915,
+  "timing_scope": "correlate including validation and group aggregation, excludes load/normalize/rules/timeline/export",
+  "historical_as_of": {
+    "timestamp": "2025-03-30 12:14:33.098000",
+    "record_index": 60360
+  },
+  "checks": {
+    "independent_sequential_reference_matches": true,
+    "old_membership_ids_unchanged": true,
+    "same_as_of_snapshot_unchanged": true,
+    "atomic_and_merged_inputs_equal": true,
+    "label_independent": true,
+    "all_grouped_event_ids_unique": true,
+    "raw_timeline_evidence_preserved": true,
+    "input_source_and_rule_config_unchanged": true
+  }
+}

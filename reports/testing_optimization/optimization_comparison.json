@@ -1,0 +1,44 @@
+{
+  "counts_and_frozen_input_hashes_unchanged": true,
+  "group_metadata_regression": {
+    "reference": "Previous _groups list aggregation reconstructed in memory; no source/frozen data overwritten.",
+    "membership_counts_identity_and_time_values_unchanged": true,
+    "final_all_group_columns_and_dtypes_match_frozen_output": true,
+    "repaired_metadata_groups": {
+      "activities": 7501,
+      "rule_ids": 0
+    },
+    "source_row_ids_dtype_before": "list<item: string>[pyarrow]",
+    "source_row_ids_dtype_after": "object",
+    "reason": "Arrow string list aggregation returned non-list scalar representations; the old guard replaced them with empty lists. Temporary object aggregation restores required list values and object dtype."
+  },
+  "correlation_profile_seconds": {
+    "before": 7.58,
+    "after": 0.995
+  },
+  "observed_profile_speedup": 7.618090452261306,
+  "semantic_sha256_before": "9ee276d002c9f16fd75b6fa1d2242028048907ee57f2a5f4d0c9087544adae30",
+  "semantic_sha256_final": "da91993fe53c9ee15f2aba7fe880f2373d0cf1031b5c7cf1930732939ab2658a",
+  "semantic_hash_change_expected_due_to_metadata_fix": true,
+  "final_reproducibility": {
+    "runs": 2,
+    "semantic_sha256": "da91993fe53c9ee15f2aba7fe880f2373d0cf1031b5c7cf1930732939ab2658a",
+    "exact_semantic_outputs_equal": true,
+    "timings_excluded_from_equality": true,
+    "wall_seconds": [
+      8.023712299996987,
+      9.815947900060564
+    ]
+  },
+  "final_mean_step_seconds": {
+    "correlation": 1.8468969999812546,
+    "load": 2.780855100019835,
+    "merge_attach": 0.6105346000404097,
+    "normalize": 0.7092086500488222,
+    "pipeline_total": 5.416903650038876,
+    "rules": 1.558588649961166,
+    "severity": 1.3827032500412315,
+    "upload_total": 8.914021600037813
+  },
+  "note": "Profiles and end-to-end timings are different measurements. Metadata repaired to the frozen contract may change the semantic hash across code versions; reproducibility is required within the final version."
+}

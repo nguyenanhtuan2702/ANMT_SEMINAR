@@ -1,0 +1,13 @@
+﻿candidate_id,match_count,predicate,status
+AUTH_FAILURE,330,"Action in {Login Failed, Multiple failed logins}, or explicit auth failure phrase in Action/Description/Full_log; not Content",supported_signal
+CMD_NMAP,47,Command basename equals nmap,review_candidate
+CMD_JOHN,185,Command basename equals john,review_candidate
+CMD_MSFCONSOLE,105,Command basename equals msfconsole,review_candidate
+CMD_NETCAT,3324,"Command basename in {nc, netcat, socat}; tool presence only, no reverse-shell claim",review_candidate
+CMD_CHMOD,282,Command basename equals chmod; permissions/arguments require investigation,review_candidate
+FILE_CONFIG_CHANGE,1211,"Action in {File modified, File added, File deleted} AND Path matches selected /etc configuration prefixes",review_candidate
+FILE_CREDENTIAL_PATH,53,"Path or Filename ends in passwd/shadow or is under .ssh; visibility only, not proof of theft",review_candidate
+FILE_FLAG_PATH,905,"Path or Filename basename equals flag.txt; exercise-specific, unsuitable as generic attack rule",review_candidate
+FILE_ARCHIVE_NAME,408,Filename ends in .zip/.rar/.7z/.tar/.gz; contextual observation only,review_candidate
+HTTP_TRAVERSAL,0,"Url after at most two percent-decodes contains ../ or ..\; payload candidate, not verdict",disabled_no_match
+HTTP_IP_HOST,105,Url host parses as a literal IPv4/IPv6; contextual observation only,review_candidate

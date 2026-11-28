@@ -1,0 +1,8 @@
+﻿rule_id,alert_records,unique_alert_events,evaluated_alert_events,tp,fp,fn,tn,precision,label_match_rate,recall,f1,reference_positive_events,reference_negative_events,excluded_label_events,mode
+CMD_NMAP,47,47,47,47,0,41494,30709,1.0,1.0,0.0011314123396162826,0.0022602673848225448,41541,30709,0,historical_task4_baseline_not_for_tuning
+CMD_JOHN,185,185,185,185,0,41356,30709,1.0,1.0,0.004453431549553453,0.00886737286104587,41541,30709,0,historical_task4_baseline_not_for_tuning
+CMD_MSFCONSOLE,105,105,105,105,0,41436,30709,1.0,1.0,0.002527623311908717,0.0050425010805359455,41541,30709,0,historical_task4_baseline_not_for_tuning
+FILE_CONFIG_CHANGE,1211,1211,1211,0,1211,41541,29498,0.0,0.0,0.0,0.0,41541,30709,0,historical_task4_baseline_not_for_tuning
+HTTP_IP_HOST,105,105,105,105,0,41436,30709,1.0,1.0,0.002527623311908717,0.0050425010805359455,41541,30709,0,historical_task4_baseline_not_for_tuning
+AUTH_FAILURE_WINDOW,8,8,8,8,0,41533,30709,1.0,1.0,0.00019258082376447366,0.00038508748706346724,41541,30709,0,historical_task4_baseline_not_for_tuning
+__UNION__,1661,1661,1661,450,1211,41091,29498,0.27092113184828415,0.27092113184828415,0.010832671336751643,0.02083236887181149,41541,30709,0,historical_task4_baseline_not_for_tuning

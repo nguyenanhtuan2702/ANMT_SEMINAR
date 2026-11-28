@@ -1,0 +1,16 @@
+{
+  "rows": 72250,
+  "columns": 43,
+  "sample_rows": 1000,
+  "source_sha256": "04d26536dd8fc85cb8f97ce3ef491725a19544400e86a6ebf56a4857c2e15c6c",
+  "rules_sha256": "3bc2d5a7de043bebe10293efffb93a51eb9caa1a7987d630846f56f5701efabe",
+  "rule_alert_count": 1301,
+  "correlation_group_count": 7501,
+  "checks": {
+    "in_memory_and_restored_exact": true,
+    "same_rule_alerts": true,
+    "same_correlation_groups": true,
+    "sample_ids_are_original": true,
+    "source_and_frozen_rules_unchanged": true
+  }
+}

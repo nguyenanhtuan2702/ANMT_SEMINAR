@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "frozen_on": "2026-11-21",
+  "technical_status": "frozen",
+  "schema_sha256": "2f97ea60b2378d92ff4da8315fe1aff58ffd349967f486ad1ecd54c260216667",
+  "team_signoff": {
+    "Tuan": "pending",
+    "evidence": null
+  },
+  "change_policy": "Breaking field/type/merge changes require a new version; no claim of team approval."
+}
