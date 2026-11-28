@@ -11,7 +11,7 @@ Luồng ứng dụng:
 | Module | API | Hành vi |
 |---|---|---|
 | Loader | `load_log_csv(source)` | Đọc path/bytes/stream; xác thực CSV không rỗng và sáu trường nền `Timestamp`, `User`, `Agent_name`, `Activity`, `Action`, `Decoder_name`; tạo `source_row_id` theo SHA-256 nội dung file và thứ tự record nếu chưa có; từ chối ID trùng/thiếu. |
-| Normalizer | `normalize_logs(frame)` | Trả bản sao; giữ cột raw, tạo timestamp `datetime64[ns]`, đánh dấu timestamp lỗi, strip/casefold trường phân loại và tạo hour/day/date. Không loại dòng lỗi thời gian. |
+| Normalizer | `normalize_logs(frame)` | Yêu cầu `source_row_id` hợp lệ do Loader cung cấp; giữ nguyên ID, từ chối ID thiếu/rỗng/trùng. Trả bản sao; giữ cột raw, tạo timestamp `datetime64[ns]`, đánh dấu timestamp lỗi, strip/casefold trường phân loại và tạo hour/day/date. Không loại dòng lỗi thời gian. |
 | ML | `predict(df, model_name, threshold)` | Trả source ID, timestamp, actor, activity/action, predicted label và anomaly score. Chỉ chấm các event có Timestamp hợp lệ; không yêu cầu `Anomaly`. |
 | Rule Engine | `run_rules(events)` | Cần thêm `Command`, `Path`, `Full_log`, `Description`, `Url`; trả mỗi cặp event/rule thành một alert có rule ID, reason, severity gốc, evidence và source ID. |
 | Correlation | `correlate_events(events, alerts)` | Trả events có `group_id` và bảng timeline. Nhóm theo User + Agent, fixed 900-second epoch-aligned window; tách nếu gap giữa hai event >300 giây. Thiếu actor/time thì không nhóm. |

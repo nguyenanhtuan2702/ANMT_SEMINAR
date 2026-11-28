@@ -1,8 +1,6 @@
 """Normalize event fields while preserving source values for investigation."""
 from __future__ import annotations
 
-import hashlib
-
 import pandas as pd
 
 from preprocessing.source_ids import validate_source_row_ids
@@ -18,7 +16,7 @@ CATEGORICAL_COLUMNS = (
 
 
 def normalize_logs(frame: pd.DataFrame) -> pd.DataFrame:
-    """Return a normalized copy with raw values, timestamps, and stable row IDs."""
+    """Return a normalized copy while preserving Loader-assigned row IDs."""
     required = {
         "Timestamp",
         "User",
@@ -33,7 +31,12 @@ def normalize_logs(frame: pd.DataFrame) -> pd.DataFrame:
     if frame.empty:
         raise ValueError("Không thể chuẩn hóa CSV không có bản ghi.")
 
+    source_row_ids = validate_source_row_ids(
+        frame,
+        component="Normalizer",
+    )
     result = frame.copy()
+    result["source_row_id"] = source_row_ids
     if "record_index" not in result.columns:
         result.insert(1 if "source_row_id" in result.columns else 0,
                       "record_index", range(len(result)))
@@ -45,18 +48,6 @@ def normalize_logs(frame: pd.DataFrame) -> pd.DataFrame:
             result["record_index"] = indices.astype("int64")
         except (TypeError, ValueError) as error:
             raise ValueError("record_index phải là số nguyên hợp lệ.") from error
-    if "source_row_id" not in result.columns:
-        source_hash = hashlib.sha256(
-            pd.util.hash_pandas_object(result, index=False).values.tobytes()
-        ).hexdigest()
-        result.insert(0, "source_row_id", [
-            f"{source_hash}:{int(index):08d}" for index in result["record_index"]
-        ])
-    result["source_row_id"] = validate_source_row_ids(
-        result,
-        component="Normalizer",
-    )
-
     if "Timestamp_raw" not in result.columns:
         result["Timestamp_raw"] = result["Timestamp"].astype("string")
     parsed_timestamp = pd.to_datetime(

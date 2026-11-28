@@ -57,7 +57,17 @@ class LogIngestionTest(unittest.TestCase):
                     "Activity": " HTTP ",
                     "Action": " URL ACCESSED ",
                     "Decoder_name": " Web ",
-                }
+                    "source_row_id": "loader:00000000",
+                },
+                {
+                    "Timestamp": "2025-01-02 10:00:00",
+                    "User": "Bob",
+                    "Agent_name": "host-b",
+                    "Activity": "file",
+                    "Action": "file modified",
+                    "Decoder_name": "file",
+                    "source_row_id": "loader:00000001",
+                },
             ]
         )
         normalized = normalize_logs(frame)
@@ -65,9 +75,27 @@ class LogIngestionTest(unittest.TestCase):
         self.assertEqual(row["Activity"], "http")
         self.assertEqual(row["Action_raw"], " URL ACCESSED ")
         self.assertEqual(row["User_raw"], " Alice ")
+        self.assertEqual(
+            normalized["source_row_id"].tolist(),
+            ["loader:00000000", "loader:00000001"],
+        )
         self.assertTrue(row["invalid_timestamp"])
         self.assertTrue(pd.isna(row["Timestamp"]))
         self.assertTrue(normalized["source_row_id"].is_unique)
+
+    def test_normalizer_requires_source_ids_from_loader(self):
+        frame = pd.DataFrame(
+            {
+                "Timestamp": ["2025-01-01 10:00:00"],
+                "User": ["alice"],
+                "Agent_name": ["host-a"],
+                "Activity": ["http"],
+                "Action": ["URL accessed"],
+                "Decoder_name": ["web"],
+            }
+        )
+        with self.assertRaisesRegex(ValueError, "source_row_id"):
+            normalize_logs(frame)
 
     def test_normalizer_rejects_blank_or_duplicate_source_ids(self):
         frame = pd.DataFrame(
@@ -91,6 +119,7 @@ class RuleEngineTest(unittest.TestCase):
             pd.DataFrame(
                 [
                     {
+                        "source_row_id": f"rule-event-{index}",
                         "Timestamp": f"2025-03-01 09:00:0{index}",
                         "User": "alice",
                         "Agent_name": "host-a",
@@ -160,6 +189,7 @@ class CorrelationAndSeverityTest(unittest.TestCase):
             pd.DataFrame(
                 [
                     {
+                        "source_row_id": f"correlation-event-{index}",
                         "Timestamp": timestamp,
                         "User": user,
                         "Agent_name": "host-a",
@@ -167,12 +197,12 @@ class CorrelationAndSeverityTest(unittest.TestCase):
                         "Action": "file modified",
                         "Decoder_name": "test",
                     }
-                    for timestamp, user in [
+                    for index, (timestamp, user) in enumerate([
                         ("2025-03-01 09:14:59", "alice"),
                         ("2025-03-01 09:15:00", "alice"),
                         ("2025-03-01 09:20:01", "alice"),
                         ("2025-03-01 09:16:00", None),
-                    ]
+                    ])
                 ]
             )
         )
@@ -185,6 +215,7 @@ class CorrelationAndSeverityTest(unittest.TestCase):
             pd.DataFrame(
                 [
                     {
+                        "source_row_id": "correlation-event-1",
                         "Timestamp": "2025-03-01 09:00:00",
                         "User": "alice",
                         "Agent_name": "host-a",
