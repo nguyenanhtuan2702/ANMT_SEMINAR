@@ -15,11 +15,10 @@ htmlcov/
 .idea/
 .DS_Store
 Thumbs.db
-# Local datasets and generated artifacts (keep directory markers/docs)
+# Local raw data and generated artifacts; curated processed data is versioned
 data/raw/*
 !data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
+# The processed SPEDIA bundle is versioned under data/processed/.
 models/artifacts/*
 !models/artifacts/.gitkeep
 reports/figures/*

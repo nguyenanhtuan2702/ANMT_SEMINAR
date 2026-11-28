@@ -1,0 +1,76 @@
+{
+  "dataset": "data/processed/normalized_logs.csv",
+  "dataset_sha256": "3b80dc3c9b886c0426f3c431695231e491eeb7e531a3f3a5ac10cf6f64d052ac",
+  "rows": 72250,
+  "train_rows": 46240,
+  "validation_rows": 11560,
+  "test_rows": 14450,
+  "train_timestamp_range": [
+    "2025-03-06 11:46:28",
+    "2025-03-26 22:12:28"
+  ],
+  "validation_timestamp_range": [
+    "2025-03-26 22:12:29",
+    "2025-03-30 10:19:34"
+  ],
+  "test_timestamp_range": [
+    "2025-03-30 10:19:36",
+    "2025-03-30 19:45:22.120000"
+  ],
+  "train_target_distribution": {
+    "0": 25663,
+    "1": 20577
+  },
+  "validation_target_distribution": {
+    "0": 4330,
+    "1": 7230
+  },
+  "test_target_distribution": {
+    "0": 716,
+    "1": 13734
+  },
+  "random_state": 42,
+  "split_strategy": "chronological 64% train / 16% validation / 20% test",
+  "window": "15min; counts prior timestamps only, current timestamp excluded",
+  "models": [
+    {
+      "accuracy": 0.9997923875432526,
+      "precision": 1.0,
+      "recall": 0.9997815640017474,
+      "f1": 0.9998907700709995,
+      "pr_auc": 0.9999997988629712,
+      "model": "Logistic Regression",
+      "model_key": "logistic_regression",
+      "feature_set": "hour, day_of_week, Activity, Action, Decoder_name, User, Agent_name, User_events_15min_past, Agent_name_events_15min_past",
+      "validation_threshold": 0.41252396612305114,
+      "validation_f1": 1.0,
+      "test_rows": 14450
+    },
+    {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "pr_auc": 1.0,
+      "model": "Random Forest",
+      "model_key": "random_forest",
+      "feature_set": "hour, day_of_week, Activity, Action, Decoder_name, User, Agent_name, User_events_15min_past, Agent_name_events_15min_past",
+      "validation_threshold": 0.54,
+      "validation_f1": 1.0,
+      "test_rows": 14450
+    },
+    {
+      "accuracy": 0.9839446366782006,
+      "precision": 0.9921271322350197,
+      "recall": 0.9909713120722295,
+      "f1": 0.9915488853271164,
+      "pr_auc": 0.9997703456392676,
+      "model": "Random Forest Behavioral",
+      "model_key": "random_forest_behavioral",
+      "feature_set": "hour, day_of_week, Activity, Action, Decoder_name, User_events_15min_past, Agent_name_events_15min_past",
+      "validation_threshold": 0.18,
+      "validation_f1": 0.9658250802064443,
+      "test_rows": 14450
+    }
+  ]
+}

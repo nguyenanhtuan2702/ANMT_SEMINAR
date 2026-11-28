@@ -1,9 +1,8 @@
 # AI Security Log Analyzer
 
-Ứng dụng Streamlit hỗ trợ xem nhật ký an ninh, chạy dự đoán anomaly bằng
-Machine Learning và xem biểu đồ tổng quan/cảnh báo.
-
-> Rule Engine, event correlation và severity chưa được tích hợp.
+Ứng dụng Streamlit tiếp nhận CSV, chuẩn hóa và giữ log gốc, chạy Machine
+Learning cùng Rule Engine, nhóm sự kiện theo thời gian, gán severity có lý do,
+và hiển thị cảnh báo/timeline để analyst rà soát.
 
 ## Cài đặt và chạy trên Windows
 
@@ -68,15 +67,46 @@ Nếu cổng 8501 đang được sử dụng:
 
 ### 5. Dùng ứng dụng
 
-1. Tải file CSV ở thanh bên.
-2. Chọn model và điều chỉnh ngưỡng anomaly nếu cần.
-3. Xem thống kê/biểu đồ ở **Tổng quan**, danh sách ở **Sự kiện**, cảnh báo
-   cùng anomaly score ở **Cảnh báo**.
-4. Tab **Đánh giá ML** hiển thị metric và confusion matrix đã lưu trong project.
+1. Tải CSV SPEDIA có các trường nền `Timestamp`, `User`, `Agent_name`,
+   `Activity`, `Action`, `Decoder_name`; các rule đang bật cần thêm `Command`,
+   `Path`, `Url`, `Full_log` và `Description`.
+2. Ứng dụng tạo khóa `source_row_id`, giữ các giá trị raw và chuẩn hóa trường
+   phân loại; `Anomaly` là tùy chọn và không làm đầu vào inference.
+3. Chọn model và threshold. ML và Rule Engine chạy độc lập; event có thể có
+   cảnh báo từ một hoặc cả hai detector.
+4. Xem **Tổng quan**, **Sự kiện**, **Cảnh báo**, **Điều tra** và
+   **Đánh giá ML**. Tab Điều tra hiển thị group/timeline theo User + Agent.
 
-CSV cần có các cột `Timestamp`, `User`, `Agent_name`, `Activity`, `Action`,
-`Decoder_name`. Cột `Anomaly` không bắt buộc và không được dùng làm đầu vào
-khi dự đoán.
+Rule Engine áp dụng các rule đã mô tả trong `data/processed/DATA.md`. Correlation
+dùng fixed window 15 phút và tách nhóm khi khoảng cách giữa hai event lớn hơn
+5 phút. Severity kết hợp rule severity, ML corroboration và tín hiệu trong
+prefix thời gian; đây là mức ưu tiên rà soát, không phải kết luận sự cố.
+Event thiếu Timestamp hợp lệ được giữ lại nhưng không được chấm ML hoặc
+correlate.
+
+## Huấn luyện lại từ `data/processed`
+
+Đặt gói dữ liệu đã chuẩn hóa trong `data/processed/`, gồm ít nhất
+`normalized_logs.csv` và `normalized_logs.schema.json`. Từ thư mục gốc project,
+chạy:
+
+```powershell
+.\.venv\Scripts\python.exe -m models.train_model
+```
+
+Script đọc `normalized_logs.csv` qua `preprocessing/data_bundle.py`, dùng
+`Anomaly` làm nhãn mục tiêu, chia dữ liệu theo thời gian thành 64% train,
+16% validation và 20% test. Các preprocessing được fit trên train; ngưỡng
+được chọn trên validation. Không dùng `Anomaly`, ID, trường raw hay kết quả
+rules/severity làm feature. Feature window chỉ đếm sự kiện trước thời điểm
+hiện tại.
+
+Sau khi chạy, model trong `models/artifacts/` được cập nhật và các metric,
+ngưỡng validation (`model_thresholds.json`), confusion matrix, FP/FN được ghi
+vào `reports/ml/`. Dashboard dùng threshold validation làm mặc định riêng
+cho từng model; người dùng vẫn có thể điều chỉnh. Chạy kiểm thử trước khi
+dùng model mới trên dashboard. Không dùng `detected_logs.csv` làm
+nguồn feature huấn luyện vì nó chứa đầu ra detector.
 
 ## Chạy kiểm thử
 

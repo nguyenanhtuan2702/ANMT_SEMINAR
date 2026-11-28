@@ -1,3 +1,4 @@
-model,accuracy,precision,recall,f1,pr_auc
-Logistic Regression,0.9998615916955017,1.0,0.999854376001165,0.9999271826986091,0.9999999893983693
-Random Forest,0.999515570934256,1.0,0.9994903160040775,0.99974509304104,1.0
+accuracy,precision,recall,f1,pr_auc,model,model_key,feature_set,validation_threshold,validation_f1,test_rows
+0.9997923875432526,1.0,0.9997815640017474,0.9998907700709995,0.9999997988629712,Logistic Regression,logistic_regression,"hour, day_of_week, Activity, Action, Decoder_name, User, Agent_name, User_events_15min_past, Agent_name_events_15min_past",0.41252396612305114,1.0,14450
+1.0,1.0,1.0,1.0,1.0,Random Forest,random_forest,"hour, day_of_week, Activity, Action, Decoder_name, User, Agent_name, User_events_15min_past, Agent_name_events_15min_past",0.54,1.0,14450
+0.9839446366782006,0.9921271322350197,0.9909713120722295,0.9915488853271164,0.9997703456392676,Random Forest Behavioral,random_forest_behavioral,"hour, day_of_week, Activity, Action, Decoder_name, User_events_15min_past, Agent_name_events_15min_past",0.18,0.9658250802064443,14450
