@@ -1,8 +1,10 @@
 # Alert schema v1.0 — bàn giao tích hợp
 
-Ngày đóng băng kỹ thuật: **21/11/2026**. Trạng thái xác nhận Tuấn: **đang chờ**, chưa có trao đổi/xác nhận được cung cấp. Đây là giao diện đã triển khai và kiểm thử để review; không phải biên bản Tuấn đã đồng ý.
+Ngày đóng băng kỹ thuật: **21/11/2026**. Ngày **27/11/2026**, Tuấn xác nhận nghiệm thu phạm vi Giai đoạn 1 sau khi đối chiếu hợp đồng, mã thực thi và kiểm tra liên quan. Bằng chứng và phạm vi được ghi trong `docs/schemas/alert_v1.0.freeze.json`; đây là xác nhận của Tuấn, không phải phê duyệt thay mặt cả nhóm.
 
 Nguồn chuẩn máy đọc: `docs/schemas/alert_v1.0.schema.json`. Hash khóa phiên bản nằm trong `docs/schemas/alert_v1.0.freeze.json`, được kiểm tra bằng test. Thay field/kiểu/ngữ nghĩa phá vỡ tương thích phải phát hành phiên bản mới, không sửa ngầm v1.0.
+
+Thỏa thuận tích hợp ML ngày 27/11/2026 giữ nguyên schema v1.0: `predicted_label` và `anomaly_score` là kết quả riêng của ML, không thêm vào alert hoặc `rule_matches`.
 
 ## Hai lớp alert
 
@@ -56,14 +58,14 @@ DataFrame event có đúng 12 cột ngay cả khi rỗng. rule_ids/rule_matches 
 
 Ví dụ thật: `reports/rule_validation/merged_alerts_v1.0.json` và `.csv`. Không có nhãn trong hai file này. Dataset hiện không có event khớp nhiều rule mặc định, nên số event sau merge bằng atomic; ca nhiều rule và gửi lặp được xác minh bằng unit test.
 
-## Nội dung Tuấn cần xác nhận
+## Phạm vi Tuấn xác nhận — Giai đoạn 1
 
 - Dashboard dùng event alert để hiển thị một dòng/sự kiện, mở rule_matches khi xem chi tiết; atomic alert vẫn dùng cho thống kê từng rule.
 - Tuân theo null user, timezone chưa xác định, list JSON và trạng thái detector error/not_run/success.
-- Đồng ý giữ field/kiểu v1.0 và cơ chế phiên bản mới khi đổi; phân biệt max base priority với kết quả module severity ở task sau.
+- Giữ field/kiểu v1.0 và cơ chế phiên bản mới khi đổi; phân biệt max base priority với kết quả severity đã điều chỉnh theo policy.
 
-Chỉ cập nhật team_signoff khi có xác nhận thật kèm người/ngày/bằng chứng trao đổi. Chưa gửi tin nhắn, không giả lập chữ ký hoặc xác nhận của Tuấn.
+Tuấn đã xác nhận trực tiếp trong cuộc hội thoại Codex ngày 27/11/2026; freeze ghi người, ngày và phạm vi. Schema kỹ thuật không bị sửa trong lần nghiệm thu này.
 
 ## Artifact dùng chung sau rà soát Task 4–6
 
-`data/alerts.csv` là bản merged v1.0 chính; `data/alerts_atomic.csv` giữ atomic 11 field. Đọc bằng `read_alerts()` hoặc `read_atomic_alerts()` từ `detection.shared_output_io`, chuyển kèm sidecar `.schema.json` để khôi phục list/dict, null và kiểm tra checksum. Cả hai bảng hiện có 1.301 dòng, khớp snapshot Task 5 đã đóng băng. Không thay đổi JSON schema/freeze; xác nhận Tuấn còn pending. Xem [SHARED_OUTPUTS.md](SHARED_OUTPUTS.md).
+`data/alerts.csv` là bản merged v1.0 chính; `data/alerts_atomic.csv` giữ atomic 11 field. Đọc bằng `read_alerts()` hoặc `read_atomic_alerts()` từ `detection.shared_output_io`, chuyển kèm sidecar `.schema.json` để khôi phục list/dict, null và kiểm tra checksum. Cả hai bảng hiện có 1.301 dòng, khớp snapshot Task 5 đã đóng băng. Lần nghiệm thu không thay đổi JSON schema/freeze. Xem [SHARED_OUTPUTS.md](SHARED_OUTPUTS.md).

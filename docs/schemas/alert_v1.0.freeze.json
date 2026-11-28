@@ -4,8 +4,20 @@
   "technical_status": "frozen",
   "schema_sha256": "2f97ea60b2378d92ff4da8315fe1aff58ffd349967f486ad1ecd54c260216667",
   "team_signoff": {
-    "Tuan": "pending",
-    "evidence": null
+    "Tuan": "accepted",
+    "evidence": {
+      "date": "2026-11-27",
+      "source": "Tuấn xác nhận trực tiếp trong cuộc hội thoại Codex sau khi yêu cầu nghiệm thu Giai đoạn 1.",
+      "scope": [
+        "Các cột CSV đầu vào và source_row_id",
+        "Alert schema v1.0 và quy tắc merge",
+        "Correlation/grouping và severity policy",
+        "Dashboard gọi upload pipeline"
+      ],
+      "verification": "96 test trong phạm vi đạt, 4 test bỏ qua (100 test chạy). Toàn bộ suite được thử nhưng chưa hoàn tất vì môi trường thiếu joblib và pytest; không có thao tác duyệt trình duyệt thủ công.",
+      "test_environment": "Python 3.12.8 system interpreter",
+      "schema_sha256_is_unchanged": true
+    }
   },
-  "change_policy": "Breaking field/type/merge changes require a new version; no claim of team approval."
+  "change_policy": "Thay đổi phá vỡ tương thích về field/type/merge cần phiên bản mới; xác nhận này chỉ ghi nhận nghiệm thu Giai đoạn 1 của Tuấn, không thay mặt cả nhóm."
 }

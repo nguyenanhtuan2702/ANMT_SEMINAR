@@ -1,5 +1,7 @@
 # Pipeline rule-based — Task 8
 
+Tài liệu này mô tả pipeline Rule-based đang chạy. Phần nối ML vào Dashboard là hợp đồng mục tiêu riêng tại [Tài liệu thống nhất kỹ thuật](../THONG_NHAT_KY_THUAT_TICH_HOP_ML_DASHBOARD.md); ML hiện chưa được gọi trong service hoặc giao diện.
+
 Nội dung tích hợp Task 8 được ghi dưới tiêu đề **Task 9** trong report_npt.md theo yêu cầu đặt tên báo cáo. Artifact kiểm chứng lưu tại reports/pipeline_integration.
 
 ## Hợp đồng gọi trực tiếp
@@ -57,11 +59,12 @@ Chọn CSV gốc, không upload detected/normalized CSV qua raw loader. File nor
 ## Export và kiểm chứng
 
 ```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -W ignore::DeprecationWarning -m unittest discover -s tests -q
 .\.venv\Scripts\python.exe -W ignore::DeprecationWarning -m detection.export_detected_dataset --check-dashboard
 ```
 
-Lệnh export chạy file gốc qua cùng service với widget upload, xuất `data/detected_logs.csv` + `.schema.json`, kiểm tra round-trip lossless, raw/khóa theo CSV gốc, bỏ nhãn/Level và ba cutoff. `--check-dashboard` dùng Streamlit AppTest trên widget upload thật, bảng overview/alert/timeline và filter rerun; không phải xác nhận trực tiếp của Tuấn hoặc kiểm thử trình duyệt thủ công.
+Lệnh export chạy file gốc qua cùng service với widget upload, xuất `data/detected_logs.csv` + `.schema.json`, kiểm tra round-trip lossless, raw/khóa theo CSV gốc, bỏ nhãn/Level và ba cutoff. `--check-dashboard` dùng Streamlit AppTest trên widget upload thật, bảng overview/alert/timeline và filter rerun; đây là kiểm tra tự động, không thay cho thao tác duyệt thủ công trên trình duyệt.
 
 ```python
 from preprocessing.detected_io import read_detected_logs, save_detected_logs
@@ -72,6 +75,6 @@ Reader khôi phục JSON rule_ids thành list, datetime, nullable integer/boolea
 
 reports/pipeline_integration/pipeline_validation.json và timings.csv ghi số lượng, phiên bản thực chạy, thời gian từng bước, kiểm tra bất biến và trạng thái AppTest. Bảng thời gian đo trên máy hiện tại, một lần chạy có cả bước kiểm chứng; không cộng pipeline_total với các bước con và không coi kết quả là benchmark mọi máy. Pipeline tái sử dụng nhóm chuẩn vừa tạo khi tính severity, tránh tái nhóm toàn dataset; assign_severity công khai vẫn tự xác minh membership của caller. Test kiểm tra hai đường cho cùng kết quả. Dashboard cache riêng pipeline và timeline để tránh tính lại khi chỉ lọc.
 
-Tuấn chưa trực tiếp chạy nghiệm thu cùng agent; tài liệu/API và kiểm thử tự động đã sẵn sàng để review. ML, late-arrival/streaming state và lịch vận hành/timezone được xác minh vẫn ngoài phạm vi.
+Ngày 27/11/2026, Tuấn nghiệm thu Giai đoạn 1 qua review tài liệu, mã thực thi và các unit test liên quan; không có phiên thao tác trình duyệt thủ công trong lần review này. Tích hợp ML được thống nhất riêng theo tài liệu kỹ thuật nói trên và vẫn chờ triển khai/nghiệm thu; late-arrival/streaming state và lịch vận hành/timezone được xác minh vẫn ngoài phạm vi.
 
-Kết quả môi trường .venv: 159 test đạt trên Python 3.12.14/pandas 2.3.3/Streamlit 1.67.0. Full dataset 72.250 event × 47 cột, 1.301 alert event/7.501 nhóm. Sau tối ưu: pipeline 5,336s; upload/normalize/pipeline 8,402s; AppTest khởi tạo/upload/render 12,692s; filter rerun cache 0,868s. CSV trước/sau tối ưu có cùng SHA-256; xem reports/pipeline_integration/optimization_checks.json. Thay code khi phát triển cần restart hoặc clear cache; hash rule/policy tự đổi key khi cấu hình thay đổi.
+Kết quả kiểm thử Task 9 trước lần nghiệm thu: 159 test đạt trên Python 3.12.14/pandas 2.3.3/Streamlit 1.67.0. Full dataset 72.250 event × 47 cột, 1.301 alert event/7.501 nhóm. Sau tối ưu: pipeline 5,336s; upload/normalize/pipeline 8,402s; AppTest khởi tạo/upload/render 12,692s; filter rerun cache 0,868s. CSV trước/sau tối ưu có cùng SHA-256; xem reports/pipeline_integration/optimization_checks.json. Thay code khi phát triển cần restart hoặc clear cache; hash rule/policy tự đổi key khi cấu hình thay đổi.

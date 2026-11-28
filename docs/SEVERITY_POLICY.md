@@ -2,6 +2,8 @@
 
 Severity không phải mức tác động đã xác minh. Không dùng `Anomaly`, `Level`, điểm ML hoặc tên Activity để kết luận tấn công. Các ngưỡng bên dưới là lựa chọn minh bạch của prototype, chưa được hiệu chỉnh theo tổ chức hoặc tối ưu bằng nhãn.
 
+Thỏa thuận tích hợp ML giữ nguyên policy này: model chỉ cung cấp prediction/score riêng; không truyền score vào `assign_severity()` và không sửa schema alert. Xem [hợp đồng tích hợp ML](../THONG_NHAT_KY_THUAT_TICH_HOP_ML_DASHBOARD.md).
+
 ## Mapping và cách tính
 
 Nguồn duy nhất cho mức gốc là `base_severity` trong `detection/rules.json`. Không lấy mức incoming làm gốc để tránh cộng dồn khi gọi lại.
@@ -69,4 +71,4 @@ python tests/validate_severity_dataset.py
 
 Có 20 test severity, tổng project 141 test. Audit thực tế trên 72.250 event/1.301 alert: LOW 48, MEDIUM 635, HIGH 446, CRITICAL 172; 675 alert đổi mức so với base. Tính severity gồm tái nhóm khoảng 1,676 giây trong lần audit, không bao gồm đọc/ghi file. Các con số là phân phối ưu tiên, không phải số tấn công hoặc tác động thật.
 
-`reports/severity_assignment/severity_validation.json` ghi cấu hình/hash, ba cutoff kiểm tra nhân quả, nhãn/ML độc lập, idempotence, raw bất biến và CSV round-trip. `examples.json` có ví dụ thật đủ bốn mức. Kết quả kiểm chứng xuất riêng `prioritized_atomic_alerts.csv` và `prioritized_alerts_v1.0.csv`, mỗi file kèm `.schema.json`. Các file `data/alerts*.csv`, `data/event_groups.csv`, normalized data, rules và schema/freeze Task 5 giữ nguyên SHA-256. Dashboard chưa được nối tự động; Tuấn chưa xác nhận policy này.
+`reports/severity_assignment/severity_validation.json` ghi cấu hình/hash, ba cutoff kiểm tra nhân quả, nhãn/ML độc lập, idempotence, raw bất biến và CSV round-trip. `examples.json` có ví dụ thật đủ bốn mức. Kết quả kiểm chứng xuất riêng `prioritized_atomic_alerts.csv` và `prioritized_alerts_v1.0.csv`, mỗi file kèm `.schema.json`; Dashboard không đọc trực tiếp hai artifact CSV này mà tính severity qua upload pipeline Task 8. Tuấn đã xác nhận policy grouping/severity trong nghiệm thu Giai đoạn 1 ngày 27/11/2026.

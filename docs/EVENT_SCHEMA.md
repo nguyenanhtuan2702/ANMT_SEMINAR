@@ -2,6 +2,8 @@
 
 Ngày bổ sung: 22/11/2026. Schema logic: **spedia.events.v1**. Dataset hiện có **72.250 record, 43 cột**; mẫu dashboard **1.000 record** có cùng cột/kiểu. Inference không bắt buộc Anomaly, nên nguồn không nhãn có thể có 42 cột thay vì 43. Các cột nguồn bổ sung chưa biết vẫn được giữ.
 
+Hợp đồng ML ngày 27/11/2026 cần `Decoder_name`; Normalizer bảo đảm cột này có mặt dưới dạng nullable string dù raw CSV không có. Vì vậy đây là điều kiện của event chuẩn hóa cho ML, không phải cột bắt buộc của raw Loader. Chi tiết tại [tài liệu thống nhất kỹ thuật](../THONG_NHAT_KY_THUAT_TICH_HOP_ML_DASHBOARD.md).
+
 ## File bàn giao và cách đọc
 
 | File | Mục đích |
@@ -114,7 +116,7 @@ normalize là cùng function object với normalize_logs, không phải bản sa
 
 Sample lấy một event đầu tiên mỗi Activity rồi lấy ngẫu nhiên phần còn lại không hoàn lại, seed 20261122, sort lại theo thời gian. Có đúng 1.000 source_row_id gốc, phủ cả 6 Activity; không chọn theo Anomaly. Thống kê: http 325, email 253, file 169, command 124, session 66, device 63.
 
-Mẫu phục vụ dựng giao diện/bộ lọc, không đại diện đầy đủ lịch sử. Không dùng nó để tính recall toàn dataset hoặc kiểm chứng cửa sổ correlation vì đã bỏ nhiều event trung gian. Dashboard hiện vẫn cần Tuấn nối datasource bằng read_normalized_logs; chưa tự chuyển giao diện Streamlit cũ sang pipeline mới.
+Mẫu phục vụ dựng giao diện/bộ lọc, không đại diện đầy đủ lịch sử. Không dùng nó để tính recall toàn dataset hoặc kiểm chứng cửa sổ correlation vì đã bỏ nhiều event trung gian. Ghi chú Task 3 về việc nối dashboard đã được thay thế bởi tích hợp Task 8: Dashboard hiện nhận CSV gốc qua loader → normalizer → pipeline; `read_normalized_logs` dành cho caller đọc artifact chuẩn hóa.
 
 ## Tạo lại và kiểm tra
 

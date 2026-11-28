@@ -51,6 +51,6 @@ Join với `events` qua `source_row_id` để điều tra `Full_log`, `Descripti
 - Cấu hình nhóm: fixed window 900 giây, gap 300 giây, min_events=1. `source_row_ids` giữ thứ tự Timestamp/record_index; summary live có thể tăng khi thêm tương lai. Để xem đúng snapshot quá khứ, dùng cùng `as_of=(Timestamp, record_index)` cho `correlate` và `get_timeline`.
 - Bảng nhóm xuất là snapshot toàn dataset, không phải thông tin đã biết ở mọi thời điểm trước đó. Không dùng end_time/count toàn nhóm để làm đặc trưng inference tại một event cũ; phải tính snapshot nhân quả.
 - Mẫu review, metric, ví dụ TP/FP và lịch sử thay đổi giữ tại `reports/rule_validation/`, `docs/RULE_CHANGELOG.md`, `docs/RULE_ENGINE_LIMITATIONS.md`. Không tối ưu theo nhãn khi xuất lại.
-- Alert schema v1.0 đã đóng băng kỹ thuật; xác nhận của Tuấn còn `pending`. Dashboard chưa được nối tự động trong phạm vi bổ sung này.
+- Alert schema v1.0 đã đóng băng kỹ thuật và được Tuấn xác nhận trong nghiệm thu Giai đoạn 1 ngày 27/11/2026. Dashboard xử lý upload qua pipeline trong bộ nhớ; nó không đọc tự động ba CSV artifact được mô tả trong trang này.
 
 Xem chi tiết field tại `ALERT_SCHEMA_V1.md`, `CORRELATION_API.md`, `EVENT_SCHEMA.md`.

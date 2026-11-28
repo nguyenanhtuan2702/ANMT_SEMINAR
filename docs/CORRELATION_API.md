@@ -1,6 +1,6 @@
 # Event Correlation — API Task 6
 
-Ngày triển khai: 22/11/2026. Không thay đổi rule/config/alert schema v1.0 đã đóng băng ở Task 5. Chưa có xác nhận Tuấn về giao diện dashboard.
+Ngày triển khai: 22/11/2026. Không thay đổi rule/config/alert schema v1.0 đã đóng băng ở Task 5. Tuấn xác nhận quy tắc grouping/correlation trong nghiệm thu Giai đoạn 1 ngày 27/11/2026; Dashboard dùng pipeline Task 8 để hiển thị nhóm và timeline. Kế hoạch ML tại [tài liệu thống nhất kỹ thuật](../THONG_NHAT_KY_THUAT_TICH_HOP_ML_DASHBOARD.md) không thay đổi correlation và không dùng summary tương lai làm feature.
 
 ## Cách gọi
 

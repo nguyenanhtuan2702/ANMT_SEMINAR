@@ -17,4 +17,4 @@ Thay đổi về regex không xóa dữ liệu hoặc sửa raw; chỉ thay đi�
 
 `reports/rule_validation/rules_frozen_v1.0.json` là snapshot cấu hình sau các sửa đổi kỹ thuật trên. `preparation_manifest.json` ghi SHA-256 file nguồn, config, atomic output và mẫu không nhãn. Pha evaluate kiểm tra lại hash và yêu cầu notes phủ đủ mẫu trước khi đọc nhãn để tính metric. Nếu thay rule sau lần đánh giá này, phải tạo phiên bản mới và đánh giá riêng; không sửa ngầm artifact v1.0.
 
-Đóng băng schema tích hợp là quyết định kỹ thuật trên repo. Xác nhận Tuấn vẫn chờ, không có nội dung nào ở đây là biên bản đã được Tuấn đồng ý.
+Tại thời điểm lập snapshot Task 5, việc xác nhận của Tuấn còn chờ. Ngày 27/11/2026, Tuấn đã xác nhận alert schema v1.0 trong phạm vi nghiệm thu Giai đoạn 1; bằng chứng hiện hành được ghi trong `docs/schemas/alert_v1.0.freeze.json`.
